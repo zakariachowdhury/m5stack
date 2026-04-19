@@ -881,6 +881,125 @@ section {
   margin-top: 18px;
 }
 
+/* Project ideas block inside the product modal. Turns every unit/cap/device
+   into an inspiration surface — clicking an idea opens the full project. */
+.pmodal-ideas-header {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.pmodal-ideas-header h3 {
+  font-size: 1.15rem;
+  margin: 0 0 4px;
+}
+.pmodal-ideas {
+  margin-top: 24px;
+}
+.pmodal-ideas h4 {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin: 0 0 6px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.idea-count {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-elev);
+  padding: 1px 8px;
+  border-radius: 999px;
+  letter-spacing: normal;
+}
+.pmodal-ideas-blurb {
+  margin: 0 0 12px;
+  color: var(--text-dim);
+  font-size: 0.88rem;
+}
+.pmodal-ideas-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 10px;
+}
+.idea-card {
+  text-align: left;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 14px 12px;
+  cursor: pointer;
+  color: var(--text);
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.idea-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--diff-color, var(--accent));
+}
+.idea-card[data-diff="beginner"] { --diff-color: var(--units); }
+.idea-card[data-diff="intermediate"] { --diff-color: var(--caps); }
+.idea-card[data-diff="advanced"] { --diff-color: #ff7285; }
+.idea-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--diff-color, var(--accent));
+}
+.idea-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.idea-tagline {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+.idea-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 4px;
+}
+.idea-meta .pill {
+  font-size: 0.68rem;
+  padding: 2px 7px;
+}
+.idea-meta .pill-diff {
+  color: var(--diff-color, var(--accent));
+  border-color: var(--diff-color, var(--accent));
+  background: transparent;
+  border-width: 1px;
+  border-style: solid;
+}
+.idea-extras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 2px;
+}
+.idea-extra {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.04);
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+
 .projmodal {
   padding: 28px;
 }

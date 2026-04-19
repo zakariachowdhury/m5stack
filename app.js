@@ -503,6 +503,7 @@ function openProductModal(productId) {
         <button type="button" class="btn btn-primary" data-toggle-pick="${p.id}" ${locked ? 'disabled' : ''}>${addLabel}</button>
         <a href="${p.url}" class="btn btn-ghost" target="_blank" rel="noopener">View on m5stack.com ↗</a>
       </div>
+      ${renderProductIdeasSection(p)}
     </div>
   `;
   body.querySelector('[data-toggle-pick]').addEventListener('click', () => {
@@ -510,7 +511,132 @@ function openProductModal(productId) {
     togglePick(p);
     document.getElementById('product-modal').close();
   });
+  // Wire the project mini-cards: close product modal, open project modal.
+  for (const card of body.querySelectorAll('[data-project-pick]')) {
+    card.addEventListener('click', () => {
+      const id = card.dataset.projectPick;
+      document.getElementById('product-modal').close();
+      openProjectModal(id);
+    });
+  }
   document.getElementById('product-modal').showModal();
+}
+
+function renderProductIdeasSection(product) {
+  const matches = projectsForProduct(product);
+  if (matches.length === 0) return '';
+
+  const { solo, combo } = matches;
+  const isDevice = product.category === 'devices';
+
+  const soloHeading = isDevice
+    ? 'Just this device · no extra parts'
+    : 'Device + this Unit alone';
+  const comboHeading = isDevice
+    ? 'With an add-on Unit or CAP'
+    : 'Combine with more parts';
+
+  const soloBlurb = isDevice
+    ? `${product.title} packs a surprising amount on its own — here are builds that rely entirely on what's already inside.`
+    : `Projects where this is the only part you need alongside a device.`;
+  const comboBlurb = isDevice
+    ? `Builds that add one or more Units or a CAP for richer real-world projects.`
+    : `Bigger builds that combine this with other Units for more ambitious projects.`;
+
+  const soloHtml = solo.length
+    ? `
+      <section class="pmodal-ideas">
+        <h4>${escape(soloHeading)} <span class="idea-count">${solo.length}</span></h4>
+        <p class="pmodal-ideas-blurb">${escape(soloBlurb)}</p>
+        <div class="pmodal-ideas-list">${solo.map((proj) => ideaCardHtml(proj, product)).join('')}</div>
+      </section>
+    ` : '';
+
+  const comboHtml = combo.length
+    ? `
+      <section class="pmodal-ideas">
+        <h4>${escape(comboHeading)} <span class="idea-count">${combo.length}</span></h4>
+        <p class="pmodal-ideas-blurb">${escape(comboBlurb)}</p>
+        <div class="pmodal-ideas-list">${combo.map((proj) => ideaCardHtml(proj, product)).join('')}</div>
+      </section>
+    ` : '';
+
+  return `
+    <div class="pmodal-ideas-header">
+      <h3>Things you could build</h3>
+      <p class="muted">${matches.all.length} project${matches.all.length === 1 ? '' : 's'} in this recipe book ${isDevice ? 'work with' : 'use'} ${escape(product.title)}.</p>
+    </div>
+    ${soloHtml}
+    ${comboHtml}
+  `;
+}
+
+// For a given product, return matching projects split into:
+//   solo: the product is enough (device alone OR this is the only required part)
+//   combo: needs other parts alongside this product
+function projectsForProduct(product) {
+  const projects = state.projects.projects;
+  const matches = [];
+  const isDevice = product.category === 'devices';
+
+  for (const proj of projects) {
+    let include = false;
+    let soloForThis = false;
+    if (isDevice) {
+      include = proj.compatibleDevices.includes(product.id);
+      soloForThis = include && proj.requiredParts.length === 0;
+    } else {
+      const isRequired = proj.requiredParts.includes(product.id);
+      const isOptional = (proj.optionalParts || []).includes(product.id);
+      include = isRequired || isOptional;
+      // solo = this is the only required part (others can be device-only
+      // projects that treat this as optional, which still counts as "solo")
+      const otherRequired = proj.requiredParts.filter((id) => id !== product.id);
+      soloForThis = include && otherRequired.length === 0;
+    }
+    if (include) {
+      matches.push({ proj, soloForThis });
+    }
+  }
+
+  const byDifficulty = { beginner: 0, intermediate: 1, advanced: 2 };
+  matches.sort((a, b) => byDifficulty[a.proj.difficulty] - byDifficulty[b.proj.difficulty]);
+
+  return {
+    all: matches.map((m) => m.proj),
+    solo: matches.filter((m) => m.soloForThis).map((m) => m.proj),
+    combo: matches.filter((m) => !m.soloForThis).map((m) => m.proj),
+  };
+}
+
+function ideaCardHtml(proj, context) {
+  const diffDots = { beginner: 1, intermediate: 2, advanced: 3 }[proj.difficulty] ?? 1;
+  const dotsHtml = `<span class="difficulty-dots">${[0,1,2].map(i => `<span class="${i < diffDots ? 'on' : ''}"></span>`).join('')}</span>`;
+
+  // Show a short list of extra parts needed beyond the current product.
+  const extras = proj.requiredParts
+    .filter((id) => id !== context.id)
+    .map((id) => state.productsById[id])
+    .filter(Boolean);
+  const deviceChip = context.category !== 'devices' && proj.compatibleDevices.length === 1
+    ? `<span class="idea-extra">+ ${escape(shortTitle(state.productsById[proj.compatibleDevices[0]] || {title: proj.compatibleDevices[0]}))}</span>`
+    : '';
+  const extrasHtml = extras.length
+    ? `<div class="idea-extras">${extras.slice(0, 3).map((x) => `<span class="idea-extra">+ ${escape(shortTitle(x))}</span>`).join('')}${extras.length > 3 ? `<span class="idea-extra">+${extras.length - 3} more</span>` : ''}</div>`
+    : (deviceChip ? `<div class="idea-extras">${deviceChip}</div>` : '');
+
+  return `
+    <button type="button" class="idea-card" data-project-pick="${proj.id}" data-diff="${proj.difficulty}">
+      <h5 class="idea-title">${escape(proj.title)}</h5>
+      <p class="idea-tagline">${escape(proj.tagline)}</p>
+      <div class="idea-meta">
+        <span class="pill pill-diff">${dotsHtml} ${cap(proj.difficulty)}</span>
+        <span class="pill">${escape(proj.ageGroup)}</span>
+        <span class="pill">${escape(proj.duration)}</span>
+      </div>
+      ${extrasHtml}
+    </button>
+  `;
 }
 
 function openProjectModal(projectId) {
