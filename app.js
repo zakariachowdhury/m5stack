@@ -4,6 +4,7 @@ const state = {
   products: null,   // { devices: [], caps: [], units: [], generatedAt }
   projects: null,   // { projects: [] }
   productsById: {}, // id -> product
+  projectCountByProduct: {}, // product id -> # of projects that use it
   selection: {
     device: null,         // product id or null
     parts: new Set(),     // set of cap/unit ids
@@ -11,8 +12,13 @@ const state = {
   filters: {
     difficulty: 'all',
     ageGroup: 'all',
+    tag: null,           // active tag filter (or null)
+    search: '',          // search query
   },
+  lastReadyCount: 0,
 };
+
+const TOP_TAGS = ['home', 'learning', 'fun', 'automation', 'school', 'outdoors', 'smart-home', 'productivity', 'green', 'off-grid', 'music', 'lighting', 'art', 'security', 'health', 'game'];
 
 // ---------------------------------------------------------------------
 // Boot
@@ -30,19 +36,44 @@ const state = {
     state.productsById[p.id] = p;
   }
 
+  computeProjectCounts();
+
   renderStats();
   renderCatalog('devices');
   renderCatalog('caps');
   renderCatalog('units');
   renderPickers();
+  renderTagBar();
   renderFooter();
+  renderSpotlight();
   wireFilters();
   wirePickerActions();
   wireModalClose();
+  wireHero();
+  wireSearch();
+  wireFab();
+  wireKeyboard();
+  wireHelp();
 
   restoreFromHash();
   updateBuilder();
 })();
+
+function computeProjectCounts() {
+  const counts = {};
+  for (const proj of state.projects.projects) {
+    for (const id of proj.compatibleDevices || []) {
+      counts[id] = (counts[id] || 0) + 1;
+    }
+    for (const id of proj.requiredParts || []) {
+      counts[id] = (counts[id] || 0) + 1;
+    }
+    for (const id of proj.optionalParts || []) {
+      counts[id] = (counts[id] || 0) + 1;
+    }
+  }
+  state.projectCountByProduct = counts;
+}
 
 // ---------------------------------------------------------------------
 // Hash state sync (shareable builds)
@@ -73,6 +104,8 @@ function restoreFromHash() {
   if (age && ['all', '8+', '12+', '16+'].includes(age)) {
     state.filters.ageGroup = age;
   }
+  const tag = params.get('tag');
+  if (tag) state.filters.tag = tag;
   // Re-apply filter button states
   for (const group of document.querySelectorAll('.filter-group')) {
     const key = group.dataset.filter;
@@ -81,6 +114,8 @@ function restoreFromHash() {
       btn.setAttribute('aria-pressed', btn.dataset.val === current ? 'true' : 'false');
     }
   }
+  refreshTagBar();
+  refreshSelectionUI();
 }
 
 function saveToHash() {
@@ -91,6 +126,7 @@ function saveToHash() {
   }
   if (state.filters.difficulty !== 'all') params.set('diff', state.filters.difficulty);
   if (state.filters.ageGroup !== 'all') params.set('age', state.filters.ageGroup);
+  if (state.filters.tag) params.set('tag', state.filters.tag);
   const s = params.toString();
   const next = s ? `#${s}` : ' ';
   history.replaceState(null, '', next);
@@ -101,10 +137,24 @@ function saveToHash() {
 // ---------------------------------------------------------------------
 
 function renderStats() {
-  document.getElementById('stat-devices').textContent = state.products.devices.length;
-  document.getElementById('stat-caps').textContent = state.products.caps.length;
-  document.getElementById('stat-units').textContent = state.products.units.length;
-  document.getElementById('stat-projects').textContent = state.projects.projects.length;
+  animateCount(document.getElementById('stat-devices'), state.products.devices.length);
+  animateCount(document.getElementById('stat-caps'), state.products.caps.length);
+  animateCount(document.getElementById('stat-units'), state.products.units.length);
+  animateCount(document.getElementById('stat-projects'), state.projects.projects.length);
+}
+
+function animateCount(el, to, duration = 900) {
+  if (!el) return;
+  const from = Number(el.textContent) || 0;
+  if (from === to) { el.textContent = to; return; }
+  const start = performance.now();
+  const step = (now) => {
+    const t = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - t, 3);
+    el.textContent = Math.round(from + (to - from) * eased);
+    if (t < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
 }
 
 function renderFooter() {
@@ -155,7 +205,16 @@ function productCard(product) {
     ? `<p class="product-lock">Works only with ${lock.map(deviceTitle).join(' / ')}</p>`
     : '';
 
+  const projectCount = state.projectCountByProduct[product.id] || 0;
+  const projectBadge = projectCount > 0
+    ? `<span class="product-project-badge" title="Projects using this ${CATEGORY_LABEL[product.category]}">
+         <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M2.5 3A1.5 1.5 0 0 1 4 1.5h5L13.5 6V13a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 13V3Z" opacity="0.35"/><path d="M9 1.5V5.5A1 1 0 0 0 10 6.5H13.5"/></svg>
+         ${projectCount} project${projectCount === 1 ? '' : 's'}
+       </span>`
+    : '';
+
   card.innerHTML = `
+    ${projectBadge}
     <div class="product-media">
       <img src="${product.image ?? ''}" alt="${escape(product.title)}" loading="lazy" />
     </div>
@@ -300,6 +359,7 @@ function refreshSelectionUI() {
 // ---------------------------------------------------------------------
 
 function togglePick(product) {
+  const wasSelected = isSelected(product);
   if (product.category === 'devices') {
     state.selection.device = state.selection.device === product.id ? null : product.id;
     // Drop any parts incompatible with the new device.
@@ -321,28 +381,38 @@ function togglePick(product) {
   refreshSelectionUI();
   updateBuilder();
   saveToHash();
+
+  // Pulse the catalog card for a little "added" feedback.
+  if (!wasSelected && isSelected(product)) {
+    for (const card of document.querySelectorAll(`.product-card[data-product-id="${product.id}"]`)) {
+      card.classList.remove('just-added');
+      void card.offsetWidth; // restart animation
+      card.classList.add('just-added');
+    }
+  }
 }
 
 function wirePickerActions() {
   document.getElementById('btn-clear').addEventListener('click', () => {
+    const hadAny = !!state.selection.device || state.selection.parts.size > 0;
     state.selection.device = null;
     state.selection.parts.clear();
+    state.lastReadyCount = 0;
     refreshSelectionUI();
     updateBuilder();
     saveToHash();
+    if (hadAny) showToast('Build cleared', 'info');
   });
-  document.getElementById('btn-share').addEventListener('click', async (e) => {
+  document.getElementById('btn-share').addEventListener('click', async () => {
     const url = window.location.href;
     try {
       await navigator.clipboard.writeText(url);
-      const btn = e.currentTarget;
-      const orig = btn.textContent;
-      btn.textContent = 'Copied!';
-      setTimeout(() => (btn.textContent = orig), 1600);
+      showToast('Link copied to clipboard', 'success');
     } catch {
       prompt('Copy this link:', url);
     }
   });
+  document.getElementById('btn-random-build')?.addEventListener('click', rollRandomBuild);
 }
 
 function wireFilters() {
@@ -368,6 +438,18 @@ function wireFilters() {
 function passesFilters(project) {
   if (state.filters.difficulty !== 'all' && project.difficulty !== state.filters.difficulty) return false;
   if (state.filters.ageGroup !== 'all' && project.ageGroup !== state.filters.ageGroup) return false;
+  if (state.filters.tag && !(project.tags || []).includes(state.filters.tag)) return false;
+  const q = state.filters.search.trim().toLowerCase();
+  if (q) {
+    const hay = [
+      project.title,
+      project.tagline,
+      project.howItWorks,
+      ...(project.tags || []),
+      ...(project.learningGoals || []),
+    ].join(' ').toLowerCase();
+    if (!hay.includes(q)) return false;
+  }
   return true;
 }
 
@@ -418,20 +500,101 @@ function updateBuilder() {
     }
   }
 
-  document.getElementById('count-ready').textContent = readyCount;
-  document.getElementById('count-near').textContent = nearCount;
+  setCount('count-ready', readyCount);
+  setCount('count-near', nearCount);
 
   const emptyHint = document.getElementById('empty-ready');
   if (readyCount === 0) {
     emptyHint.hidden = false;
     emptyHint.textContent = device
       ? parts.size === 0
-        ? 'Pick a few Units above to reveal matches.'
+        ? 'Pick a few Units above to reveal matches — or try the "Roll" button in your build panel.'
         : 'No exact matches with the current filters and parts — try removing a filter, or check the "one more part away" list below.'
       : 'Pick a device to see matches.';
   } else {
     emptyHint.hidden = true;
   }
+
+  updateBuildProgress(readyCount);
+  updatePickerStepStates();
+
+  // Celebrate when new projects unlock (not on initial paint).
+  if (state.lastReadyCount !== 0 && readyCount > state.lastReadyCount) {
+    const delta = readyCount - state.lastReadyCount;
+    showToast(`${delta} new project${delta === 1 ? '' : 's'} unlocked`, 'success');
+  }
+  state.lastReadyCount = readyCount;
+}
+
+function setCount(id, n) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const prev = Number(el.textContent) || 0;
+  el.textContent = n;
+  if (n > prev && n > 0) {
+    el.classList.remove('is-lit');
+    void el.offsetWidth;
+    el.classList.add('is-lit');
+    setTimeout(() => el.classList.remove('is-lit'), 600);
+  }
+}
+
+function updateBuildProgress(readyCount) {
+  const { device, parts } = state.selection;
+  const fill = document.getElementById('bp-fill');
+  const readyEl = document.getElementById('bp-ready');
+  const totalEl = document.getElementById('bp-total');
+  const partsEl = document.getElementById('bp-parts');
+  const costEl = document.getElementById('bp-cost');
+  const wrapper = document.getElementById('build-progress');
+  if (!fill) return;
+
+  // "Total" denominator = projects compatible with selected device that also
+  // pass the active filters — i.e. the pool we're matching against.
+  let total = 0;
+  for (const project of state.projects.projects) {
+    if (!passesFilters(project)) continue;
+    if (device && !project.compatibleDevices.includes(device)) continue;
+    total++;
+  }
+
+  readyEl.textContent = readyCount;
+  totalEl.textContent = device ? `of ${total}` : `of ${state.projects.projects.length}`;
+  const pct = device && total > 0 ? Math.round((readyCount / total) * 100) : 0;
+  fill.style.width = `${pct}%`;
+  wrapper.classList.toggle('is-celebrating', readyCount > 0);
+
+  // Parts + cost summary
+  if (parts.size === 0) {
+    partsEl.textContent = device ? 'Just the device' : 'No parts yet';
+  } else {
+    partsEl.textContent = `${parts.size} part${parts.size === 1 ? '' : 's'}`;
+  }
+
+  let cost = 0;
+  if (device) {
+    const dev = state.productsById[device];
+    if (dev && dev.price) cost += parseFloat(dev.price);
+  }
+  for (const id of parts) {
+    const p = state.productsById[id];
+    if (p && p.price) cost += parseFloat(p.price);
+  }
+  costEl.textContent = cost > 0 ? `$${cost.toFixed(2)} build` : '';
+}
+
+function updatePickerStepStates() {
+  const groups = document.querySelectorAll('.builder-picker .picker-group');
+  if (groups.length < 3) return;
+  const hasDevice = !!state.selection.device;
+  const hasParts = state.selection.parts.size > 0;
+  // Group order: 0=device, 1=cap, 2=units
+  groups[0].classList.toggle('is-active', !hasDevice);
+  groups[0].classList.toggle('is-done', hasDevice);
+  groups[1].classList.toggle('is-active', hasDevice && !hasParts);
+  groups[1].classList.toggle('is-done', hasDevice && hasParts);
+  groups[2].classList.toggle('is-active', hasDevice && !hasParts);
+  groups[2].classList.toggle('is-done', hasDevice && hasParts);
 }
 
 function projectCard(project, missingParts) {
@@ -449,9 +612,14 @@ function projectCard(project, missingParts) {
     .map((p) => `<span class="pill pill-missing">+ ${escape(shortTitle(p))}</span>`)
     .join('');
 
+  const tagsHtml = project.tags && project.tags.length
+    ? `<div class="project-tag-row">${project.tags.slice(0, 3).map((t) => `<span class="tag-chip">#${escape(t)}</span>`).join('')}</div>`
+    : '';
+
   card.innerHTML = `
     <h4 class="project-title">${escape(project.title)}</h4>
     <p class="project-tagline">${escape(project.tagline)}</p>
+    ${tagsHtml}
     <div class="project-meta">
       <span class="pill pill-diff">${dotsHtml} ${cap(project.difficulty)}</span>
       <span class="pill">${escape(project.ageGroup)}</span>
@@ -798,4 +966,209 @@ function cap(s) {
 
 function diffColor(d) {
   return d === 'advanced' ? '#ff7285' : d === 'intermediate' ? '#f5b544' : '#5ed58a';
+}
+
+// ---------------------------------------------------------------------
+// Hero: featured spotlight + Surprise me
+// ---------------------------------------------------------------------
+
+function renderSpotlight(preferredDifficulty) {
+  const body = document.getElementById('spotlight-body');
+  if (!body) return;
+  const pool = preferredDifficulty
+    ? state.projects.projects.filter((p) => p.difficulty === preferredDifficulty)
+    : state.projects.projects;
+  const proj = pool[Math.floor(Math.random() * pool.length)];
+  if (!proj) return;
+
+  const diffDots = { beginner: 1, intermediate: 2, advanced: 3 }[proj.difficulty] ?? 1;
+  const dotsHtml = `<span class="difficulty-dots">${[0,1,2].map(i => `<span class="${i < diffDots ? 'on' : ''}"></span>`).join('')}</span>`;
+
+  const partIds = [proj.compatibleDevices?.[0], ...(proj.requiredParts || [])].filter(Boolean);
+  const firstParts = partIds.slice(0, 4)
+    .map((id) => state.productsById[id])
+    .filter(Boolean);
+  const moreCount = Math.max(0, partIds.length - firstParts.length);
+
+  const partsHtml = `
+    <div class="spotlight-parts">
+      ${firstParts.map((p) => `<span class="spotlight-part-img"><img src="${p.image ?? ''}" alt="" loading="lazy" /></span>`).join('')}
+      ${moreCount > 0 ? `<span class="spotlight-more">+${moreCount}</span>` : ''}
+    </div>
+  `;
+
+  body.innerHTML = `
+    <button type="button" class="spotlight-card" data-project-open="${proj.id}" style="--diff-color: ${diffColor(proj.difficulty)}">
+      <span class="spotlight-diff">${dotsHtml} ${cap(proj.difficulty)} · ${escape(proj.duration)}</span>
+      <h3 class="spotlight-title">${escape(proj.title)}</h3>
+      <p class="spotlight-tagline">${escape(proj.tagline)}</p>
+      ${partsHtml}
+      <span class="spotlight-cta">Open project
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </span>
+    </button>
+  `;
+
+  body.querySelector('.spotlight-card').addEventListener('click', () => openProjectModal(proj.id));
+}
+
+function wireHero() {
+  document.getElementById('btn-surprise')?.addEventListener('click', () => {
+    const list = state.projects.projects;
+    const proj = list[Math.floor(Math.random() * list.length)];
+    if (proj) openProjectModal(proj.id);
+  });
+  document.getElementById('btn-spotlight-shuffle')?.addEventListener('click', () => {
+    renderSpotlight();
+  });
+}
+
+// ---------------------------------------------------------------------
+// Tag filter bar
+// ---------------------------------------------------------------------
+
+function renderTagBar() {
+  const host = document.getElementById('tag-bar');
+  if (!host) return;
+  const counts = {};
+  for (const p of state.projects.projects) {
+    for (const t of p.tags || []) counts[t] = (counts[t] || 0) + 1;
+  }
+  const tags = TOP_TAGS.filter((t) => counts[t]);
+
+  host.innerHTML = tags.map((t) => `
+    <button type="button" class="tag-chip-btn" data-tag="${escape(t)}" aria-pressed="${state.filters.tag === t ? 'true' : 'false'}">
+      #${escape(t)}<span class="tag-count">${counts[t]}</span>
+    </button>
+  `).join('');
+
+  for (const btn of host.querySelectorAll('.tag-chip-btn')) {
+    btn.addEventListener('click', () => {
+      const tag = btn.dataset.tag;
+      state.filters.tag = state.filters.tag === tag ? null : tag;
+      refreshTagBar();
+      updateBuilder();
+      saveToHash();
+    });
+  }
+}
+
+function refreshTagBar() {
+  for (const btn of document.querySelectorAll('#tag-bar .tag-chip-btn')) {
+    btn.setAttribute('aria-pressed', btn.dataset.tag === state.filters.tag ? 'true' : 'false');
+  }
+}
+
+// ---------------------------------------------------------------------
+// Search input
+// ---------------------------------------------------------------------
+
+function wireSearch() {
+  const input = document.getElementById('project-search');
+  if (!input) return;
+  let t;
+  input.addEventListener('input', () => {
+    clearTimeout(t);
+    t = setTimeout(() => {
+      state.filters.search = input.value;
+      updateBuilder();
+    }, 120);
+  });
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && input.value) {
+      input.value = '';
+      state.filters.search = '';
+      updateBuilder();
+    }
+  });
+}
+
+// ---------------------------------------------------------------------
+// Scroll-to-top FAB
+// ---------------------------------------------------------------------
+
+function wireFab() {
+  const fab = document.getElementById('fab-top');
+  if (!fab) return;
+  fab.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  const toggle = () => {
+    const show = window.scrollY > 600;
+    if (show) fab.removeAttribute('hidden');
+    else fab.setAttribute('hidden', '');
+  };
+  window.addEventListener('scroll', toggle, { passive: true });
+  toggle();
+}
+
+// ---------------------------------------------------------------------
+// Keyboard shortcuts
+// ---------------------------------------------------------------------
+
+function wireKeyboard() {
+  document.addEventListener('keydown', (e) => {
+    // Skip if typing in an input, unless Esc
+    const isTyping = e.target.matches('input, textarea, [contenteditable]');
+    if (isTyping && e.key !== 'Escape') return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+
+    if (e.key === '/') {
+      e.preventDefault();
+      const input = document.getElementById('project-search');
+      input?.focus();
+      input?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else if (e.key === '?') {
+      e.preventDefault();
+      document.getElementById('help-modal')?.showModal();
+    } else if (e.key.toLowerCase() === 's') {
+      const list = state.projects.projects;
+      const proj = list[Math.floor(Math.random() * list.length)];
+      if (proj) openProjectModal(proj.id);
+    } else if (e.key.toLowerCase() === 'r') {
+      rollRandomBuild();
+    } else if (e.key.toLowerCase() === 'b') {
+      document.getElementById('builder')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (e.key.toLowerCase() === 'c') {
+      document.getElementById('btn-clear')?.click();
+    }
+  });
+}
+
+function wireHelp() {
+  document.getElementById('btn-help')?.addEventListener('click', () => {
+    document.getElementById('help-modal')?.showModal();
+  });
+}
+
+// ---------------------------------------------------------------------
+// Roll a random build
+// ---------------------------------------------------------------------
+
+function rollRandomBuild() {
+  const pool = state.projects.projects;
+  const proj = pool[Math.floor(Math.random() * pool.length)];
+  if (!proj) return;
+  const device = proj.compatibleDevices[0];
+  loadBuildFromProject(proj, device);
+  document.getElementById('builder')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  showToast(`Rolled: ${proj.title}`, 'info');
+}
+
+// ---------------------------------------------------------------------
+// Toast notifications
+// ---------------------------------------------------------------------
+
+let toastTimer = null;
+function showToast(msg, kind = 'info') {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  toast.className = `toast is-${kind} is-showing`;
+  toast.hidden = false;
+  toast.innerHTML = `<span class="toast-dot"></span><span>${escape(msg)}</span>`;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.classList.remove('is-showing');
+    setTimeout(() => { toast.hidden = true; }, 300);
+  }, 2200);
 }

@@ -25,21 +25,44 @@
 
   <main id="top">
     <section class="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-inner">
-        <p class="eyebrow">Home electronics · School projects · Hobby builds</p>
+        <p class="eyebrow"><span class="eyebrow-pulse" aria-hidden="true"></span>Home electronics · School projects · Hobby builds</p>
         <h1>Build something real<br />with tiny M5Stack hardware.</h1>
         <p class="lead">Pick a device, add a few sensors, and we'll show you projects that click together right now — from a first "blink the LED" to an off-grid LoRa walkie-talkie.</p>
         <div class="hero-actions">
-          <a href="#builder" class="btn btn-primary">Start building</a>
-          <a href="#units" class="btn btn-ghost">Browse the parts bin</a>
+          <a href="#builder" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            Start building
+          </a>
+          <button type="button" class="btn btn-ghost" id="btn-surprise">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="11" height="11" rx="2"/><circle cx="5.5" cy="5.5" r="0.8" fill="currentColor"/><circle cx="10.5" cy="5.5" r="0.8" fill="currentColor"/><circle cx="8" cy="8" r="0.8" fill="currentColor"/><circle cx="5.5" cy="10.5" r="0.8" fill="currentColor"/><circle cx="10.5" cy="10.5" r="0.8" fill="currentColor"/></svg>
+            Surprise me
+          </button>
+          <a href="#units" class="btn btn-text">Browse parts →</a>
         </div>
         <ul class="hero-stats" aria-label="Site contents">
-          <li><strong id="stat-devices">—</strong><span>Devices</span></li>
-          <li><strong id="stat-caps">—</strong><span>CAPs</span></li>
-          <li><strong id="stat-units">—</strong><span>Units</span></li>
-          <li><strong id="stat-projects">—</strong><span>Projects</span></li>
+          <li><strong id="stat-devices" data-counter>—</strong><span>Devices</span></li>
+          <li><strong id="stat-caps" data-counter>—</strong><span>CAPs</span></li>
+          <li><strong id="stat-units" data-counter>—</strong><span>Units</span></li>
+          <li><strong id="stat-projects" data-counter>—</strong><span>Projects</span></li>
         </ul>
       </div>
+
+      <aside class="hero-spotlight" id="spotlight" aria-label="Featured project">
+        <header class="spotlight-head">
+          <span class="spotlight-label">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 0l1.5 4.5L12 6l-4.5 1.5L6 12l-1.5-4.5L0 6l4.5-1.5z"/></svg>
+            Featured build
+          </span>
+          <button type="button" class="spotlight-shuffle" id="btn-spotlight-shuffle" aria-label="Show another project">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4h3l6 8h3M2 12h3l2-2.67M11 4h3M9 6.67L11 4M11 12l3-3-3-3"/></svg>
+          </button>
+        </header>
+        <div class="spotlight-body" id="spotlight-body">
+          <div class="spotlight-skeleton"></div>
+        </div>
+      </aside>
     </section>
 
     <section class="how">
@@ -95,30 +118,60 @@
 
       <div class="builder-layout">
         <aside class="builder-picker" aria-label="Your current build">
+          <div class="build-progress" id="build-progress">
+            <div class="build-progress-top">
+              <span class="build-progress-label">Projects unlocked</span>
+              <span class="build-progress-val"><strong id="bp-ready">0</strong><span class="muted" id="bp-total">of 0</span></span>
+            </div>
+            <div class="build-progress-bar"><span id="bp-fill"></span></div>
+            <div class="build-progress-meta">
+              <span><svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="12" height="9" rx="1.5"/><path d="M6 2v2M10 2v2"/></svg><span id="bp-parts">No parts yet</span></span>
+              <span id="bp-cost"></span>
+            </div>
+          </div>
           <div class="picker-group">
-            <h3>1. Device</h3>
+            <h3><span class="picker-step">1</span>Device</h3>
             <div class="chip-row" data-picker="devices" role="radiogroup"></div>
           </div>
           <div class="picker-group">
-            <h3>2. CAP <span class="muted">(Cardputer only)</span></h3>
+            <h3><span class="picker-step">2</span>CAP <span class="muted">(Cardputer only)</span></h3>
             <div class="chip-row" data-picker="caps"></div>
           </div>
           <div class="picker-group">
-            <h3>3. Units</h3>
+            <h3><span class="picker-step">3</span>Units</h3>
             <div class="chip-grid" data-picker="units"></div>
           </div>
           <div class="picker-actions">
-            <button type="button" class="btn btn-ghost btn-sm" id="btn-clear">Clear selection</button>
-            <button type="button" class="btn btn-ghost btn-sm" id="btn-share">Copy share link</button>
+            <button type="button" class="btn btn-ghost btn-sm" id="btn-clear" title="Clear all selections">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h10M6 4V2.5h4V4M4.5 4l.7 9.5A1 1 0 0 0 6.2 14.5h3.6a1 1 0 0 0 1-1L11.5 4"/></svg>
+              Clear
+            </button>
+            <button type="button" class="btn btn-ghost btn-sm" id="btn-share" title="Copy a shareable URL of this build">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="3.5" r="1.8"/><circle cx="4" cy="8" r="1.8"/><circle cx="12" cy="12.5" r="1.8"/><path d="M5.6 7l4.8-2.5M5.6 9l4.8 2.5"/></svg>
+              Share
+            </button>
+            <button type="button" class="btn btn-ghost btn-sm" id="btn-random-build" title="Load a random project into the builder">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="11" height="11" rx="2"/><circle cx="5.5" cy="5.5" r="0.8" fill="currentColor"/><circle cx="10.5" cy="10.5" r="0.8" fill="currentColor"/><circle cx="8" cy="8" r="0.8" fill="currentColor"/></svg>
+              Roll
+            </button>
           </div>
         </aside>
 
         <section class="builder-results" aria-label="Matching projects">
           <header class="results-head">
             <h3 id="results-heading">Pick a device to see matching projects</h3>
+
+            <div class="search-row">
+              <div class="search-box">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>
+                <input type="search" id="project-search" placeholder="Search projects…" autocomplete="off" aria-label="Search projects" />
+                <kbd class="search-hint">/</kbd>
+              </div>
+            </div>
+
             <div class="filter-bar" role="toolbar" aria-label="Filter projects">
               <div class="filter-group" data-filter="difficulty">
-                <span class="filter-label">Difficulty</span>
+                <span class="filter-label">Level</span>
                 <button type="button" data-val="all" aria-pressed="true">All</button>
                 <button type="button" data-val="beginner">Beginner</button>
                 <button type="button" data-val="intermediate">Intermediate</button>
@@ -132,16 +185,26 @@
                 <button type="button" data-val="16+">16+</button>
               </div>
             </div>
+
+            <div class="tag-bar" id="tag-bar" role="toolbar" aria-label="Filter by tag"></div>
           </header>
 
           <div class="project-groups">
             <div class="project-group">
-              <h4 class="group-title">Ready to build <span class="group-count" id="count-ready">0</span></h4>
+              <h4 class="group-title">
+                <span class="group-dot" data-group="ready"></span>
+                Ready to build
+                <span class="group-count" id="count-ready">0</span>
+              </h4>
               <div class="project-grid" id="projects-ready"></div>
               <p class="empty-hint" id="empty-ready" hidden>Pick a device (and some parts) to reveal matches.</p>
             </div>
             <div class="project-group">
-              <h4 class="group-title">One more part away <span class="group-count" id="count-near">0</span></h4>
+              <h4 class="group-title">
+                <span class="group-dot" data-group="near"></span>
+                One more part away
+                <span class="group-count" id="count-near">0</span>
+              </h4>
               <p class="group-sub">Projects you'd unlock by adding a single Unit you haven't picked yet.</p>
               <div class="project-grid" id="projects-near"></div>
             </div>
@@ -168,9 +231,32 @@
     </p>
     <p class="footer-meta">
       <span id="footer-date"></span> ·
-      <a href="https://github.com/zakaria/m5stack" rel="noopener">Source on GitHub</a>
+      <a href="https://github.com/zakaria/m5stack" rel="noopener">Source on GitHub</a> ·
+      <button type="button" class="footer-kbd" id="btn-help">Keyboard shortcuts</button>
     </p>
   </footer>
+
+  <button type="button" class="fab" id="fab-top" aria-label="Back to top" hidden>
+    <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V3M3 8l5-5 5 5"/></svg>
+  </button>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <dialog id="help-modal" class="modal" aria-labelledby="help-modal-title">
+    <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+    <div class="modal-body help-body">
+      <h2 id="help-modal-title">Keyboard shortcuts</h2>
+      <dl class="help-list">
+        <dt><kbd>/</kbd></dt><dd>Focus project search</dd>
+        <dt><kbd>S</kbd></dt><dd>Surprise me — open a random project</dd>
+        <dt><kbd>R</kbd></dt><dd>Roll a random build into the builder</dd>
+        <dt><kbd>B</kbd></dt><dd>Jump to the builder</dd>
+        <dt><kbd>C</kbd></dt><dd>Clear your current build</dd>
+        <dt><kbd>Esc</kbd></dt><dd>Close modals</dd>
+        <dt><kbd>?</kbd></dt><dd>Show this help</dd>
+      </dl>
+    </div>
+  </dialog>
 
   <script src="app.js" type="module"></script>
 </body>
