@@ -720,20 +720,22 @@ function openProductModal(productId) {
     : `<a href="${p.url}" class="btn btn-ghost" target="_blank" rel="noopener">View on m5stack.com ↗</a>`;
 
   body.innerHTML = `
-    ${galleryHtml}
-    <div class="pmodal-content">
-      <p class="product-tag">${priceLine}</p>
-      <h2 id="product-modal-title">${escape(p.title)}</h2>
-      ${descHtml}
-      ${whereHtml}
-      ${lockNote}
-      ${featuresHtml}
-      <div class="pmodal-actions">
-        <button type="button" class="btn btn-primary" data-toggle-pick="${p.id}" ${locked ? 'disabled' : ''}>${addLabel}</button>
-        ${externalLink}
+    <div class="pmodal-top">
+      ${galleryHtml}
+      <div class="pmodal-content">
+        <p class="product-tag">${priceLine}</p>
+        <h2 id="product-modal-title">${escape(p.title)}</h2>
+        ${descHtml}
+        ${whereHtml}
+        ${lockNote}
+        ${featuresHtml}
+        <div class="pmodal-actions">
+          <button type="button" class="btn btn-primary" data-toggle-pick="${p.id}" ${locked ? 'disabled' : ''}>${addLabel}</button>
+          ${externalLink}
+        </div>
       </div>
-      ${renderProductIdeasSection(p)}
     </div>
+    ${renderProductIdeasSection(p)}
   `;
   body.querySelector('[data-toggle-pick]').addEventListener('click', () => {
     if (locked) return;
