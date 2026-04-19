@@ -1907,7 +1907,7 @@ section {
   min-width: 0;
 }
 .projmodal-side {
-  padding: 22px 28px 24px;
+  padding: 22px 28px 0;
   border-left: 1px solid var(--border);
   background: var(--bg-card);
   position: sticky;
@@ -1933,7 +1933,7 @@ section {
     position: static;
     max-height: none;
     overflow-y: visible;
-    padding: 20px 22px 24px;
+    padding: 20px 22px 0;
   }
   .projmodal-main {
     padding: 20px 22px 24px;
@@ -2161,20 +2161,26 @@ section {
 .projmodal-cta {
   position: sticky;
   bottom: 0;
-  margin: 16px -28px -24px;
-  padding: 14px 28px 18px;
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--bg-card) 0%, transparent) 0%,
-    var(--bg-card) 28%
-  );
+  margin: 16px -28px 0;
+  padding: 14px 28px 24px;
+  background: var(--bg-card);
   border-top: 1px solid var(--border);
+}
+.projmodal-cta::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  height: 36px;
+  background: linear-gradient(to bottom, transparent, var(--bg-card));
+  pointer-events: none;
 }
 @media (max-width: 860px) {
   .projmodal-cta {
     position: static;
-    margin: 16px -22px -24px;
-    padding: 14px 22px 18px;
+    margin: 16px -22px 0;
+    padding: 14px 22px 24px;
   }
 }
 .btn-block {
