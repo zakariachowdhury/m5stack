@@ -1,0 +1,531 @@
+{
+  "devices": [
+    {
+      "id": "m5sticks3",
+      "handle": "m5sticks3-esp32s3-mini-iot-dev-kit",
+      "title": "M5StickS3 ESP32S3 Mini IoT Dev Kit",
+      "category": "devices",
+      "price": "21.50",
+      "currency": "USD",
+      "vendor": "m5stack-store",
+      "productType": null,
+      "tags": [
+        "ESP32-S3",
+        "STICK"
+      ],
+      "shortDescription": "StickS3 is a compact and high-performance programmable controller designed for remote control and IoT applications. It is powered by the ESP32-S3-PICO-1-N8R8 main control chip, supporting 2.4 GHz Wi-Fi wireless communication, with built-in 8MB Flash and 8MB PS",
+      "features": [
+        "Integrated ESP32-S3-PICO-1-N8R8 main controller",
+        "8MB Flash and 8MB PSRAM",
+        "ES8311 mono audio codec chip",
+        "MEMS microphone + speaker",
+        "Integrated IR transmitter + IR receiver",
+        "Magnetic back design",
+        "Expansion interfaces: Expandable Hat2 bus (2.54-16P)",
+        "HY2.0-4P interface"
+      ],
+      "description": "Description StickS3 is a compact and high-performance programmable controller designed for remote control and IoT applications. It is powered by the ESP32-S3-PICO-1-N8R8 main control chip, supporting 2.4 GHz Wi-Fi wireless communication, with built-in 8MB Flash and 8MB PSRAM to meet diverse application development needs, delivering excellent performance and scalability. For human–machine interaction, it features a 1.14\" LCD display, a 6-axis IMU sensor, and programmable buttons. The audio system adopts the ES8311 mono audio codec, combined with a high-sensitivity MEMS microphone and AW8737 power amplifier, enabling clear audio capture and high-fidelity audio output, empowering voice recognition and interactive experiences. It also integrates IR transmitter and receiver, a 250mAh lithium battery, making it suitable for smart home control, AI voice assistants, and IoT project development scenarios. Input Power Supply Notice The Grove interface at the bottom of the device can be configured as DC 5V output / input mode. The interface defaults to input mode, in which DC 5V power can be supplied via the Grove interface, the EXT_5V on the top Hat2-Bus, or the 5VIN interface. When configured as output mode, input is only allowed via USB or the 5VIN on the top Hat2-Bus. Do not supply power from other output interfaces, otherwise there is a risk of short circuit damage to the device. IR Reception Notice When using the IR receiving function, the speaker power amplifier must be turned off, otherwise IR signals cannot be received properly. Speaker Volume Notice When powered by battery (USB not connected), it is recommended to keep the speaker volume below 75% to avoid unexpected device reboot caused by excessive power consumption. Features Integrated ESP32-S3-PICO-1-N8R8 main controller 8MB Flash and 8MB PSRAM ES8311 mono audio codec chip MEMS microphone + speaker Integrated IR transmitter + IR receiver Magnetic back design Expansion interfaces: Expandable Hat2 bus (2.54-16P) HY2.0-4P interface Development Platform Arduino UiFlow2 ESP-IDF PlatformIO Includes 1 x StickS3 Applications Smart home control AI voice assistant IoT project development Specifications Specification Parameter SoC ESP32-S3-PICO-1-N8R8 @ Dual-core Xtensa LX7 processor, up to 240MHz Flash 8MB PSRAM 8MB Wi-Fi 2.4 GHz Wi-Fi Display Model: ST7789P3 Resolution: 135x240 Input Power USB Type-C DC 5V Audio Codec ES8311: 24-bit resolution, I2S protocol Microphone MEMS microphone, Signal-to-Noise Ratio (SNR): 65 dB Speaker AW8737 power amplifier + 8Ω@1W 2011 cavity speaker Operating Temperature 0 ~ 40°C Battery Capacity 250mAh Grove Load Capacity No load: 5V Max: 4.88V@0.38A Power Consumption Power off: 4.2V@14.02uA L1 state: 4.2V@52.47uA L2 state: 4.2V@102.40uA L3A state: 4.2V@36.69mA Full load: 4.2V@519.02mA Product Size 48.0 x 24.0 x 15.0mm Product Weight 20.0g Package Size 110.0 x 65.0 x 15.0mm Gross Weight 29.3g Compatibility Notes StickS3 is structurally incompatible with the following Hat series products: Hat Mini JoyC (SKU: U156), Hat Mini EncoderC (SKU: U157), and Hat 18650C (SKU: U080). Learn and Documents → DOCUMENTS",
+      "image": "images/devices/m5sticks3/1.webp",
+      "images": [
+        "images/devices/m5sticks3/1.webp",
+        "images/devices/m5sticks3/2.webp",
+        "images/devices/m5sticks3/3.webp",
+        "images/devices/m5sticks3/4.webp"
+      ],
+      "url": "https://shop.m5stack.com/products/m5sticks3-esp32s3-mini-iot-dev-kit"
+    },
+    {
+      "id": "cardputer-adv",
+      "handle": "m5stack-cardputer-adv-version-esp32-s3",
+      "title": "M5Stack Cardputer Adv Version (ESP32-S3)",
+      "category": "devices",
+      "price": "29.90",
+      "currency": "USD",
+      "vendor": "m5stack-store",
+      "productType": "Stamp",
+      "tags": [
+        "ESP32-S3",
+        "STAMP"
+      ],
+      "shortDescription": "Cardputer-Adv: Compact Programmable Platform for Embedded Prototyping & IoT Development The Cardputer-Adv is a card-sized, versatile programmable platform powered by the Stamp-S3A module with ESP32-S3FN8 core processor . With its 1.14\" LCD display and an intui",
+      "features": [
+        "Stamp-S3A core controller",
+        "56-key keyboard",
+        "1.14\" LCD display",
+        "160gf comfortable keypress feel",
+        "ES8311 audio codec",
+        "High SNR MEMS microphone",
+        "NS4150B amplifier + 1W speaker",
+        "3.5mm audio output interface"
+      ],
+      "description": "Cardputer-Adv: Compact Programmable Platform for Embedded Prototyping & IoT Development The Cardputer-Adv is a card-sized, versatile programmable platform powered by the Stamp-S3A module with ESP32-S3FN8 core processor . With its 1.14\" LCD display and an intuitive 56-key keyboard, the Cardputer-Adv offers easy interaction and seamless command entry for a wide range of applications. Advanced Audio Features Equipped with high-quality audio components, the Cardputer-Adv includes an ES8311 codec , a precision MEMS microphone with a superior signal-to-noise ratio, an NS4150B amplifier circuit , and a 1W speaker output. For enhanced audio flexibility, it also features a 3.5mm headphone jack for external audio devices. Efficient Power Management Designed for long-lasting performance, the Cardputer-Adv is powered by a 1750mAh lithium battery , ensuring optimized power consumption for extended operation. It also features independent power switching for efficient energy management. Motion Sensing & Infrared Capabilities The platform comes with an integrated BMI270 6-axis accelerometer for accurate motion sensing, and infrared transmission functionality, enabling interactive and sensor-driven applications. Expandable Storage & Connectivity For flexible storage options, the Cardputer-Adv includes a microSD card slot . Connectivity is enhanced through HY2.0-4P Grove connectors and EXT 2.54-14P expansion headers , allowing for easy integration of external sensors and accessories. Versatile Design & Mounting The Cardputer-Adv features a magnetic base for secure attachment and LEGO-compatible mounting holes for customizable mechanical configurations, offering great versatility for different projects. Applications Ideal for embedded prototyping , industrial automation , smart home systems , and custom IoT solutions , the Cardputer-Adv is your go-to platform for a wide array of development projects. Features Stamp-S3A core controller 56-key keyboard 1.14\" LCD display 160gf comfortable keypress feel ES8311 audio codec High SNR MEMS microphone NS4150B amplifier + 1W speaker 3.5mm audio output interface Infrared emitter 6-axis motion sensor BMI270 HY2.0-4P Grove port EXT 2.54-14P expansion bus microSD card slot Built-in 1750mAh Li-ion battery Magnetic back design LEGO hole compatible Development Platform Arduino UiFlow2 ESP-IDF PlatformIO Includes 1 x Cardputer-Adv Specifications Specification Parameter SoC ESP32-S3FN8 @ Dual-core Xtensa LX7, up to 240MHz Flash 8MB External Storage microSD Display ST7789V2@1.14\", 240 x 135px Keyboard 56 keys (4 x 14) Key Actuation 160gf Expansion Ports HY2.0-4P + EXT 2.54-14P IR 1x IR emitter Audio Codec ES8311 Speaker NS4150B amplifier + 8Ω@1W speaker Microphone MEMS microphone, SNR: 65 dB IMU BMI270 Battery Capacity 1750mAh Operating Temp. 0 ~ 40°C Product Size 84.0 x 54.0 x 19.6mm Product Weight 81.0g Package Size 145.7 x 95.0 x 20.7mm Gross Weight 98.5g Product Comparison Product Comparison Item Cardputer-Adv Cardputer v1.1 Cardputer Core Module Stamp-S3A Stamp-S3A Stamp-S3 RGB LED Logic Shares power with display backlight, optimized control logic Shares power with display backlight, optimized control logic Powered directly Antenna Design Optimized antenna design for better reception Optimized antenna design for better reception Standard antenna Battery Capacity 1750mAh 120mAh + 1400mAh 120mAh + 1400mAh Audio Solution ES8311 NS4168 + SPM1423 NS4168 + SPM1423 Audio Port 3.5mm audio jack / / IMU BMI270 / / Keyboard IO Exp. TCA8418RTWR 74HC138 74HC138 Expansion Ports HY2.0-4P + EXT 2.54-14P HY2.0-4P HY2.0-4P Lanyard Hole Yes No No Learn and Documents → DOCUMENTS",
+      "image": "images/devices/cardputer-adv/1.webp",
+      "images": [
+        "images/devices/cardputer-adv/1.webp",
+        "images/devices/cardputer-adv/2.webp",
+        "images/devices/cardputer-adv/3.webp",
+        "images/devices/cardputer-adv/4.webp"
+      ],
+      "url": "https://shop.m5stack.com/products/m5stack-cardputer-adv-version-esp32-s3"
+    }
+  ],
+  "caps": [
+    {
+      "id": "cap-lora",
+      "handle": "cap-lora-1262-for-cardputer-adv-sx1262-atgm336h",
+      "title": "Cap LoRa 1262 for Cardputer Adv (SX1262, ATGM336H)",
+      "category": "caps",
+      "price": "14.50",
+      "currency": "USD",
+      "vendor": "m5stack-store",
+      "productType": null,
+      "tags": [
+        "FOR-CARDPUTER-ADV-WIRELESS"
+      ],
+      "shortDescription": "Cap LoRa-1262 is a high-performance communication expansion module featuring LoRa wireless communication and GNSS global positioning, designed to work with Cardputer-Adv. The module is equipped with an HY2.0-4P expansion interface, enabling stable connection a",
+      "features": [
+        "Integrates LoRa modulation technology and GNSS global positioning system",
+        "Operating frequency: 868 ~ 923 MHz",
+        "Supports FSK, GFSK, MSK, GMSK, LoRa, and OOK modulation modes",
+        "LoRa receiving sensitivity: down to -147 dBm (LoRa low data rate mode)",
+        "LoRa maximum transmission power: +20 dBm",
+        "External SMA antenna interface for LoRa, built-in ceramic antenna for GPS",
+        "Positioning supports multiple satellite navigation systems (GPS / QZSS / BD2 / BD3 / GAL / GLO)",
+        "Multi-frequency and multi-system reception"
+      ],
+      "description": "Description Cap LoRa-1262 is a high-performance communication expansion module featuring LoRa wireless communication and GNSS global positioning, designed to work with Cardputer-Adv. The module is equipped with an HY2.0-4P expansion interface, enabling stable connection and functional expansion with the host controller. The LoRa module is based on the SX1262 chip solution and is equipped by default with an external SMA antenna , offering stronger anti-interference performance and long-range communication capability. It supports the 868MHz ~ 923MHz frequency band , providing long-distance, low-power wireless links for Internet of Things (IoT) scenarios. The GPS module adopts a solution based on the AT6668 chip and integrates a built-in ceramic antenna to deliver accurate and reliable satellite positioning services. It supports multi-band, multi-mode GNSS signal reception , enabling reception of signals from multiple global navigation satellite systems, including GPS, BD2, BD3, GLONASS, GALILEO, and QZSS. It supports both multi-system combined positioning and single-system independent positioning, featuring strong anti-interference capability and high positioning accuracy. Even in weak signal environments, it can quickly obtain more precise location information. It is suitable for applications such as remote data acquisition, smart cities, smart homes, vehicle positioning and navigation, and IoT device localization. Features Integrates LoRa modulation technology and GNSS global positioning system Operating frequency: 868 ~ 923 MHz Supports FSK, GFSK, MSK, GMSK, LoRa, and OOK modulation modes LoRa receiving sensitivity: down to -147 dBm (LoRa low data rate mode) LoRa maximum transmission power: +20 dBm External SMA antenna interface for LoRa, built-in ceramic antenna for GPS Positioning supports multiple satellite navigation systems (GPS / QZSS / BD2 / BD3 / GAL / GLO) Multi-frequency and multi-system reception HY2.0-4P expansion interface Development Platform: Arduino UiFlow2 Includes 1 x Cap LoRa-1262 1 x LoRa Rubber Antenna Applications Remote data acquisition Smart cities Smart homes Vehicle positioning and navigation IoT device positioning Specifications Specification Parameter LoRa Module SX1262 LoRa Frequency Range 868 ~ 923 MHz LoRa Programmable Bitrate Up to 300kbps LoRa Communication Interface SPI LoRa Antenna Size 108 x 9.3mm, Interface Type SMA (internal thread, internal hole), Gain 3dBi LoRa Transmit Power +22dBm LoRa Receiver Sensitivity -147dBm (LoRa Low Data Rate Mode) LoRa Operating Current DC 5V@163.4mA Supported Modulation Modes FSK / GFSK / MSK / LoRa / OOK GPS Module ATGM336H-6N@AT6668 GPS Communication Interface UART, default 115200bps@8N1 Supported GNSS Systems GPS / QZSS / BD2 / BD3 / GAL / GLO Frequency Bands BDS: B1I+B1C GPS / QZSS / SBAS: L1 GALILEO: E1 GLONASS: R1 GPS Channels 50 Channels GPS Positioning Accuracy <1.5m (CEP50) GPS Update Rate Up to 10Hz GPS Protocol NMEA 0183 4.1 GPS Sensitivity Tracking: -162dBm Acquisition: -160dBm Cold Start: -148dBm GPS Time to First Fix Cold Start: 23s Hot Start: 1s Power Consumption (Power On) 33.1mA Product Size 84.0 x 24.0 x 15.2mm Product Weight 34.0g Package Size 170.0 x 120.0 x 17.0mm Gross Weight 48.6g Product Comparison Compare Feature Cap LoRa-1262 Cap LoRa868 HY2.0-4P Expansion Interface Yes No Module Stamp LoRa-1262, smaller size Stamp LoRa-1262 legacy version, standard size Learn and Documents → DOCUMENTS",
+      "image": "images/caps/cap-lora/1.webp",
+      "images": [
+        "images/caps/cap-lora/1.webp",
+        "images/caps/cap-lora/2.webp",
+        "images/caps/cap-lora/3.webp",
+        "images/caps/cap-lora/4.webp"
+      ],
+      "url": "https://shop.m5stack.com/products/cap-lora-1262-for-cardputer-adv-sx1262-atgm336h",
+      "compatibleDevices": [
+        "cardputer-adv"
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "unit-nfc",
+      "handle": "nfc-universal-unit-st25r3916",
+      "title": "NFC Universal Unit (ST25R3916)",
+      "category": "units",
+      "price": "7.00",
+      "currency": "USD",
+      "vendor": "m5stack-store",
+      "productType": null,
+      "tags": [
+        "UNIT-WIRELESS"
+      ],
+      "shortDescription": "Unit NFC is a near-field communication read/write unit operating at 13.56 MHz. The module features the ST25R3916 high-performance NFC front-end IC, supporting mainstream protocols including ISO 14443A, ISO 14443B, FeliCa™, and ISO 15693, enabling reliable read",
+      "features": [
+        "13.56 MHz high-frequency near-field communication",
+        "Equipped with ST25R3916 high-performance IC",
+        "Supports ISO14443A, ISO14443B, FeliCa™, and ISO15693 protocols",
+        "Supports three operating modes: Reader/Writer / Card Emulation / Custom Protocol",
+        "I2C communication interface",
+        "LEGO-compatible mounting holes",
+        "Development Platform UiFlow2",
+        "Arduino IDE"
+      ],
+      "description": "Description Unit NFC is a near-field communication read/write unit operating at 13.56 MHz. The module features the ST25R3916 high-performance NFC front-end IC, supporting mainstream protocols including ISO 14443A, ISO 14443B, FeliCa™, and ISO 15693, enabling reliable read/write operations and data exchange with a wide variety of NFC/RFID tags and cards. The IC supports reader/writer mode, card emulation mode, and custom protocol mode, with automatic antenna tuning, high-sensitivity reception, and comprehensive protocol handling capabilities. This unit communicates with the host device via I2C interface, ensuring reliable and stable data transmission. The product features a LEGO-compatible hole design for easy structural integration and screw-mount installation, making it suitable for a wide range of near-field communication and identity verification applications, including access control systems, identity authentication, and smart transportation. Features 13.56 MHz high-frequency near-field communication Equipped with ST25R3916 high-performance IC Supports ISO14443A, ISO14443B, FeliCa™, and ISO15693 protocols Supports three operating modes: Reader/Writer / Card Emulation / Custom Protocol I2C communication interface LEGO-compatible mounting holes Development Platform UiFlow2 Arduino IDE Includes 1 x Unit NFC 1 x HY2.0-4P Grove Cable (20cm) Applications Access Control Systems Identity Verification Smart Transportation Specifications Specification Parameter IC Type ST25R3916-AQWT Operating Frequency 13.56 MHz Communication Interface I2C @0x50 (100K / 400K) Supported Protocols Reader/Writer Mode : NFC-A/B (ISO 14443A/B compatible), NFC-F (FeliCa™), NFC-V (ISO 15693) Card Emulation Mode : NFC-A / NFC-F Read/Write Range ≤ 40mm Power Consumption Sleep: 5V @ 19.33uA Power-on (unconfigured): 5V @ 19.79uA Continuous reading: 5V @ 67.65mA Intermittent reading: 5V @ 66.48mA Product Size 48.0 x 24.0 x 8.0mm Product Weight 5.9g Package Size 138.0 x 93.0 x 9.0mm Gross Weight 11.5g Learn and Documents → DOCUMENTS",
+      "image": "images/units/unit-nfc/1.webp",
+      "images": [
+        "images/units/unit-nfc/1.webp",
+        "images/units/unit-nfc/2.webp",
+        "images/units/unit-nfc/3.webp",
+        "images/units/unit-nfc/4.webp"
+      ],
+      "url": "https://shop.m5stack.com/products/nfc-universal-unit-st25r3916"
+    },
+    {
+      "id": "unit-relay-2ch",
+      "handle": "2-channel-spst-relay-unit",
+      "title": "2-Channel SPST Relay Unit",
+      "category": "units",
+      "price": "6.50",
+      "currency": "USD",
+      "vendor": "m5stack-store",
+      "productType": "Unit",
+      "tags": [
+        "UNIT-ACTUATOR"
+      ],
+      "shortDescription": "Unit 2Relay is a dual relay expansion unit, integrating 2 contact-type relays, supporting on/off voltage levels of AC 250V / DC 28V , with a load rated current of up to 8A. Each relay is controlled by an independent IO and includes a status indicator light, su",
+      "features": [
+        "2 relays",
+        "AC 250V@8A/DC 28V@8A",
+        "Status indicator light",
+        "1 x Unit 2Relay",
+        "1 x HY2.0-4P Grove connection cable (20cm)",
+        "2 x VH3.96-4P terminals",
+        "AC/DC signal switching",
+        "Power on/off for digital devices"
+      ],
+      "description": "Description Unit 2Relay is a dual relay expansion unit, integrating 2 contact-type relays, supporting on/off voltage levels of AC 250V / DC 28V , with a load rated current of up to 8A. Each relay is controlled by an independent IO and includes a status indicator light, suitable for power control of household appliances or for switching circuits in industrial equipment. Features 2 relays AC 250V@8A/DC 28V@8A Status indicator light Includes 1 x Unit 2Relay 1 x HY2.0-4P Grove connection cable (20cm) 2 x VH3.96-4P terminals Applications AC/DC signal switching Power on/off for digital devices Specifications Specification Parameter Max Switching Voltage AC 250V / DC 28V Rated Current 8A Coil Control Voltage DC 5V Coil Power Consumption 5V@154mA Coil Action Time ≤ 8ms Coil Release Time ≤ 5ms Contact Form Normally Open (NO) Contact Material AgSnO2 Relay Indicator Light Blue x2 Product Size 56.0 x 24.0 x 19.0mm Product Weight 20.0g Package Size 138.0 x 93.0 x 17.0mm Gross Weight 31.2g Note This relay is driven by IO output high/low level signals, so before connecting to the main controller, ensure that the connected port IO supports configuration as output mode. (Note: ESP32's G36 does not allow configuration as output mode, so PORT.B will not be able to drive properly) Learn and Documents → DOCUMENTS",
+      "image": "images/units/unit-relay-2ch/1.jpg",
+      "images": [
+        "images/units/unit-relay-2ch/1.jpg",
+        "images/units/unit-relay-2ch/2.jpg",
+        "images/units/unit-relay-2ch/3.jpg",
+        "images/units/unit-relay-2ch/4.jpg"
+      ],
+      "url": "https://shop.m5stack.com/products/2-channel-spst-relay-unit"
+    },
+    {
+      "id": "unit-servo-sg90",
+      "handle": "sg90-servo",
+      "title": "SG90 Servo",
+      "category": "units",
+      "price": "5.50",
+      "currency": "USD",
+      "vendor": "m5stack-store",
+      "productType": "Accessory",
+      "tags": [
+        "SERVO"
+      ],
+      "shortDescription": "The SG90 servo is a 9g servo customized by M5Stack. It has a rotation angle of 0~180° and can be used with the 8Servos HAT and PuppyC.",
+      "features": [
+        "Specifications: Gear Material: Plastic",
+        "Torque: 1.6kg•cm/4.8V; 1.8kg•cm/6.0V",
+        "Speed: 0.1sec/60°/4.8V; 0.09sec/60°/6.0V",
+        "Wire Length: 3cm",
+        "Dead Zone: 4μm",
+        "Spline: 21T",
+        "Voltage: 4.8-6.0V",
+        "1 x SG90 Servo"
+      ],
+      "description": "Description The SG90 servo is a 9g servo customized by M5Stack. It has a rotation angle of 0~180° and can be used with the 8Servos HAT and PuppyC. This small servo is very easy to use for beginners, as you don't need a specialized driver board with feedback control or a complex gearbox. Any common servo driver and microcontroller can easily make it rotate. Compared to driving a stepper motor, using it is indeed much simpler. You can use it to create some interesting small projects and control certain angles. The operating frequency is 50Hz, and the typical pulse width used is between 1-2ms, with 0° position (1.5ms), -90° position (1ms), and 90° position (2ms). Exceeding the pulse width range may damage the servo. If you find the connecting wire too short, you can purchase a servo extension cable to extend it. The yellow wire is the signal line, the brown wire is the ground, and the red wire is 5V. Be careful with the current and voltage supply to prevent burning it out. Features Specifications: Gear Material: Plastic Torque: 1.6kg•cm/4.8V; 1.8kg•cm/6.0V Speed: 0.1sec/60°/4.8V; 0.09sec/60°/6.0V Wire Length: 3cm Dead Zone: 4μm Spline: 21T Voltage: 4.8-6.0V Includes 1 x SG90 Servo 1 x Servo accessory kit Specifications Specification Parameter Product Size 23.0 x 12.2 x 29.0mm Product Weight 9.0g Package Size 138.0 x 93.0 x 14.0mm Gross Weight 12.0g Learn and Documents → DOCUMENTS",
+      "image": "images/units/unit-servo-sg90/1.jpg",
+      "images": [
+        "images/units/unit-servo-sg90/1.jpg",
+        "images/units/unit-servo-sg90/2.webp",
+        "images/units/unit-servo-sg90/3.jpg",
+        "images/units/unit-servo-sg90/4.jpg"
+      ],
+      "url": "https://shop.m5stack.com/products/sg90-servo"
+    },
+    {
+      "id": "unit-env-iii",
+      "handle": "env-iii-unit-with-temperature-humidity-air-pressure-sensor-sht30-qmp6988",
+      "title": "ENV III Unit with Temperature Humidity Air Pressure Sensor (SHT30+QMP6988)",
+      "category": "units",
+      "price": "5.95",
+      "currency": "USD",
+      "vendor": "m5stack-store",
+      "productType": "Unit",
+      "tags": [
+        "UNIT-SENSOR"
+      ],
+      "shortDescription": "Unit ENV-III is an environmental sensor that integrates SHT30 and QMP6988 internally to detect temperature, humidity, and atmospheric pressure data. The SHT30 is a high-precision, low-power digital temperature and humidity sensor that supports the I2C interfac",
+      "features": [
+        "Easy to use",
+        "High accuracy",
+        "I2C communication interface",
+        "HY2.0-4P interface, supports platforms UIFlow and Arduino .",
+        "2 x LEGO compatible holes",
+        "1 x Unit ENV-III",
+        "1 x HY2.0-4P Grove connection cable (20cm)",
+        "Weather stations"
+      ],
+      "description": "Description Unit ENV-III is an environmental sensor that integrates SHT30 and QMP6988 internally to detect temperature, humidity, and atmospheric pressure data. The SHT30 is a high-precision, low-power digital temperature and humidity sensor that supports the I2C interface (SHT30: 0x44, QMP6988: 0x70). The QMP6988 is an absolute pressure sensor designed for mobile applications, offering high accuracy and stability, suitable for projects involving environmental data collection and detection. Features Easy to use High accuracy I2C communication interface HY2.0-4P interface, supports platforms UIFlow and Arduino . 2 x LEGO compatible holes Includes 1 x Unit ENV-III 1 x HY2.0-4P Grove connection cable (20cm) Applications Weather stations Grain storage environment monitoring Specifications Specification Parameter Maximum Temperature Range -40 ~ 120 ℃ Highest Measurement Accuracy 0 ~ 60 ℃/±0.2℃ Humidity Range/Error 10 ~ 90 %RH / ±2% Maximum Pressure Value/Resolution/Error 300 ~ 1100hPa / 0.06Pa / ±3.9Pa Communication Protocol I2C: SHT30 (0x44), QMP6988 (0x70) Operating Temperature 0 ~ 60°C Case Material Plastic (PC) Product Size 32.0 x 24.0 x 8.0mm Product Weight 4.0g Package Size 138.0 x 93.0 x 9.0mm Gross Weight 9.3g Product Comparison Product Compare Unit ENV Unit ENV-II Unit ENV-III Unit ENV-IV Unit ENV-Pro Sensor DHT12+BMP280 SHT30+BMP280 SHT30+QMP6988 SHT40+BMP280 BME688 Data Type Detected Temperature+Pressure+Humidity Temperature+Pressure+Humidity Temperature+Pressure+Humidity Temperature+Pressure+Humidity Temperature+Pressure+Humidity+Gas Interface I2C I2C I2C I2C I2C I2C Address DHT12:0x5C BMP280:0x76 SHT30:0x44 BMP280:0x76 SHT30:0x44 QMP6988:0x70 SHT40:0x44 BMP280:0x76 BME688:0x77 Accuracy Temp: ±0.5℃ Humidity: ±5%RH Pressure: ±0.12 hPa Temp: ±0.2℃ Humidity: ±2%RH Pressure: ±0.12 hPa Temp: ±0.2℃ Humidity: ±2%RH Pressure: ±0.12 hPa Temp: ±0.2℃ Humidity: ±1.8%RH Pressure: ±0.12 hPa Temp: ±0.5℃ Humidity: ±3%RH Pressure: ±0.12 hPa Range Temp: -20~60℃ Humidity: 20~95%RH Pressure: 300~1100 hPa Temp: -40~125℃ Humidity: 0~100%RH Pressure: 300~1100 hPa Temp: -40~125℃ Humidity: 0~100%RH Pressure: 300~1100 hPa Temp: -40~125℃ Humidity: 0~100%RH Pressure: 300~1100 hPa Scan speed: 10.8 seconds Learn and Documents → DOCUMENTS",
+      "image": "images/units/unit-env-iii/1.jpg",
+      "images": [
+        "images/units/unit-env-iii/1.jpg",
+        "images/units/unit-env-iii/2.jpg",
+        "images/units/unit-env-iii/3.webp",
+        "images/units/unit-env-iii/4.jpg"
+      ],
+      "url": "https://shop.m5stack.com/products/env-iii-unit-with-temperature-humidity-air-pressure-sensor-sht30-qmp6988"
+    },
+    {
+      "id": "unit-pir",
+      "handle": "pir-module",
+      "title": "PIR Motion Sensor (AS312)",
+      "category": "units",
+      "price": "5.50",
+      "currency": "USD",
+      "vendor": "m5stack-store",
+      "productType": "Unit",
+      "tags": [
+        "UNIT-SENSOR"
+      ],
+      "shortDescription": "Unit PIR is a human body infrared Unit. It belongs to the \"passive pyroelectric infrared detector\" category, which operates by detecting infrared radiation emitted or reflected by a human body or object.",
+      "features": [
+        "Detection distance: 500cm",
+        "Delay time: 2s",
+        "Sensing range: < 100°",
+        "Static current: < 60uA",
+        "Operating temperature: -20°C ~ 80°C",
+        "HY2.0-4P interface, supports UiFlow and Arduino",
+        "2 x LEGO compatible holes",
+        "1 x Unit PIR"
+      ],
+      "description": "Description Unit PIR is a human body infrared Unit. It belongs to the \"passive pyroelectric infrared detector\" category, which operates by detecting infrared radiation emitted or reflected by a human body or object. When infrared radiation is detected, it outputs a high level signal and maintains it for a period of delay (remaining high level and allowing repeated triggering) until the triggering signal disappears (returns to low level). This Unit communicates with the M5Core via PORT.B. Note: There is a 2-second delay after detection is triggered. Features Detection distance: 500cm Delay time: 2s Sensing range: < 100° Static current: < 60uA Operating temperature: -20°C ~ 80°C HY2.0-4P interface, supports UiFlow and Arduino 2 x LEGO compatible holes Includes 1 x Unit PIR 1 x HY2.0-4P Grove Cable (20cm) Applications Specifications Specification Parameter Product Size 32.0 x 24.0 x 12.5mm Product Weight 5.1g Package Size 138.0 x 93.0 x 13.5mm Gross Weight 10.0g Learn and Documents → DOCUMENTS",
+      "image": "images/units/unit-pir/1.jpg",
+      "images": [
+        "images/units/unit-pir/1.jpg",
+        "images/units/unit-pir/2.jpg",
+        "images/units/unit-pir/3.webp",
+        "images/units/unit-pir/4.jpg"
+      ],
+      "url": "https://shop.m5stack.com/products/pir-module"
+    },
+    {
+      "id": "unit-angle",
+      "handle": "angle-unit",
+      "title": "Mini Angle Unit Rotary Switch with Potentiometer",
+      "category": "units",
+      "price": "3.95",
+      "currency": "USD",
+      "vendor": "m5stack-store",
+      "productType": "Unit",
+      "tags": [
+        "UNIT-HMI"
+      ],
+      "shortDescription": "Unit Angle is a knob switch input Unit, which has a built-in 10K potentiometer. By rotating the knob, its internal resistance value can be changed.",
+      "features": [
+        "HY2.0-4P interface, supports UIFlow and Arduino .",
+        "2 x LEGO compatible holes",
+        "1 x Unit Angle",
+        "1 x HY2.0-4P Grove Cable (20cm)"
+      ],
+      "description": "Description Unit Angle is a knob switch input Unit, which has a built-in 10K potentiometer. By rotating the knob, its internal resistance value can be changed. A potentiometer is a resistor component with three leads whose resistance can be adjusted according to a certain variation pattern. Based on this principle, the ESP32 can obtain the output voltage of the potentiometer through Port B, and then obtain the corresponding mapped data after AD conversion. In application scenarios requiring continuous signal control, such as volume adjustment, brightness adjustment, or motor speed control , Unit Angle will be a good choice. Features HY2.0-4P interface, supports UIFlow and Arduino . 2 x LEGO compatible holes Includes 1 x Unit Angle 1 x HY2.0-4P Grove Cable (20cm) Specifications Specification Parameter Output Voltage 0 ~ 2500mV Product Size 32.0 x 24.0 x 22.0mm Product Weight 6.0g Package Size 138.0 x 93.0 x 21.0mm Gross Weight 23.0g Learn and Documents → DOCUMENTS",
+      "image": "images/units/unit-angle/1.jpg",
+      "images": [
+        "images/units/unit-angle/1.jpg",
+        "images/units/unit-angle/2.jpg",
+        "images/units/unit-angle/3.jpg",
+        "images/units/unit-angle/4.jpg"
+      ],
+      "url": "https://shop.m5stack.com/products/angle-unit"
+    },
+    {
+      "id": "unit-ultrasonic",
+      "handle": "ultrasonic-distance-unit-i2c-rcwl-9620",
+      "title": "Ultrasonic Distance Unit I2C (RCWL-9620)",
+      "category": "units",
+      "price": "5.95",
+      "currency": "USD",
+      "vendor": "m5stack-store",
+      "productType": "Unit",
+      "tags": [
+        "UNIT-SENSOR"
+      ],
+      "shortDescription": "The Unit Ultrasonic-I2C is an ultrasonic distance measurement sensor with an I2C communication interface. The hardware utilizes the RCWL-9620 ultrasonic distance measurement chip paired with a 16 mm probe, enabling precise distance measurement within a range o",
+      "features": [
+        "RCWL-9620",
+        "I2C communication interface (addr: 0x57)",
+        "Range: 2cm-450cm",
+        "Protective cover for stable circuit operation",
+        "Built-in temperature compensation to reduce probe temperature drift",
+        "Supports UIFlow graphical programming",
+        "1 x Unit Ultrasonic-I2C",
+        "1 x HY2.0-4P Grove cable (20cm)"
+      ],
+      "description": "Description The Unit Ultrasonic-I2C is an ultrasonic distance measurement sensor with an I2C communication interface. The hardware utilizes the RCWL-9620 ultrasonic distance measurement chip paired with a 16 mm probe, enabling precise distance measurement within a range of 2 cm to 450 cm (with an accuracy of ±2%). As an I2C slave device, the sensor can share bus resources with other I2C devices, maximizing IO resource savings. It is ideal for applications such as robot obstacle avoidance and liquid level detection. Note When measuring distances greater than 3.5 meters, there may be a slight delay in the distance measurement response. Features RCWL-9620 I2C communication interface (addr: 0x57) Range: 2cm-450cm Protective cover for stable circuit operation Built-in temperature compensation to reduce probe temperature drift Supports UIFlow graphical programming Includes 1 x Unit Ultrasonic-I2C 1 x HY2.0-4P Grove cable (20cm) Applications Robot obstacle avoidance Liquid level measurement Posture detection Specifications Specification Parameter Ultrasonic Ranging SoC RCWL-9620 Range 2cm ~ 450cm Communication Interface I2C @0x57 Probe Specification 16mm Receive / Transmit Frequency 40KHz Receiving Sensitivity -65dB Directional Angle 60° Measurement Accuracy ±2% Measurement Cycle 50ms Working Current 3mA Product Size 56.0 x 24.0 x 15.0mm Product Weight 10.0g Package Size 75.0 x 45.0 x 30.0mm Gross Weight 26.0g Learn and Documents → DOCUMENTS",
+      "image": "images/units/unit-ultrasonic/1.jpg",
+      "images": [
+        "images/units/unit-ultrasonic/1.jpg",
+        "images/units/unit-ultrasonic/2.jpg",
+        "images/units/unit-ultrasonic/3.jpg",
+        "images/units/unit-ultrasonic/4.jpg"
+      ],
+      "url": "https://shop.m5stack.com/products/ultrasonic-distance-unit-i2c-rcwl-9620"
+    },
+    {
+      "id": "unit-io-hub",
+      "handle": "i-o-hub-1-to-6-expansion-unit-stm32f0",
+      "title": "I/O Hub 1 to 6 Expansion Unit (STM32F0)",
+      "category": "units",
+      "price": "7.95",
+      "currency": "USD",
+      "vendor": "m5stack-store",
+      "productType": "Unit",
+      "tags": [
+        "UNIT-EXTENSION"
+      ],
+      "shortDescription": "Unit PbHub v1.1 is an I2C-controlled 6-channel PORT.B expander. Each Port B interface can achieve GPIO, PWM, Servo control, ADC sampling, RGB light control, and more.",
+      "features": [
+        "6 x GPIO HY2.0-4P PORTB expansion",
+        "1 x I2C input",
+        "Internally controlled by STM32F030",
+        "2 x LEGO-compatible holes",
+        "1 x Unit PbHub v1.1",
+        "1 x HY2.0-4P Grove cable (20cm)"
+      ],
+      "description": "Description Unit PbHub v1.1 is an I2C-controlled 6-channel PORT.B expander. Each Port B interface can achieve GPIO, PWM, Servo control, ADC sampling, RGB light control, and more. It is internally controlled by an STM32F030 microcontroller. Features 6 x GPIO HY2.0-4P PORTB expansion 1 x I2C input Internally controlled by STM32F030 2 x LEGO-compatible holes Includes 1 x Unit PbHub v1.1 1 x HY2.0-4P Grove cable (20cm) Specifications Specification Parameter MCU STM32F030F4P6 Protocol I2C @0x61 (modifiable via register write) Product Size 48.0 x 24.0 x 10.8mm Product Weight 7.2g Package Size 138.0 x 93.0 x 11.8mm Gross Weight 12.5g Learn and Documents → DOCUMENTS",
+      "image": "images/units/unit-io-hub/1.jpg",
+      "images": [
+        "images/units/unit-io-hub/1.jpg",
+        "images/units/unit-io-hub/2.jpg",
+        "images/units/unit-io-hub/3.jpg",
+        "images/units/unit-io-hub/4.jpg"
+      ],
+      "url": "https://shop.m5stack.com/products/i-o-hub-1-to-6-expansion-unit-stm32f0"
+    },
+    {
+      "id": "unit-light",
+      "handle": "light-sensor-unit",
+      "title": "Light Sensor Unit with Photo-resistance",
+      "category": "units",
+      "price": "3.50",
+      "currency": "USD",
+      "vendor": "m5stack-store",
+      "productType": "Unit",
+      "tags": [
+        "UNIT-SENSOR"
+      ],
+      "shortDescription": "Unit Light is a light intensity detection sensor. It integrates a photoresistor and a 10K adjustable resistor, capable of detecting light intensity and setting a light intensity threshold.",
+      "features": [
+        "Differential voltage design",
+        "Analog and digital output",
+        "Development Platform: Arduino, UIFlow",
+        "2 x LEGO compatible holes",
+        "1 x Unit Light",
+        "1 x HY2.0-4P Grove Cable (20cm)",
+        "Light-controlled switch",
+        "Solar yard lamp"
+      ],
+      "description": "Description Unit Light is a light intensity detection sensor. It integrates a photoresistor and a 10K adjustable resistor, capable of detecting light intensity and setting a light intensity threshold. The resistance of the photoresistor decreases as the incident light intensity increases, thus detecting the change in voltage, and obtaining light intensity data through AD conversion. To achieve more accurate light intensity measurements, this Unit also adopts the LM393 dual differential comparator, used to compare the differential voltage between the photoresistor and the varistor. Features Differential voltage design Analog and digital output Development Platform: Arduino, UIFlow 2 x LEGO compatible holes Includes 1 x Unit Light 1 x HY2.0-4P Grove Cable (20cm) Applications Light-controlled switch Solar yard lamp Infrared surveillance camera Specifications Specification Parameter Adjustable Resistor 10K Product Size 32.0 x 24.0 x 8.0mm Product Weight 4.6g Package Size 138.0 x 93.0 x 9.0mm Gross Weight 10.0g Learn and Documents → DOCUMENTS",
+      "image": "images/units/unit-light/1.jpg",
+      "images": [
+        "images/units/unit-light/1.jpg",
+        "images/units/unit-light/2.jpg",
+        "images/units/unit-light/3.jpg",
+        "images/units/unit-light/4.jpg"
+      ],
+      "url": "https://shop.m5stack.com/products/light-sensor-unit"
+    },
+    {
+      "id": "unit-mini-proto",
+      "handle": "mini-proto-board-unit",
+      "title": "2.54mm Mini Proto Unit 70 Holes",
+      "category": "units",
+      "price": "1.95",
+      "currency": "USD",
+      "vendor": "m5stack-store",
+      "productType": "Unit",
+      "tags": [
+        "Unit-Others"
+      ],
+      "shortDescription": "Unit Proto is a versatile board unit. You can freely design circuits on the board and connect it to the M5Core via the HY2.0-4P port.",
+      "features": [
+        "Hole Size: 0.039\" 1mm (CNC Drilled)",
+        "Hole Spacing: 0.1 in-(2.54mm)",
+        "Number of Holes: 77 Holes",
+        "2 x LEGO Compatible Holes",
+        "1 x Unit Proto",
+        "1 x HY2.0-4P Grove Cable (20cm)"
+      ],
+      "description": "Description Unit Proto is a versatile board unit. You can freely design circuits on the board and connect it to the M5Core via the HY2.0-4P port. If you plan to add simple circuits to your design and provide it with a reliable protective casing, Unit Proto is a great choice. Features Hole Size: 0.039\" 1mm (CNC Drilled) Hole Spacing: 0.1 in-(2.54mm) Number of Holes: 77 Holes 2 x LEGO Compatible Holes Includes 1 x Unit Proto 1 x HY2.0-4P Grove Cable (20cm) Specifications Specification Parameter Product Size 48.0 x 24.0 x 8.0mm Product Weight 5.0g Package Size 139.0 x 93.0 x 10.0mm Gross Weight 17.0g Learn and Documents → DOCUMENTS",
+      "image": "images/units/unit-mini-proto/1.jpg",
+      "images": [
+        "images/units/unit-mini-proto/1.jpg",
+        "images/units/unit-mini-proto/2.jpg",
+        "images/units/unit-mini-proto/3.jpg",
+        "images/units/unit-mini-proto/4.jpg"
+      ],
+      "url": "https://shop.m5stack.com/products/mini-proto-board-unit"
+    },
+    {
+      "id": "unit-rgb-strip",
+      "handle": "digital-rgb-led-weatherproof-strip-sk6812",
+      "title": "Digital RGB LED Weatherproof Strip SK6812",
+      "category": "units",
+      "price": "5.95",
+      "currency": "USD",
+      "vendor": "m5stack-store",
+      "productType": "Unit",
+      "tags": [
+        "UNIT-HMI"
+      ],
+      "shortDescription": "Unit RGB LED Strip is a programmable light strip using SK6812 LEDs. The strip supports digital addressing, meaning each individual LED on the strip can be controlled independently for its color and brightness.",
+      "features": [
+        "Product category: RGB LED Strip",
+        "LED model: xdx-5050RGB-60-60",
+        "IC model: SK6812",
+        "Operating voltage: 5V",
+        "Power: ±18W / meter",
+        "Board width: 10mm",
+        "Display grayscale level: 256",
+        "Number of LEDs: 60 LEDs / meter"
+      ],
+      "description": "Description Unit RGB LED Strip is a programmable light strip using SK6812 LEDs. The strip supports digital addressing, meaning each individual LED on the strip can be controlled independently for its color and brightness. Single bus programming allows strip expansion. The outer layer of the strip adopts epoxy waterproof processing, and the transparent protective silicone cover supports IP65-level waterproof protection, adapting to various usage environments. The product uses flexible FPC (soft strip board) / PCB (hard strip board) as a substrate for welding LEDs, with 5050 spec RGB LEDs, and the back is equipped with strong 3M double-sided adhesive for easy attachment. Operating voltage is 5V DC, and various lighting effects can be achieved through controller programming. Features Product category: RGB LED Strip LED model: xdx-5050RGB-60-60 IC model: SK6812 Operating voltage: 5V Power: ±18W / meter Board width: 10mm Display grayscale level: 256 Number of LEDs: 60 LEDs / meter Number of ICs: 60 ICs / meter (ICs located on FPC board), 60 pixel points / meter Operating temperature: -40°C ~ 80°C Service life: 30Kh Board base color: White / Black Light color: Full-color / any color and effect achievable via controller Data transfer rate: 800K/S Waterproof rating: Epoxy waterproof - IP65 Available lengths: 0.5m / 30, 1m / 60, 2m / 120, 5m / 300 Development platform: Arduino, UiFlow (Blockly, Python) Extendable length Includes 1 x Unit RGB LED Strip SKU: A093 (1pcs, 30 LED / 0.5m) SKU: A093-B (1pcs, 60 LED / 1m) SKU: A093-C (1pcs, 120 LED / 2m) SKU: A093-D (1pcs, 300 LED / 5m) 1 x HY2.0-4P Grove Conversion Cable (10cm) Applications Lighting decoration Specifications Specification Parameter Length / Net Weight 0.5m / 37g, 1m / 55g, 2m / 86g, 5m / 211g Length / Gross Weight 0.5m / 45g, 1m / 65g, 2m / 86g, 5m / 220g Length / Number of LEDs 0.5m / 30, 1m / 60, 2m / 120, 5m / 300 Strip width 10mm Package type Anti-static bag packaging, fixed on reel Power Consumption As the number of connected strips increases, the accompanying power consumption will also rise. Therefore, when using RGB LED strips with a large number of LEDs, it is recommended to provide additional power supply. Learn and Documents → DOCUMENTS",
+      "image": "images/units/unit-rgb-strip/1.jpg",
+      "images": [
+        "images/units/unit-rgb-strip/1.jpg",
+        "images/units/unit-rgb-strip/2.jpg",
+        "images/units/unit-rgb-strip/3.jpg",
+        "images/units/unit-rgb-strip/4.jpg"
+      ],
+      "url": "https://shop.m5stack.com/products/digital-rgb-led-weatherproof-strip-sk6812"
+    },
+    {
+      "id": "unit-joystick-2",
+      "handle": "i2c-joystick-2-unit-stm32g030",
+      "title": "I2C Joystick 2 Unit (STM32G030)",
+      "category": "units",
+      "price": "4.95",
+      "currency": "USD",
+      "vendor": "m5stack-store",
+      "productType": "Unit",
+      "tags": [
+        "UNIT-HMI"
+      ],
+      "shortDescription": "Unit Joystick2 is a high-precision Hall effect joystick control unit, built with an STM32G030F6P6 main control chip and integrated firmware for joystick signal acquisition. The unit communicates via the I2C interface and supports three-axis control signal inpu",
+      "features": [
+        "Hall effect joystick",
+        "Three-axis input: X/Y axis offset analog input",
+        "Z-axis button digital input",
+        "Built-in STM32",
+        "I2C communication",
+        "RGB LED",
+        "2 x LEGO compatible holes",
+        "Development Platform: Arduino, UiFlow"
+      ],
+      "description": "Description Unit Joystick2 is a high-precision Hall effect joystick control unit, built with an STM32G030F6P6 main control chip and integrated firmware for joystick signal acquisition. The unit communicates via the I2C interface and supports three-axis control signal input, including analog input for the X/Y axes and digital button input for the Z axis. Unit Joystick2 uses a Hall effect joystick, achieving high-precision control by detecting magnetic field changes, offering advantages such as contactless operation, wear resistance, high accuracy, and strong anti-interference capability, ensuring product stability and long service life. Additionally, the device is equipped with a WS2812 RGB LED for status indication and interactive display, and reserves a firmware upgrade interface for the STM32, making firmware updates convenient. This product is suitable for various application scenarios such as game controllers and robot control. Features Hall effect joystick Three-axis input: X/Y axis offset analog input Z-axis button digital input Built-in STM32 I2C communication RGB LED 2 x LEGO compatible holes Development Platform: Arduino, UiFlow Includes 1 x Unit Joystick2 1 x HY2.0-4P Grove Cable (20cm) Applications Game controller Remote-controlled robot Specifications Specification Parameter MCU STM32G030F6P6@Cortex-M0+, 64MHz main frequency Flash 32KB SRAM 8KB Communication Interface I2C Communication @0x63 X/Y axis output 16-bit ADC output (0-65535) Z-axis button 0/1 RGB LED 1x WS2812C Product Size 40.0 x 24.0 x 23.9mm Product Weight 10.0g Package Size 138.0 x 93.0 x 24.9mm Gross Weight 15.7g Product Comparison Product Compare Unit Joystick v1.1 Unit Joystick2 MCU MEGA8A STM32G030F6P6 RGB / WS2812C X/Y axis offset output value 8 bits (0-255) 16 bits (0-65535) Communication Mode I2C (0x52) I2C (0x63) manufacturing technique Carbon film joystick Hall effect joystick Learn and Documents → DOCUMENTS",
+      "image": "images/units/unit-joystick-2/1.webp",
+      "images": [
+        "images/units/unit-joystick-2/1.webp",
+        "images/units/unit-joystick-2/2.webp",
+        "images/units/unit-joystick-2/3.webp",
+        "images/units/unit-joystick-2/4.webp"
+      ],
+      "url": "https://shop.m5stack.com/products/i2c-joystick-2-unit-stm32g030"
+    },
+    {
+      "id": "unit-mini-hub",
+      "handle": "mini-hub-module",
+      "title": "1 to 3 HUB Expansion Unit",
+      "category": "units",
+      "price": "3.50",
+      "currency": "USD",
+      "vendor": "m5stack-store",
+      "productType": "Unit",
+      "tags": [
+        "UNIT-EXTENSION"
+      ],
+      "shortDescription": "Unit Hub is a HY2.0-4P interface expander. It can expand one HY2.0-4P port into three, allowing more sensor peripherals to be connected simultaneously.",
+      "features": [
+        "HY2.0-4P port expansion",
+        "LEGO-compatible mounting holes",
+        "1 x Unit Hub",
+        "1 x HY2.0-4P Grove Cable (20cm)",
+        "Multi-channel sensor expansion"
+      ],
+      "description": "Description Unit Hub is a HY2.0-4P interface expander. It can expand one HY2.0-4P port into three, allowing more sensor peripherals to be connected simultaneously. On the circuit level, the three expanded ports are directly connected, making it suitable for expanding I2C devices with different addresses or multi-channel output control. Features HY2.0-4P port expansion LEGO-compatible mounting holes Includes 1 x Unit Hub 1 x HY2.0-4P Grove Cable (20cm) Applications Multi-channel sensor expansion Specifications Specification Parameter Product Size 32.0 x 24.0 x 10.8mm Product Weight 4.7g Package Size 138.0 x 93.0 x 11.8mm Gross Weight 10.0g Learn and Documents → DOCUMENTS",
+      "image": "images/units/unit-mini-hub/1.jpg",
+      "images": [
+        "images/units/unit-mini-hub/1.jpg",
+        "images/units/unit-mini-hub/2.jpg",
+        "images/units/unit-mini-hub/3.jpg",
+        "images/units/unit-mini-hub/4.jpg"
+      ],
+      "url": "https://shop.m5stack.com/products/mini-hub-module"
+    }
+  ],
+  "generatedAt": "2026-04-19T04:27:32.872Z"
+}
