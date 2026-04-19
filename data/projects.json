@@ -7,13 +7,27 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3"],
+      "compatibleDevices": [
+        "m5sticks3"
+      ],
       "requiredParts": [],
       "optionalParts": [],
-      "tags": ["home", "built-in", "fun"],
+      "tags": [
+        "home",
+        "built-in",
+        "fun"
+      ],
       "howItWorks": "StickS3 has both an IR receiver and an IR transmitter built in. Point any remote at it to capture the raw IR code, save it to flash under a named slot, and send it back on a button press. A short list on the LCD lets you scroll through stored buttons.",
-      "learningGoals": ["IR protocols (NEC, Sony, etc.)", "flash storage patterns", "compact UI on a 135×240 LCD"],
-      "extensions": ["Voice-activated 'TV off' via the mic", "Share codes between two StickS3s over ESP-NOW", "Macro button that fires a sequence (mute + switch input)"]
+      "learningGoals": [
+        "IR protocols (NEC, Sony, etc.)",
+        "flash storage patterns",
+        "compact UI on a 135×240 LCD"
+      ],
+      "extensions": [
+        "Voice-activated 'TV off' via the mic",
+        "Share codes between two StickS3s over ESP-NOW",
+        "Macro button that fires a sequence (mute + switch input)"
+      ]
     },
     {
       "id": "pocket-step-counter",
@@ -22,13 +36,27 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3"],
+      "compatibleDevices": [
+        "m5sticks3"
+      ],
       "requiredParts": [],
       "optionalParts": [],
-      "tags": ["health", "built-in", "learning"],
+      "tags": [
+        "health",
+        "built-in",
+        "learning"
+      ],
       "howItWorks": "The 6-axis IMU gives you accelerometer + gyro. Low-pass the vertical axis to count steps, and read tilt angle in a second 'Level' mode. Long-press the side button to switch modes, show a clean big-digit screen for each.",
-      "learningGoals": ["signal filtering", "peak detection", "sensor fusion basics"],
-      "extensions": ["Log daily step totals to flash", "Vibrate the speaker as haptic feedback on each step", "Add a 'shake to clear' gesture"]
+      "learningGoals": [
+        "signal filtering",
+        "peak detection",
+        "sensor fusion basics"
+      ],
+      "extensions": [
+        "Log daily step totals to flash",
+        "Vibrate the speaker as haptic feedback on each step",
+        "Add a 'shake to clear' gesture"
+      ]
     },
     {
       "id": "voice-morse-trainer",
@@ -37,13 +65,27 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3"],
+      "compatibleDevices": [
+        "m5sticks3"
+      ],
       "requiredParts": [],
       "optionalParts": [],
-      "tags": ["learning", "built-in", "fun"],
+      "tags": [
+        "learning",
+        "built-in",
+        "fun"
+      ],
       "howItWorks": "Sample the built-in MEMS mic for short word input, do a tiny keyword-spotting or just detect speech-vs-silence to estimate letter count, then play morse-coded beeps. The LCD draws dots and dashes in real time as a visual aid.",
-      "learningGoals": ["mic sampling (I2S)", "basic DSP on-device", "timing-critical audio output"],
-      "extensions": ["Flash the LCD for deaf learners instead of beeping", "Morse 'decoder' mode that listens to beeps and shows letters", "Beam morse over IR between two StickS3s"]
+      "learningGoals": [
+        "mic sampling (I2S)",
+        "basic DSP on-device",
+        "timing-critical audio output"
+      ],
+      "extensions": [
+        "Flash the LCD for deaf learners instead of beeping",
+        "Morse 'decoder' mode that listens to beeps and shows letters",
+        "Beam morse over IR between two StickS3s"
+      ]
     },
     {
       "id": "pocket-notes-terminal",
@@ -52,13 +94,27 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "1–2 h",
-      "compatibleDevices": ["cardputer-adv"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
       "requiredParts": [],
       "optionalParts": [],
-      "tags": ["productivity", "built-in", "learning"],
+      "tags": [
+        "productivity",
+        "built-in",
+        "learning"
+      ],
       "howItWorks": "Use the 56-key keyboard to type into a scrolling text buffer. Ctrl+S writes the buffer to a named slot in flash; arrow keys scroll through notes. Great first non-trivial embedded app.",
-      "learningGoals": ["key-event handling", "flash file systems (LittleFS)", "text rendering on a tiny LCD"],
-      "extensions": ["Markdown-style bold/italic", "Export notes over USB serial to your laptop", "Search across notes"]
+      "learningGoals": [
+        "key-event handling",
+        "flash file systems (LittleFS)",
+        "text rendering on a tiny LCD"
+      ],
+      "extensions": [
+        "Markdown-style bold/italic",
+        "Export notes over USB serial to your laptop",
+        "Search across notes"
+      ]
     },
     {
       "id": "chiptune-keyboard",
@@ -67,13 +123,42 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "1 h",
-      "compatibleDevices": ["cardputer-adv"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
       "requiredParts": [],
-      "optionalParts": [],
-      "tags": ["music", "built-in", "fun"],
+      "optionalParts": [
+        "extra-speaker",
+        "extra-resistor-pack",
+        "extra-potentiometer",
+        "unit-mini-proto"
+      ],
+      "tags": [
+        "music",
+        "built-in",
+        "fun"
+      ],
       "howItWorks": "Map the QWERTY row to one octave, number row to the next. Each key press tells the onboard DAC to emit a square-wave at the matching frequency. Draw a piano-roll on the LCD so you can see the chord you're holding.",
-      "learningGoals": ["PWM / square-wave synthesis", "polyphonic key handling", "musical note→frequency math"],
-      "extensions": ["Add sawtooth + triangle waveform modes", "Record and loop a short riff", "Second keyboard for duet mode over ESP-NOW"]
+      "steps": [
+        "Power the Cardputer. The onboard speaker will be the default output — no external parts needed to start.",
+        "In firmware, read the key matrix every 10 ms.",
+        "Build a note table: QWERTY → A3 B3 C4 D4 E4 F4 G4 A4 B4 C5; number row → one octave higher.",
+        "When a key goes down, start a tone at the matching frequency via `ledcWriteTone()` on the speaker pin.",
+        "Handle polyphony: keep a stack of 'notes-held'. Emit the most recent one (monophonic legato), or mix two pitches at half amplitude for simple duophony.",
+        "On key release, pop the note from the stack; if stack empty, silence the output.",
+        "Render a simple piano roll on the LCD: one bar per key-held, scrolling left.",
+        "Optional: wire an external 8 Ω speaker to a GPIO via a 100 Ω series resistor and a potentiometer for a true volume knob — much louder."
+      ],
+      "learningGoals": [
+        "PWM / square-wave synthesis",
+        "polyphonic key handling",
+        "musical note→frequency math"
+      ],
+      "extensions": [
+        "Add sawtooth + triangle waveform modes",
+        "Record and loop a short riff",
+        "Second keyboard for duet mode over ESP-NOW"
+      ]
     },
     {
       "id": "wifi-clock",
@@ -82,13 +167,28 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "45 min",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
       "requiredParts": [],
       "optionalParts": [],
-      "tags": ["home", "built-in", "learning"],
+      "tags": [
+        "home",
+        "built-in",
+        "learning"
+      ],
       "howItWorks": "Connect to Wi-Fi, sync time via NTP, draw a full-screen clock on the LCD. Optionally fetch a free weather API once per hour and show the current temperature underneath. Dim the backlight at night.",
-      "learningGoals": ["Wi-Fi credentials management", "NTP + timezone handling", "HTTP requests from firmware"],
-      "extensions": ["Pomodoro mode (25 m work / 5 m break)", "Calendar pull from a Google Calendar feed", "Multi-face clock — analog / binary / matrix"]
+      "learningGoals": [
+        "Wi-Fi credentials management",
+        "NTP + timezone handling",
+        "HTTP requests from firmware"
+      ],
+      "extensions": [
+        "Pomodoro mode (25 m work / 5 m break)",
+        "Calendar pull from a Google Calendar feed",
+        "Multi-face clock — analog / binary / matrix"
+      ]
     },
     {
       "id": "desk-climate-display",
@@ -97,13 +197,35 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "30 min",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-env-iii"],
-      "optionalParts": [],
-      "tags": ["learning", "home", "sensors"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-env-iii"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-led-pack",
+        "extra-resistor-pack",
+        "unit-mini-proto"
+      ],
+      "tags": [
+        "learning",
+        "home",
+        "sensors"
+      ],
       "howItWorks": "The ENV III Unit talks to the device over I2C. Your code reads the SHT30 for temperature and humidity and the QMP6988 for pressure, then redraws a simple dashboard on the LCD once per second.",
-      "learningGoals": ["I2C sensor reads", "LCD text + graphics basics", "timed loops"],
-      "extensions": ["Push readings to MQTT over Wi-Fi", "Log to flash and graph a 24 h trend", "Beep when the room gets stuffy"]
+      "learningGoals": [
+        "I2C sensor reads",
+        "LCD text + graphics basics",
+        "timed loops"
+      ],
+      "extensions": [
+        "Push readings to MQTT over Wi-Fi",
+        "Log to flash and graph a 24 h trend",
+        "Beep when the room gets stuffy with an extra-piezo"
+      ]
     },
     {
       "id": "motion-night-light",
@@ -112,13 +234,35 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "45 min",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-pir", "unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["home", "lighting", "automation"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-pir",
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-ldr",
+        "extra-resistor-pack",
+        "unit-mini-proto"
+      ],
+      "tags": [
+        "home",
+        "lighting",
+        "automation"
+      ],
       "howItWorks": "The PIR sensor pulls a GPIO high when it detects motion. A non-blocking timer counts down after each trigger and drives a warm-white gradient on the SK6812 strip via the NeoPixel protocol.",
-      "learningGoals": ["GPIO interrupts", "addressable LED control", "non-blocking timing"],
-      "extensions": ["Scale brightness with ambient light", "Colour cycle for parties", "Log motion events to the serial console"]
+      "learningGoals": [
+        "GPIO interrupts",
+        "addressable LED control",
+        "non-blocking timing"
+      ],
+      "extensions": [
+        "Scale brightness with ambient light",
+        "Colour cycle for parties",
+        "Log motion events to the serial console"
+      ]
     },
     {
       "id": "distance-radar",
@@ -127,13 +271,34 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "45 min",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-ultrasonic", "unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["fun", "learning", "game"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-ultrasonic",
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "fun",
+        "learning",
+        "game"
+      ],
       "howItWorks": "The I2C ultrasonic unit returns distance in mm. You map the reading onto the number of lit LEDs, and shift the hue from green to red as the object closes in.",
-      "learningGoals": ["ranging sensors", "value mapping / scaling", "colour interpolation"],
-      "extensions": ["Add a score that ticks up when something stays in the 'danger zone'", "Mount on a door frame as a rear-approach warning", "Turn it into a 'Marco Polo' toy with two devices"]
+      "learningGoals": [
+        "ranging sensors",
+        "value mapping / scaling",
+        "colour interpolation"
+      ],
+      "extensions": [
+        "Add a score that ticks up when something stays in the 'danger zone'",
+        "Mount on a door frame as a rear-approach warning",
+        "Turn it into a 'Marco Polo' toy with two devices"
+      ]
     },
     {
       "id": "joystick-pong",
@@ -142,13 +307,33 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-joystick-2"],
-      "optionalParts": [],
-      "tags": ["fun", "game"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-joystick-2"
+      ],
+      "optionalParts": [
+        "extra-speaker",
+        "extra-resistor-pack",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "fun",
+        "game"
+      ],
       "howItWorks": "The I2C Joystick 2 returns X/Y analog positions and a button state. Your game loop reads them, updates the paddle and ball physics, and renders the frame to the LCD.",
-      "learningGoals": ["game loops", "basic 2D physics", "input reading over I2C"],
-      "extensions": ["Keep high scores in flash", "Add sound effects", "Two-device multiplayer over ESP-NOW"]
+      "learningGoals": [
+        "game loops",
+        "basic 2D physics",
+        "input reading over I2C"
+      ],
+      "extensions": [
+        "Keep high scores in flash",
+        "Add sound effects",
+        "Two-device multiplayer over ESP-NOW"
+      ]
     },
     {
       "id": "volume-knob",
@@ -157,13 +342,34 @@
       "difficulty": "beginner",
       "ageGroup": "12+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-angle"],
-      "optionalParts": [],
-      "tags": ["productivity", "learning"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-angle"
+      ],
+      "optionalParts": [
+        "extra-pushbutton",
+        "extra-led-pack",
+        "extra-resistor-pack",
+        "unit-mini-proto"
+      ],
+      "tags": [
+        "productivity",
+        "learning"
+      ],
       "howItWorks": "The Angle Unit exposes a 10K pot as an analog voltage. Your firmware samples it, and either emits BLE HID media keys or sends volume commands over serial to a tiny companion script on the PC.",
-      "learningGoals": ["analog reads", "debouncing / smoothing", "BLE HID or serial IPC"],
-      "extensions": ["Double-tap the knob for mute", "Switch modes (volume / brightness / scroll)", "Add an on-screen level bar on the LCD"]
+      "learningGoals": [
+        "analog reads",
+        "debouncing / smoothing",
+        "BLE HID or serial IPC"
+      ],
+      "extensions": [
+        "Double-tap the knob for mute",
+        "Switch modes (volume / brightness / scroll)",
+        "Add an on-screen level bar on the LCD"
+      ]
     },
     {
       "id": "light-logger",
@@ -172,13 +378,34 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-light"],
-      "optionalParts": ["unit-mini-proto", "extra-ldr", "extra-resistor-pack"],
-      "tags": ["learning", "school", "sensors"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-light"
+      ],
+      "optionalParts": [
+        "unit-mini-proto",
+        "extra-ldr",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "learning",
+        "school",
+        "sensors"
+      ],
       "howItWorks": "The Light Unit outputs an analog voltage proportional to brightness. Sample it every 30 s, push readings into a ring buffer, and draw a scrolling line chart on the LCD. The Mini Proto Unit gives you a place to solder a calibration trimmer if you want matched readings.",
-      "learningGoals": ["analog sampling", "ring buffers", "simple charting"],
-      "extensions": ["Compare sunny vs. shady windows", "Dump CSV over serial for a classroom write-up", "Automatically pull a blind with a servo"]
+      "learningGoals": [
+        "analog sampling",
+        "ring buffers",
+        "simple charting"
+      ],
+      "extensions": [
+        "Compare sunny vs. shady windows",
+        "Dump CSV over serial for a classroom write-up",
+        "Automatically pull a blind with a servo"
+      ]
     },
     {
       "id": "smart-nfc-locker",
@@ -187,13 +414,48 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "1–2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-nfc", "unit-servo-sg90"],
-      "optionalParts": ["unit-relay-2ch", "unit-rgb-strip", "extra-microswitch", "extra-piezo"],
-      "tags": ["smart-home", "security"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-nfc",
+        "unit-servo-sg90"
+      ],
+      "optionalParts": [
+        "unit-relay-2ch",
+        "unit-rgb-strip",
+        "extra-microswitch",
+        "extra-piezo",
+        "extra-led-pack",
+        "extra-resistor-pack",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "smart-home",
+        "security"
+      ],
       "howItWorks": "The ST25R3916 NFC Unit reports any tag's UID over I2C. If the UID is in your allow-list, the firmware pulses the SG90 servo for 5 s to swing a cardboard or 3D-printed latch open.",
-      "learningGoals": ["I2C reads", "PWM / servo control", "access-control lists in flash"],
-      "extensions": ["Log allowed / denied taps with timestamps", "Fire the relay to power a mag-lock instead of a servo", "Flash the RGB strip green for pass, red for fail"]
+      "steps": [
+        "Plug the NFC Unit and the SG90 Servo Unit into the device via the I/O Hub (or daisy-chain two separate ports if you don't have it).",
+        "Cut a small wooden or cardboard door with a latch arm — glue the servo horn to the latch so rotating the servo pivots the latch open.",
+        "First run: put the firmware in 'learn mode'. Tap each trusted card and write its UID to flash under a friendly name.",
+        "In normal mode, poll the NFC Unit every 200 ms for a present tag.",
+        "When a UID shows up, look it up in the allow-list. Match → sweep servo 0° → 90° → hold 5 s → back to 0°.",
+        "Match fail → flash the LCD red (or the optional RGB strip) for 1 s and don't move the servo.",
+        "Optional: wire a microswitch under the latch so you can detect and log 'actual latch opened' vs 'firmware thought so'.",
+        "Optional: add an emergency extra-pushbutton wired to a panic routine that either force-opens (indoor) or force-locks (outdoor) depending on your threat model."
+      ],
+      "learningGoals": [
+        "I2C reads",
+        "PWM / servo control",
+        "access-control lists in flash"
+      ],
+      "extensions": [
+        "Log allowed / denied taps with timestamps",
+        "Fire the relay to power a mag-lock instead of a servo",
+        "Flash the RGB strip green for pass, red for fail"
+      ]
     },
     {
       "id": "smart-fan",
@@ -202,13 +464,47 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-env-iii", "unit-relay-2ch"],
-      "optionalParts": ["extra-dc-motor", "extra-jumpers"],
-      "tags": ["smart-home", "automation"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-env-iii",
+        "unit-relay-2ch"
+      ],
+      "optionalParts": [
+        "extra-dc-motor",
+        "extra-jumpers",
+        "extra-led-pack",
+        "extra-resistor-pack",
+        "extra-potentiometer"
+      ],
+      "tags": [
+        "smart-home",
+        "automation"
+      ],
       "howItWorks": "Read temperature from the ENV III. When it crosses a threshold, close one channel of the SPST relay to power a mains-rated fan. A 2 °C hysteresis band stops the relay chattering near the setpoint.",
-      "learningGoals": ["mains-level safety", "relay isolation", "control theory (hysteresis)"],
-      "extensions": ["Add a schedule so the fan won't run at night", "Second relay channel for a humidifier", "Web dashboard to change the setpoint from a phone"]
+      "steps": [
+        "⚠️ Mains-level project: if you're switching a wall-powered fan, have an adult double-check the wiring. USB-powered 5 V fan is much safer for a first build.",
+        "Plug ENV III and the 2-channel Relay Unit into the device via HY2.0-4P cables (or I/O Hub).",
+        "Wire one fan leg through the relay's NO/COM contacts — the relay just replaces a wall switch.",
+        "In code, read ENV III temperature every 30 s.",
+        "Define `turnOn = 26 °C`, `turnOff = 24 °C`. The 2 °C gap stops the relay clicking on/off every few seconds near the threshold.",
+        "State machine: if OFF and temp > turnOn → close relay (fan on). If ON and temp < turnOff → open relay (fan off).",
+        "Display current temp + fan state on the LCD.",
+        "Optional: use an extra-potentiometer on an ADC pin to adjust the setpoint live.",
+        "Optional: replace the mains fan with an extra-dc-motor + transistor for a safer, fully low-voltage build."
+      ],
+      "learningGoals": [
+        "mains-level safety",
+        "relay isolation",
+        "control theory (hysteresis)"
+      ],
+      "extensions": [
+        "Add a schedule so the fan won't run at night",
+        "Second relay channel for a humidifier",
+        "Web dashboard to change the setpoint from a phone"
+      ]
     },
     {
       "id": "pir-alarm",
@@ -217,13 +513,46 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-pir", "unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["security", "smart-home"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-pir",
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-pushbutton",
+        "extra-reed-switch",
+        "extra-tilt-switch"
+      ],
+      "tags": [
+        "security",
+        "smart-home"
+      ],
       "howItWorks": "PIR trip arms a cool-down timer, flashes the RGB strip red, and, if Wi-Fi is configured, posts a webhook to ntfy.sh or your own endpoint. A long button press arms/disarms the system.",
-      "learningGoals": ["state machines", "HTTP POST from firmware", "secure credentials in flash"],
-      "extensions": ["Pair with an NFC tag as a silent disarm fob", "Photograph the scene with a companion device", "Log to a simple timeline on the LCD"]
+      "steps": [
+        "Plug the PIR Unit and the RGB Strip into the I/O Hub. Point the PIR at the area you want watched.",
+        "Let the PIR settle for 60 s on first power — the element self-calibrates to the ambient temperature.",
+        "Set up a 3-state state machine: DISARMED → ARMED → ALARMING.",
+        "Arm/disarm with a long-press on the device's built-in button; show the state on the LCD.",
+        "When ARMED and the PIR reports motion (HIGH for > 100 ms): enter ALARMING.",
+        "In ALARMING: flash the RGB strip red/white at 4 Hz for 30 s, then auto-return to ARMED.",
+        "If Wi-Fi is configured, POST an alert to a webhook (ntfy.sh is a one-line URL).",
+        "Optional: add a piezo buzzer for a local siren, or an extra-pushbutton mounted near your bed as a panic trigger.",
+        "Add a 2-min cool-down after a trip so passing shadows don't keep re-triggering it."
+      ],
+      "learningGoals": [
+        "state machines",
+        "HTTP POST from firmware",
+        "secure credentials in flash"
+      ],
+      "extensions": [
+        "Pair with an NFC tag as a silent disarm fob",
+        "Photograph the scene with a companion device",
+        "Log to a simple timeline on the LCD"
+      ]
     },
     {
       "id": "plant-waterer",
@@ -232,13 +561,51 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "3 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-env-iii", "unit-servo-sg90", "unit-relay-2ch"],
-      "optionalParts": ["extra-breadboard", "extra-jumpers", "extra-resistor-pack"],
-      "tags": ["home", "automation", "green"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-env-iii",
+        "unit-servo-sg90",
+        "unit-relay-2ch"
+      ],
+      "optionalParts": [
+        "extra-breadboard",
+        "extra-jumpers",
+        "extra-resistor-pack",
+        "unit-mini-proto",
+        "extra-led-pack",
+        "extra-pushbutton",
+        "extra-piezo"
+      ],
+      "tags": [
+        "home",
+        "automation",
+        "green"
+      ],
       "howItWorks": "Humidity from the ENV III stands in for soil dryness (paired with a DIY resistive probe on the Mini Proto if you want to get fancy). When the reading drops below threshold, the servo tilts a reservoir, or the relay kicks a small pump on.",
-      "learningGoals": ["sensor-to-actuator loops", "safety interlocks", "real-world reliability (battery, failsafe)"],
-      "extensions": ["Add a weekly water-log on the LCD", "Push a 'Plant saved!' notification each watering", "Go solar + LiPo for outdoor pots"]
+      "steps": [
+        "Plug ENV III, SG90 Servo and 2-channel Relay Units into the device via the I/O Hub.",
+        "Optional (better soil read): build a resistive moisture probe — two galvanised nails pushed into the soil ~3 cm apart, wired to a Mini Proto GPIO via a 10 kΩ pull-up resistor to 3.3 V. Read the ADC.",
+        "Decide the actuator: tilting reservoir (servo) for a quick indoor build, OR a small 5 V pump on the relay for more water.",
+        "Set thresholds: dry (trigger watering) and wet (stop watering). Start with 50 % relative humidity / ADC > 2500 for dry.",
+        "In code, sample every 10 min (soil dries slowly). Keep a rolling average to ignore noise.",
+        "When dry threshold crosses: actuate for 4 s, then sleep 30 min before rechecking to let water soak in.",
+        "Add a hard daily cap (e.g. max 3 waterings per 24 h) so a stuck-dry probe can't flood the pot.",
+        "Optional: log each watering event to flash and show last-water time on the LCD.",
+        "Optional: add an extra-pushbutton for 'manual water now' and an LED that blinks while watering."
+      ],
+      "learningGoals": [
+        "sensor-to-actuator loops",
+        "safety interlocks",
+        "real-world reliability (battery, failsafe)"
+      ],
+      "extensions": [
+        "Add a weekly water-log on the LCD",
+        "Push a 'Plant saved!' notification each watering",
+        "Go solar + LiPo for outdoor pots"
+      ]
     },
     {
       "id": "visitor-counter",
@@ -247,13 +614,36 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-ultrasonic", "unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["school", "home", "automation"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-ultrasonic",
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-reed-switch",
+        "extra-led-pack",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "school",
+        "home",
+        "automation"
+      ],
       "howItWorks": "The ultrasonic unit watches for any return below the doorway-width threshold. A debounced counter increments on each new entry, and the strip animates a quick green sweep for feedback.",
-      "learningGoals": ["debouncing", "persistence (counting across power loss)", "event-driven code"],
-      "extensions": ["Split entries vs. exits with two sensors", "Reset daily at midnight", "Mount on a classroom door to track attendance trends"]
+      "learningGoals": [
+        "debouncing",
+        "persistence (counting across power loss)",
+        "event-driven code"
+      ],
+      "extensions": [
+        "Split entries vs. exits with two sensors",
+        "Reset daily at midnight",
+        "Mount on a classroom door to track attendance trends"
+      ]
     },
     {
       "id": "mood-lamp",
@@ -262,13 +652,35 @@
       "difficulty": "intermediate",
       "ageGroup": "8+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-angle", "unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["home", "lighting", "fun"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-angle",
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-pushbutton",
+        "extra-ldr",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "home",
+        "lighting",
+        "fun"
+      ],
       "howItWorks": "The Angle potentiometer maps onto the hue wheel. The LCD shows a colour-matched preview. Long-pressing the device button stores the current colour into one of three flash slots, recalled by double-press.",
-      "learningGoals": ["HSV colour math", "button gesture recognition", "flash persistence"],
-      "extensions": ["Sync two lamps over ESP-NOW", "Breathing / fade patterns", "Sunset simulator mode tied to real time"]
+      "learningGoals": [
+        "HSV colour math",
+        "button gesture recognition",
+        "flash persistence"
+      ],
+      "extensions": [
+        "Sync two lamps over ESP-NOW",
+        "Breathing / fade patterns",
+        "Sunset simulator mode tied to real time"
+      ]
     },
     {
       "id": "iot-dashboard-hub",
@@ -277,13 +689,40 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "3 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-io-hub", "unit-env-iii", "unit-pir", "unit-light"],
-      "optionalParts": ["unit-ultrasonic", "unit-mini-hub"],
-      "tags": ["smart-home", "sensors", "dashboard"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-io-hub",
+        "unit-env-iii",
+        "unit-pir",
+        "unit-light"
+      ],
+      "optionalParts": [
+        "unit-ultrasonic",
+        "unit-mini-hub",
+        "extra-ldr",
+        "extra-thermistor",
+        "extra-reed-switch",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "smart-home",
+        "sensors",
+        "dashboard"
+      ],
       "howItWorks": "The PbHub-based I/O Hub fans one HY2.0-4P out to six PortB channels. Each channel hosts one Unit; the firmware rotates through an on-LCD dashboard with a tile per sensor.",
-      "learningGoals": ["multi-sensor architecture", "I2C hub addressing", "UI layout on a small screen"],
-      "extensions": ["Publish all readings to Home Assistant over MQTT", "Sparkline history per tile", "Alert tile when any sensor goes out of range"]
+      "learningGoals": [
+        "multi-sensor architecture",
+        "I2C hub addressing",
+        "UI layout on a small screen"
+      ],
+      "extensions": [
+        "Publish all readings to Home Assistant over MQTT",
+        "Sparkline history per tile",
+        "Alert tile when any sensor goes out of range"
+      ]
     },
     {
       "id": "reaction-arcade",
@@ -292,13 +731,35 @@
       "difficulty": "intermediate",
       "ageGroup": "8+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-joystick-2", "unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["fun", "game", "school"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-joystick-2",
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-pushbutton",
+        "extra-speaker"
+      ],
+      "tags": [
+        "fun",
+        "game",
+        "school"
+      ],
       "howItWorks": "A random LED lights up; the player has to flick the joystick in the matching direction before it goes out. Speed ramps with each correct hit. Miss three and the round ends.",
-      "learningGoals": ["randomness + seeding", "simple state machines", "scoring + difficulty curves"],
-      "extensions": ["Multiplayer pass-the-stick mode", "Sound effects via the Cardputer speaker", "High-score leaderboard stored in flash"]
+      "learningGoals": [
+        "randomness + seeding",
+        "simple state machines",
+        "scoring + difficulty curves"
+      ],
+      "extensions": [
+        "Multiplayer pass-the-stick mode",
+        "Sound effects via the Cardputer speaker",
+        "High-score leaderboard stored in flash"
+      ]
     },
     {
       "id": "lora-walkie-talkie",
@@ -307,13 +768,33 @@
       "difficulty": "advanced",
       "ageGroup": "12+",
       "duration": "3 h",
-      "compatibleDevices": ["cardputer-adv"],
-      "requiredParts": ["cap-lora"],
-      "optionalParts": [],
-      "tags": ["communication", "off-grid", "learning"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "cap-lora"
+      ],
+      "optionalParts": [
+        "extra-pushbutton",
+        "extra-piezo",
+        "extra-led-pack"
+      ],
+      "tags": [
+        "communication",
+        "off-grid",
+        "learning"
+      ],
       "howItWorks": "The SX1262 in the Cap LoRa sends short packets on 868/915 MHz. The Cardputer keyboard becomes your input; received messages scroll up the LCD as a chat log.",
-      "learningGoals": ["LoRa radio parameters (SF, BW, CR)", "packet framing", "range vs. data rate tradeoffs"],
-      "extensions": ["Add a 6-digit shared secret so only paired devices see each other", "Compress messages with a dictionary codec", "Store chat history to flash"]
+      "learningGoals": [
+        "LoRa radio parameters (SF, BW, CR)",
+        "packet framing",
+        "range vs. data rate tradeoffs"
+      ],
+      "extensions": [
+        "Add a 6-digit shared secret so only paired devices see each other",
+        "Compress messages with a dictionary codec",
+        "Store chat history to flash"
+      ]
     },
     {
       "id": "gps-trail-logger",
@@ -322,13 +803,33 @@
       "difficulty": "advanced",
       "ageGroup": "12+",
       "duration": "4 h",
-      "compatibleDevices": ["cardputer-adv"],
-      "requiredParts": ["cap-lora"],
-      "optionalParts": [],
-      "tags": ["outdoors", "navigation", "off-grid"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "cap-lora"
+      ],
+      "optionalParts": [
+        "extra-pushbutton",
+        "extra-piezo",
+        "extra-tilt-switch"
+      ],
+      "tags": [
+        "outdoors",
+        "navigation",
+        "off-grid"
+      ],
       "howItWorks": "The Cap LoRa bundles an ATGM336H GNSS receiver alongside the radio. Parse NMEA strings, stamp them with elapsed time, and periodically beacon your position over LoRa so a base-station partner can follow along.",
-      "learningGoals": ["NMEA parsing", "GPS accuracy tradeoffs", "radio duty cycles / link budget"],
-      "extensions": ["Export GPX for Strava / Komoot on return", "On-screen mini-map drawn from the track", "Distress button that pings base station at max power"]
+      "learningGoals": [
+        "NMEA parsing",
+        "GPS accuracy tradeoffs",
+        "radio duty cycles / link budget"
+      ],
+      "extensions": [
+        "Export GPX for Strava / Komoot on return",
+        "On-screen mini-map drawn from the track",
+        "Distress button that pings base station at max power"
+      ]
     },
     {
       "id": "field-weather-station",
@@ -337,13 +838,48 @@
       "difficulty": "advanced",
       "ageGroup": "12+",
       "duration": "4 h",
-      "compatibleDevices": ["cardputer-adv"],
-      "requiredParts": ["cap-lora", "unit-env-iii"],
-      "optionalParts": ["unit-light"],
-      "tags": ["outdoors", "sensors", "off-grid", "smart-home"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "cap-lora",
+        "unit-env-iii"
+      ],
+      "optionalParts": [
+        "unit-light",
+        "unit-mini-proto",
+        "extra-reed-switch",
+        "extra-ldr",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "outdoors",
+        "sensors",
+        "off-grid",
+        "smart-home"
+      ],
       "howItWorks": "Outside: ENV III + optional Light Unit feeding an hourly LoRa packet. Inside: a second Cardputer (or any LoRa-capable device) receives, displays, and logs the readings. Great for comparing a garden microclimate to indoor air.",
-      "learningGoals": ["low-duty-cycle firmware", "deep-sleep power budgeting", "end-to-end telemetry"],
-      "extensions": ["Add a rain-puck switch on the Mini Proto", "Push to a cloud dashboard through a gateway", "Solar-charge the outdoor unit"]
+      "steps": [
+        "Pair two Cardputers: one outdoor (sender) with LoRa CAP + ENV III, one indoor (receiver) with just the LoRa CAP.",
+        "On the sender: every 15 min, wake from deep sleep, read ENV III temp / humidity / pressure, build a 6-byte packet, transmit, then sleep again.",
+        "Use LoRa settings: SF10, BW125 kHz, CR 4/5 — good range with 200-byte packets.",
+        "On the receiver: listen continuously, decode packets, render the latest reading + 24 h trend on the LCD.",
+        "Weatherproof the outdoor unit: tupperware box with a breather hole so the sensor sees real humidity — not a sealed greenhouse.",
+        "Mount the unit on the shady side of a post at least 1.5 m off the ground (direct sun skews temperature).",
+        "Battery: a single 18650 + 5 V boost keeps the sender alive for weeks at a 15 min duty cycle.",
+        "Optional: add an extra-reed-switch as a 'tipping bucket' rain gauge — count tips, bundle the count into the packet.",
+        "Optional: add an extra-ldr on a Mini Proto ADC as a cheaper sunshine sensor if you skip the Light Unit."
+      ],
+      "learningGoals": [
+        "low-duty-cycle firmware",
+        "deep-sleep power budgeting",
+        "end-to-end telemetry"
+      ],
+      "extensions": [
+        "Add a rain-puck switch on the Mini Proto",
+        "Push to a cloud dashboard through a gateway",
+        "Solar-charge the outdoor unit"
+      ]
     },
     {
       "id": "attendance-kiosk",
@@ -352,13 +888,49 @@
       "difficulty": "advanced",
       "ageGroup": "16+",
       "duration": "4 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-nfc", "unit-io-hub", "unit-rgb-strip", "unit-relay-2ch"],
-      "optionalParts": [],
-      "tags": ["school", "smart-home", "access"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-nfc",
+        "unit-io-hub",
+        "unit-rgb-strip",
+        "unit-relay-2ch"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-pushbutton",
+        "extra-led-pack",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "school",
+        "smart-home",
+        "access"
+      ],
       "howItWorks": "The I/O Hub fans out to the NFC reader, the RGB strip, and the relay (chime). When a known UID taps, attendance is marked, the strip flashes green, and the relay clicks a short chime. Unknown UIDs get a red flash and no chime.",
-      "learningGoals": ["multi-peripheral coordination", "list lookups + counting", "real-time feedback design"],
-      "extensions": ["Sync attendance to a Google Sheet via Wi-Fi", "Support visitor badges with expiry timestamps", "Touchscreen admin menu to enrol new cards"]
+      "steps": [
+        "Plug the I/O Hub into the device's HY2.0-4P port; connect NFC Unit, RGB strip and Relay Unit to three of its ports.",
+        "Print lanyard cards from any cheap Mifare 13.56 MHz blank stock — one per student.",
+        "Enrol phase: on first boot, hold the device's button and tap each student's card. Save UID → name pairs in flash.",
+        "Runtime: poll the NFC Unit every 150 ms for a present tag.",
+        "On tag present: lookup UID. If known → flash RGB green for 400 ms, pulse relay 100 ms (chime), mark present for today.",
+        "Unknown UID → flash RGB red for 400 ms, no chime.",
+        "Debounce: ignore the same UID for 5 s after a successful read so a student can't re-scan by accident.",
+        "End of day: dump the roll to CSV over serial, or POST to a Google Sheet via Wi-Fi if configured.",
+        "Optional: add a piezo for audible 'present' beeps and a small LED panel showing count-so-far."
+      ],
+      "learningGoals": [
+        "multi-peripheral coordination",
+        "list lookups + counting",
+        "real-time feedback design"
+      ],
+      "extensions": [
+        "Sync attendance to a Google Sheet via Wi-Fi",
+        "Support visitor badges with expiry timestamps",
+        "Touchscreen admin menu to enrol new cards"
+      ]
     },
     {
       "id": "servo-puppet-arm",
@@ -367,13 +939,47 @@
       "difficulty": "advanced",
       "ageGroup": "12+",
       "duration": "3 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-joystick-2", "unit-servo-sg90", "unit-io-hub"],
-      "optionalParts": ["unit-mini-proto"],
-      "tags": ["fun", "robotics", "school"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-joystick-2",
+        "unit-servo-sg90",
+        "unit-io-hub"
+      ],
+      "optionalParts": [
+        "unit-mini-proto",
+        "extra-microswitch",
+        "extra-pushbutton",
+        "extra-led-pack"
+      ],
+      "tags": [
+        "fun",
+        "robotics",
+        "school"
+      ],
       "howItWorks": "Two SG90 servos mount on a printed or laser-cut frame. The I/O Hub hosts both servos plus the joystick; firmware maps joystick X/Y to servo angles with rate limiting for smooth motion.",
-      "learningGoals": ["multi-servo coordination", "rate-limited control", "mechanical linkages"],
-      "extensions": ["Record and replay a motion sequence", "Add a third servo as a gripper and control it with the Z-axis button", "Trigger automatic 'look-at' behaviour based on the PIR sensor"]
+      "steps": [
+        "Build or print a pan/tilt bracket — two SG90s stacked at 90° so the lower rotates the upper, and the upper tilts a small platform.",
+        "Plug both SG90 Servo Units and the I2C Joystick 2 into the I/O Hub.",
+        "Read the joystick's X/Y over I2C every 20 ms.",
+        "Map X (0–4095) to pan angle (0–180°) and Y to tilt angle (20–160°) — avoid the servo's end-of-travel to prevent stall.",
+        "Rate-limit the commanded angle so it moves at most 2° per 20 ms tick. This prevents twitchy mechanical stress.",
+        "Optional: add a pair of extra-microswitches as physical endstops — if either trips, halt motion in that axis and beep.",
+        "Optional: add a pushbutton for 'record' mode — hold to capture joystick moves, release to play them back on loop.",
+        "Calibrate the joystick dead-zone: at rest the ADC may read 2040–2050, not exactly 2048. Treat ±50 as dead-zone."
+      ],
+      "learningGoals": [
+        "multi-servo coordination",
+        "rate-limited control",
+        "mechanical linkages"
+      ],
+      "extensions": [
+        "Record and replay a motion sequence",
+        "Add a third servo as a gripper and control it with the Z-axis button",
+        "Trigger automatic 'look-at' behaviour based on the PIR sensor"
+      ]
     },
     {
       "id": "home-zone-controller",
@@ -382,13 +988,39 @@
       "difficulty": "advanced",
       "ageGroup": "16+",
       "duration": "4 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-pir", "unit-env-iii", "unit-relay-2ch", "unit-mini-hub"],
-      "optionalParts": ["unit-rgb-strip"],
-      "tags": ["smart-home", "automation", "dashboard"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-pir",
+        "unit-env-iii",
+        "unit-relay-2ch",
+        "unit-mini-hub"
+      ],
+      "optionalParts": [
+        "unit-rgb-strip",
+        "extra-piezo",
+        "extra-led-pack",
+        "extra-resistor-pack",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "smart-home",
+        "automation",
+        "dashboard"
+      ],
       "howItWorks": "The Mini Hub expands one port into three, hosting the PIR, ENV III, and relay at once. Motion + heat above threshold fires the relay (e.g., an AC); no motion for 10 minutes turns it back off. Anomalies (too hot, too humid) flash the RGB strip and raise a message on the LCD.",
-      "learningGoals": ["hub/expansion patterns", "multi-input state logic", "human-friendly alerts"],
-      "extensions": ["Integrate with Home Assistant over MQTT", "Graph a week of activity on-device", "Use NFC card to set 'Home' / 'Away' modes"]
+      "learningGoals": [
+        "hub/expansion patterns",
+        "multi-input state logic",
+        "human-friendly alerts"
+      ],
+      "extensions": [
+        "Integrate with Home Assistant over MQTT",
+        "Graph a week of activity on-device",
+        "Use NFC card to set 'Home' / 'Away' modes"
+      ]
     },
     {
       "id": "pet-traffic-logger",
@@ -397,13 +1029,34 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "45 min",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-pir"],
-      "optionalParts": ["unit-env-iii"],
-      "tags": ["pets", "home", "learning"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-pir"
+      ],
+      "optionalParts": [
+        "unit-env-iii",
+        "extra-piezo",
+        "extra-reed-switch"
+      ],
+      "tags": [
+        "pets",
+        "home",
+        "learning"
+      ],
       "howItWorks": "A PIR trip bumps a daily counter and timestamps the event into a flash log. The LCD shows today, yesterday, and a tiny bar chart. Add ENV III to correlate activity with room temperature.",
-      "learningGoals": ["event logging", "flash ring buffers", "simple on-device charts"],
-      "extensions": ["Two sensors to infer direction", "Push a daily summary to your phone", "Distinguish cat vs. human using timing heuristics"]
+      "learningGoals": [
+        "event logging",
+        "flash ring buffers",
+        "simple on-device charts"
+      ],
+      "extensions": [
+        "Two sensors to infer direction",
+        "Push a daily summary to your phone",
+        "Distinguish cat vs. human using timing heuristics"
+      ]
     },
     {
       "id": "hallway-auto-dim",
@@ -412,13 +1065,35 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "1–2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-pir", "unit-rgb-strip", "unit-angle"],
-      "optionalParts": [],
-      "tags": ["smart-home", "lighting", "automation"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-pir",
+        "unit-rgb-strip",
+        "unit-angle"
+      ],
+      "optionalParts": [
+        "extra-ldr",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "smart-home",
+        "lighting",
+        "automation"
+      ],
       "howItWorks": "PIR motion triggers a smooth fade-in to the user-set brightness (from the Angle knob). After 90 s of no motion, the strip fades back to zero. A gentle warm-white avoids blinding anyone at 3 a.m.",
-      "learningGoals": ["non-linear fade curves", "analog input smoothing", "timer stacking"],
-      "extensions": ["Night mode: dim red tone after 10 p.m.", "Skip-activate when already on", "Scale with ambient light sensor"]
+      "learningGoals": [
+        "non-linear fade curves",
+        "analog input smoothing",
+        "timer stacking"
+      ],
+      "extensions": [
+        "Night mode: dim red tone after 10 p.m.",
+        "Skip-activate when already on",
+        "Scale with ambient light sensor"
+      ]
     },
     {
       "id": "desk-presence-dnd",
@@ -427,13 +1102,34 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "45 min",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-pir", "unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["home", "productivity", "automation"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-pir",
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "home",
+        "productivity",
+        "automation"
+      ],
       "howItWorks": "PIR pointed at your chair. When motion is detected for more than 20 s, the strip turns red (busy). When no motion for 3 minutes, it cross-fades to green.",
-      "learningGoals": ["state machines", "motion detection heuristics", "colour transitions"],
-      "extensions": ["Pomodoro-aware: enforce red during focus blocks", "Slack status sync", "Red = do not disturb, yellow = coding, blue = meeting"]
+      "learningGoals": [
+        "state machines",
+        "motion detection heuristics",
+        "colour transitions"
+      ],
+      "extensions": [
+        "Pomodoro-aware: enforce red during focus blocks",
+        "Slack status sync",
+        "Red = do not disturb, yellow = coding, blue = meeting"
+      ]
     },
     {
       "id": "wildlife-camera-trigger",
@@ -442,13 +1138,34 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-pir", "unit-relay-2ch"],
-      "optionalParts": [],
-      "tags": ["outdoors", "automation", "photography"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-pir",
+        "unit-relay-2ch"
+      ],
+      "optionalParts": [
+        "extra-led-pack",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "outdoors",
+        "automation",
+        "photography"
+      ],
       "howItWorks": "The PIR detects movement; the relay pulses a DSLR shutter release (2.5 mm plug) for 200 ms, with a configurable cool-down so you don't get 400 bird photos.",
-      "learningGoals": ["opto-isolation / relay triggering", "debouncing sensor events", "outdoor enclosure basics"],
-      "extensions": ["Add an IR-cut mode for night shots", "Burst mode (N shots, 1 s apart)", "Log every trigger with a timestamp"]
+      "learningGoals": [
+        "opto-isolation / relay triggering",
+        "debouncing sensor events",
+        "outdoor enclosure basics"
+      ],
+      "extensions": [
+        "Add an IR-cut mode for night shots",
+        "Burst mode (N shots, 1 s apart)",
+        "Log every trigger with a timestamp"
+      ]
     },
     {
       "id": "porch-package-alert",
@@ -457,13 +1174,33 @@
       "difficulty": "beginner",
       "ageGroup": "12+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-pir"],
-      "optionalParts": [],
-      "tags": ["home", "security", "automation"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-pir"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-reed-switch"
+      ],
+      "tags": [
+        "home",
+        "security",
+        "automation"
+      ],
       "howItWorks": "PIR points at your doorstep. On trigger, the device POSTs to a free ntfy.sh topic; your phone buzzes in seconds. A 2-minute cool-down avoids spam from the courier walking back to their van.",
-      "learningGoals": ["HTTP POST from firmware", "webhook / push services", "rate limiting"],
-      "extensions": ["Photograph the scene with a companion camera", "Vacation mode that sends all events", "Quiet hours between 11 p.m. and 6 a.m."]
+      "learningGoals": [
+        "HTTP POST from firmware",
+        "webhook / push services",
+        "rate limiting"
+      ],
+      "extensions": [
+        "Photograph the scene with a companion camera",
+        "Vacation mode that sends all events",
+        "Quiet hours between 11 p.m. and 6 a.m."
+      ]
     },
     {
       "id": "thunderstorm-warning",
@@ -472,13 +1209,34 @@
       "difficulty": "beginner",
       "ageGroup": "12+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-env-iii"],
-      "optionalParts": [],
-      "tags": ["weather", "home", "learning"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-env-iii"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-led-pack",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "weather",
+        "home",
+        "learning"
+      ],
       "howItWorks": "Read the QMP6988 pressure sensor every minute. When the 10-minute moving average drops more than ~2 hPa, flash a warning on the LCD and beep. Surprisingly accurate for low-pressure fronts.",
-      "learningGoals": ["moving averages", "change-rate detection", "meteorology basics"],
-      "extensions": ["Log storms and correlate with weather.gov data", "Add a lightning-bolt animation on trigger", "Forecast in words: 'Storm in ~30 min'"]
+      "learningGoals": [
+        "moving averages",
+        "change-rate detection",
+        "meteorology basics"
+      ],
+      "extensions": [
+        "Log storms and correlate with weather.gov data",
+        "Add a lightning-bolt animation on trigger",
+        "Forecast in words: 'Storm in ~30 min'"
+      ]
     },
     {
       "id": "bread-proofing-monitor",
@@ -487,13 +1245,34 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-env-iii", "unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["kitchen", "home", "sensors"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-env-iii",
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-led-pack"
+      ],
+      "tags": [
+        "kitchen",
+        "home",
+        "sensors"
+      ],
       "howItWorks": "ENV III lives inside (or next to) a proofing box. A tiny on-LCD graph plots temp and humidity over the last 4 hours. RGB strip is green when both are in the target band, amber when one drifts, red when both do.",
-      "learningGoals": ["multi-variable state logic", "food-science ranges", "clean visual feedback"],
-      "extensions": ["Timer-based 'ready-in-N-min' estimate", "Yogurt mode (lower temp band)", "Share the session's graph as a PNG"]
+      "learningGoals": [
+        "multi-variable state logic",
+        "food-science ranges",
+        "clean visual feedback"
+      ],
+      "extensions": [
+        "Timer-based 'ready-in-N-min' estimate",
+        "Yogurt mode (lower temp band)",
+        "Share the session's graph as a PNG"
+      ]
     },
     {
       "id": "greenhouse-logger",
@@ -502,13 +1281,35 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-env-iii", "unit-light"],
-      "optionalParts": [],
-      "tags": ["school", "outdoors", "sensors"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-env-iii",
+        "unit-light"
+      ],
+      "optionalParts": [
+        "extra-ldr",
+        "extra-thermistor",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "school",
+        "outdoors",
+        "sensors"
+      ],
       "howItWorks": "Sample temperature, humidity, and light every 5 minutes. Track daily min/max for each, and accumulate 'light-hours' (time where lux crosses a threshold). Reset at midnight, keep the last 7 days on the LCD.",
-      "learningGoals": ["data logging discipline", "cumulative metrics", "simple day/night detection"],
-      "extensions": ["Export CSV over USB serial", "Compare two greenhouse plots side-by-side", "Predict harvest date from growing degree days"]
+      "learningGoals": [
+        "data logging discipline",
+        "cumulative metrics",
+        "simple day/night detection"
+      ],
+      "extensions": [
+        "Export CSV over USB serial",
+        "Compare two greenhouse plots side-by-side",
+        "Predict harvest date from growing degree days"
+      ]
     },
     {
       "id": "baby-room-comfort",
@@ -517,13 +1318,34 @@
       "difficulty": "beginner",
       "ageGroup": "12+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-env-iii", "unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["home", "family", "sensors"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-env-iii",
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-led-pack"
+      ],
+      "tags": [
+        "home",
+        "family",
+        "sensors"
+      ],
       "howItWorks": "ENV III reads temperature + humidity. The RGB strip mounts above the crib, showing colour-coded comfort: blue (<18 °C), green (18–22 °C), amber (22–25 °C), red (>25 °C or humidity out of band).",
-      "learningGoals": ["health-relevant sensor ranges", "colour mapping", "silent visual alerts"],
-      "extensions": ["Log sleep-period readings to flash", "Gentle sunrise pulse at baby's wake-up time", "Integrate with a white-noise speaker"]
+      "learningGoals": [
+        "health-relevant sensor ranges",
+        "colour mapping",
+        "silent visual alerts"
+      ],
+      "extensions": [
+        "Log sleep-period readings to flash",
+        "Gentle sunrise pulse at baby's wake-up time",
+        "Integrate with a white-noise speaker"
+      ]
     },
     {
       "id": "cat-toy-swinger",
@@ -532,13 +1354,33 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-servo-sg90"],
-      "optionalParts": [],
-      "tags": ["pets", "fun", "automation"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-servo-sg90"
+      ],
+      "optionalParts": [
+        "extra-microswitch",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "pets",
+        "fun",
+        "automation"
+      ],
       "howItWorks": "SG90 sweeps back and forth on a randomised schedule (say, every 3–8 minutes) with a random arc so the cat can't predict it. Off at night. You can print a tiny arm or just hot-glue a chopstick.",
-      "learningGoals": ["servo sweeps", "pseudo-random scheduling", "simple mechanical linkages"],
-      "extensions": ["Vary the pattern by time of day", "Button to trigger on demand", "Pair with PIR so it only plays when the cat is nearby"]
+      "learningGoals": [
+        "servo sweeps",
+        "pseudo-random scheduling",
+        "simple mechanical linkages"
+      ],
+      "extensions": [
+        "Vary the pattern by time of day",
+        "Button to trigger on demand",
+        "Pair with PIR so it only plays when the cat is nearby"
+      ]
     },
     {
       "id": "camera-pan-mount",
@@ -547,13 +1389,34 @@
       "difficulty": "beginner",
       "ageGroup": "12+",
       "duration": "1–2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-servo-sg90", "unit-joystick-2"],
-      "optionalParts": [],
-      "tags": ["photography", "robotics", "fun"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-servo-sg90",
+        "unit-joystick-2"
+      ],
+      "optionalParts": [
+        "extra-microswitch",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "photography",
+        "robotics",
+        "fun"
+      ],
       "howItWorks": "The joystick's X/Y analog values map to servo angles with rate limiting for smooth motion. A 3D-printed or laser-cut pan/tilt bracket holds two SG90s and a phone clamp.",
-      "learningGoals": ["two-axis servo coordination", "analog-to-angle mapping", "mechanical design"],
-      "extensions": ["'Home' position on joystick press", "Save and replay a camera move", "Auto-track: lock on to the loudest mic direction"]
+      "learningGoals": [
+        "two-axis servo coordination",
+        "analog-to-angle mapping",
+        "mechanical design"
+      ],
+      "extensions": [
+        "'Home' position on joystick press",
+        "Save and replay a camera move",
+        "Auto-track: lock on to the loudest mic direction"
+      ]
     },
     {
       "id": "status-flipper-sign",
@@ -562,13 +1425,33 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-servo-sg90"],
-      "optionalParts": [],
-      "tags": ["home", "productivity", "fun"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-servo-sg90"
+      ],
+      "optionalParts": [
+        "extra-microswitch",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "home",
+        "productivity",
+        "fun"
+      ],
       "howItWorks": "A printed sign sits on the servo arm. Pressing the device button rotates 0°→180°, flipping the sign. The device screen mirrors the current state so you can check from your desk without looking up.",
-      "learningGoals": ["servo positioning", "button debouncing", "persistent state"],
-      "extensions": ["Calendar-aware: auto-flip when a meeting starts", "Four-sided sign: working / lunch / meeting / away", "Tap NFC card to change state"]
+      "learningGoals": [
+        "servo positioning",
+        "button debouncing",
+        "persistent state"
+      ],
+      "extensions": [
+        "Calendar-aware: auto-flip when a meeting starts",
+        "Four-sided sign: working / lunch / meeting / away",
+        "Tap NFC card to change state"
+      ]
     },
     {
       "id": "analog-mood-gauge",
@@ -577,13 +1460,34 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-servo-sg90", "unit-env-iii"],
-      "optionalParts": [],
-      "tags": ["home", "art", "sensors"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-servo-sg90",
+        "unit-env-iii"
+      ],
+      "optionalParts": [
+        "extra-led-pack",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "home",
+        "art",
+        "sensors"
+      ],
       "howItWorks": "ENV III reads temperature; you map 15–30 °C onto 0–180° of servo rotation. Print a dial face with tick marks. Smooth filtering so the needle drifts rather than jitters.",
-      "learningGoals": ["range mapping", "EMA filtering", "servo as output device"],
-      "extensions": ["Second gauge for humidity", "Show weather forecast instead (sunny / cloudy)", "Show your unread email count as 'mood'"]
+      "learningGoals": [
+        "range mapping",
+        "EMA filtering",
+        "servo as output device"
+      ],
+      "extensions": [
+        "Second gauge for humidity",
+        "Show weather forecast instead (sunny / cloudy)",
+        "Show your unread email count as 'mood'"
+      ]
     },
     {
       "id": "pet-treat-dispenser",
@@ -592,13 +1496,34 @@
       "difficulty": "intermediate",
       "ageGroup": "8+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-servo-sg90", "unit-nfc"],
-      "optionalParts": [],
-      "tags": ["pets", "family", "fun"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-servo-sg90",
+        "unit-nfc"
+      ],
+      "optionalParts": [
+        "extra-pushbutton",
+        "extra-piezo"
+      ],
+      "tags": [
+        "pets",
+        "family",
+        "fun"
+      ],
       "howItWorks": "A servo drives a gate on the bottom of a treat hopper. An allowed NFC card (kid's or parent's) rotates the gate open for 0.5 s, dropping a treat. A cool-down prevents spam.",
-      "learningGoals": ["mechanical timing", "access control with NFC", "real-world reliability"],
-      "extensions": ["Log treats per day per card", "Auto-disable after N treats", "Speaker plays a jingle on each dispense"]
+      "learningGoals": [
+        "mechanical timing",
+        "access control with NFC",
+        "real-world reliability"
+      ],
+      "extensions": [
+        "Log treats per day per card",
+        "Auto-disable after N treats",
+        "Speaker plays a jingle on each dispense"
+      ]
     },
     {
       "id": "aquarium-pump-scheduler",
@@ -607,13 +1532,33 @@
       "difficulty": "beginner",
       "ageGroup": "12+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-relay-2ch"],
-      "optionalParts": [],
-      "tags": ["home", "automation", "pets"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-relay-2ch"
+      ],
+      "optionalParts": [
+        "extra-led-pack",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "home",
+        "automation",
+        "pets"
+      ],
       "howItWorks": "The relay switches a low-voltage aquarium pump on/off to a configurable duty cycle. A small on-LCD counter shows hours of runtime today.",
-      "learningGoals": ["duty-cycle control", "safe relay wiring for pumps", "persistent counters"],
-      "extensions": ["Day/night profiles", "Temperature-linked: pump longer when warm", "Failsafe that alerts if the relay stops clicking"]
+      "learningGoals": [
+        "duty-cycle control",
+        "safe relay wiring for pumps",
+        "persistent counters"
+      ],
+      "extensions": [
+        "Day/night profiles",
+        "Temperature-linked: pump longer when warm",
+        "Failsafe that alerts if the relay stops clicking"
+      ]
     },
     {
       "id": "grow-light-timer",
@@ -622,13 +1567,34 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "1–2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-relay-2ch", "unit-light"],
-      "optionalParts": [],
-      "tags": ["home", "green", "automation"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-relay-2ch",
+        "unit-light"
+      ],
+      "optionalParts": [
+        "extra-ldr",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "home",
+        "green",
+        "automation"
+      ],
       "howItWorks": "Light Unit watches ambient brightness. When sustained below a threshold between 06:00 and 20:00, the relay powers your grow lights. Logs total 'bonus' hours per day.",
-      "learningGoals": ["sensor-driven scheduling", "relay switching of mains loads", "clock + sensor fusion"],
-      "extensions": ["Per-plant schedules from a config menu", "MQTT dashboard for the whole plant shelf", "Self-adjusting threshold based on weekly averages"]
+      "learningGoals": [
+        "sensor-driven scheduling",
+        "relay switching of mains loads",
+        "clock + sensor fusion"
+      ],
+      "extensions": [
+        "Per-plant schedules from a config menu",
+        "MQTT dashboard for the whole plant shelf",
+        "Self-adjusting threshold based on weekly averages"
+      ]
     },
     {
       "id": "nfc-garage-opener",
@@ -637,13 +1603,35 @@
       "difficulty": "intermediate",
       "ageGroup": "16+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-relay-2ch", "unit-nfc"],
-      "optionalParts": [],
-      "tags": ["smart-home", "security", "access"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-relay-2ch",
+        "unit-nfc"
+      ],
+      "optionalParts": [
+        "extra-led-pack",
+        "extra-resistor-pack",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "smart-home",
+        "security",
+        "access"
+      ],
       "howItWorks": "The NFC Unit recognises authorised UIDs. On a match, the relay pulses the dry-contact input on your garage opener for 250 ms. A rolling audit log shows the last 20 taps.",
-      "learningGoals": ["access-control lists", "relay pulse control", "physical-security edge cases"],
-      "extensions": ["Time-of-day allow-list", "Pair + rotate UIDs as keys", "Guest card that expires after 24 h"]
+      "learningGoals": [
+        "access-control lists",
+        "relay pulse control",
+        "physical-security edge cases"
+      ],
+      "extensions": [
+        "Time-of-day allow-list",
+        "Pair + rotate UIDs as keys",
+        "Guest card that expires after 24 h"
+      ]
     },
     {
       "id": "humidifier-auto-on",
@@ -652,13 +1640,34 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-relay-2ch", "unit-env-iii"],
-      "optionalParts": [],
-      "tags": ["smart-home", "automation", "health"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-relay-2ch",
+        "unit-env-iii"
+      ],
+      "optionalParts": [
+        "extra-potentiometer",
+        "extra-led-pack"
+      ],
+      "tags": [
+        "smart-home",
+        "automation",
+        "health"
+      ],
       "howItWorks": "ENV III watches humidity. When below the setpoint for more than 2 minutes, the relay switches the humidifier on. Turns off at setpoint + 5% hysteresis band. Emergency cut-off if RH exceeds 70%.",
-      "learningGoals": ["closed-loop control", "hysteresis", "safety interlocks"],
-      "extensions": ["Separate day/night targets", "Learn your house's natural RH drift", "Integrate with Home Assistant"]
+      "learningGoals": [
+        "closed-loop control",
+        "hysteresis",
+        "safety interlocks"
+      ],
+      "extensions": [
+        "Separate day/night targets",
+        "Learn your house's natural RH drift",
+        "Integrate with Home Assistant"
+      ]
     },
     {
       "id": "nfc-jukebox",
@@ -667,13 +1676,32 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "3 h",
-      "compatibleDevices": ["cardputer-adv"],
-      "requiredParts": ["unit-nfc"],
-      "optionalParts": [],
-      "tags": ["music", "fun", "home"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-nfc"
+      ],
+      "optionalParts": [
+        "extra-pushbutton",
+        "extra-speaker"
+      ],
+      "tags": [
+        "music",
+        "fun",
+        "home"
+      ],
       "howItWorks": "A tapped UID maps to a command sent over Wi-Fi to your media server (Home Assistant / Jellyfin / Sonos HTTP API). The Cardputer LCD shows the now-playing card art.",
-      "learningGoals": ["HTTP API calls", "UID-to-action mapping", "designing physical interfaces"],
-      "extensions": ["Kids' cards: only play approved playlists", "Tap two cards to queue them", "Record the session's tap log as a party journal"]
+      "learningGoals": [
+        "HTTP API calls",
+        "UID-to-action mapping",
+        "designing physical interfaces"
+      ],
+      "extensions": [
+        "Kids' cards: only play approved playlists",
+        "Tap two cards to queue them",
+        "Record the session's tap log as a party journal"
+      ]
     },
     {
       "id": "chore-chart-nfc",
@@ -682,13 +1710,34 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-nfc", "unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["family", "school", "learning"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-nfc",
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-led-pack"
+      ],
+      "tags": [
+        "family",
+        "school",
+        "learning"
+      ],
       "howItWorks": "Each chore has its own NFC card. Tapping adds one LED to the strip in that chore's colour. At week's end, a celebratory rainbow sweep plays and the strip resets.",
-      "learningGoals": ["tagging real-world actions", "visual progress feedback", "UID grouping"],
-      "extensions": ["Allowance tracker tied to completion", "Parent override card to reset", "Photo-proof pairing: require a phone photo before tap counts"]
+      "learningGoals": [
+        "tagging real-world actions",
+        "visual progress feedback",
+        "UID grouping"
+      ],
+      "extensions": [
+        "Allowance tracker tied to completion",
+        "Parent override card to reset",
+        "Photo-proof pairing: require a phone photo before tap counts"
+      ]
     },
     {
       "id": "pomodoro-nfc-tap",
@@ -697,13 +1746,32 @@
       "difficulty": "beginner",
       "ageGroup": "12+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-nfc"],
-      "optionalParts": [],
-      "tags": ["productivity", "learning"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-nfc"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "productivity",
+        "learning"
+      ],
       "howItWorks": "Different NFC cards kick off different work blocks (25 / 50 / 90 min). The LCD shows the countdown in big digits; at zero, a short chime plays. Tap again to pause.",
-      "learningGoals": ["physical affordances for software", "timers + interrupts", "card-as-command design"],
-      "extensions": ["Log completed sessions to flash", "Enforce silent mode during the block", "Share sessions with a study partner over Wi-Fi"]
+      "learningGoals": [
+        "physical affordances for software",
+        "timers + interrupts",
+        "card-as-command design"
+      ],
+      "extensions": [
+        "Log completed sessions to flash",
+        "Enforce silent mode during the block",
+        "Share sessions with a study partner over Wi-Fi"
+      ]
     },
     {
       "id": "nfc-inventory-scanner",
@@ -712,13 +1780,32 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "3 h",
-      "compatibleDevices": ["cardputer-adv"],
-      "requiredParts": ["unit-nfc"],
-      "optionalParts": [],
-      "tags": ["school", "productivity", "business"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-nfc"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "school",
+        "productivity",
+        "business"
+      ],
       "howItWorks": "Each item wears a small NFC tag with a known UID-to-name mapping. Tap → name shows on LCD → keyboard accepts a qty → press Enter to commit. The Cardputer stores rows; USB serial dumps them as CSV.",
-      "learningGoals": ["data entry UX on a tiny device", "CSV formatting", "UID-to-object modelling"],
-      "extensions": ["Enrol new tags on the fly", "Per-tag photos from a phone app", "Wi-Fi sync to a Google Sheet"]
+      "learningGoals": [
+        "data entry UX on a tiny device",
+        "CSV formatting",
+        "UID-to-object modelling"
+      ],
+      "extensions": [
+        "Enrol new tags on the fly",
+        "Per-tag photos from a phone app",
+        "Wi-Fi sync to a Google Sheet"
+      ]
     },
     {
       "id": "elderly-checkin",
@@ -727,13 +1814,34 @@
       "difficulty": "intermediate",
       "ageGroup": "16+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-nfc", "unit-env-iii"],
-      "optionalParts": [],
-      "tags": ["family", "health", "smart-home"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-nfc",
+        "unit-env-iii"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "family",
+        "health",
+        "smart-home"
+      ],
       "howItWorks": "An NFC card on the kettle / pill box registers a daily tap. If 10 a.m. passes without one, the device POSTs a check-in prompt to the family channel. ENV III reads room temperature to add 'all fine, 21 °C' to the ping.",
-      "learningGoals": ["passive health-monitoring ethics", "soft-deadline logic", "privacy-conscious telemetry"],
-      "extensions": ["Offer a voice-recorded 'I'm OK' reply", "Multiple residents, one device", "Escalate to phone call if multiple misses"]
+      "learningGoals": [
+        "passive health-monitoring ethics",
+        "soft-deadline logic",
+        "privacy-conscious telemetry"
+      ],
+      "extensions": [
+        "Offer a voice-recorded 'I'm OK' reply",
+        "Multiple residents, one device",
+        "Escalate to phone call if multiple misses"
+      ]
     },
     {
       "id": "garage-parking-assist",
@@ -742,13 +1850,33 @@
       "difficulty": "beginner",
       "ageGroup": "12+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-ultrasonic", "unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["home", "automotive", "safety"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-ultrasonic",
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-piezo"
+      ],
+      "tags": [
+        "home",
+        "automotive",
+        "safety"
+      ],
       "howItWorks": "The ultrasonic sits at the front of the garage, aimed at the car. Distance maps to strip colour: green (safe), yellow (slow), red (stop). A flashing red = too close.",
-      "learningGoals": ["distance-to-colour mapping", "debouncing unstable readings", "safety-critical feedback UX"],
-      "extensions": ["Per-driver ideal-stop distance (different cars)", "Auto-dim at night", "Voice prompt: 'Stop!'"]
+      "learningGoals": [
+        "distance-to-colour mapping",
+        "debouncing unstable readings",
+        "safety-critical feedback UX"
+      ],
+      "extensions": [
+        "Per-driver ideal-stop distance (different cars)",
+        "Auto-dim at night",
+        "Voice prompt: 'Stop!'"
+      ]
     },
     {
       "id": "water-tank-level",
@@ -757,13 +1885,33 @@
       "difficulty": "beginner",
       "ageGroup": "12+",
       "duration": "1–2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-ultrasonic"],
-      "optionalParts": [],
-      "tags": ["home", "outdoors", "sensors"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-ultrasonic"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-led-pack"
+      ],
+      "tags": [
+        "home",
+        "outdoors",
+        "sensors"
+      ],
       "howItWorks": "Mount the ultrasonic pointing down into the tank. Calibrate empty and full distances, then show a vertical % bar on the LCD and a number. A waterproof enclosure is essential.",
-      "learningGoals": ["one-time calibration flows", "outdoor enclosure prep", "linear interpolation"],
-      "extensions": ["Buzz when <10% full", "Pair with a relay to auto-refill", "Share reading via MQTT"]
+      "learningGoals": [
+        "one-time calibration flows",
+        "outdoor enclosure prep",
+        "linear interpolation"
+      ],
+      "extensions": [
+        "Buzz when <10% full",
+        "Pair with a relay to auto-refill",
+        "Share reading via MQTT"
+      ]
     },
     {
       "id": "desk-posture-reminder",
@@ -772,13 +1920,32 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-ultrasonic"],
-      "optionalParts": [],
-      "tags": ["health", "productivity", "learning"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-ultrasonic"
+      ],
+      "optionalParts": [
+        "extra-piezo"
+      ],
+      "tags": [
+        "health",
+        "productivity",
+        "learning"
+      ],
       "howItWorks": "Ultrasonic on the monitor points at your face. If you're inside 40 cm for more than 30 s, a soft chirp + on-screen nudge prompts a small lean-back. 10-minute mute button to silence it during close-up work.",
-      "learningGoals": ["noise filtering on short ranges", "nudge UX (kind not nagging)", "timed interventions"],
-      "extensions": ["Track daily 'slouch score'", "Auto-mute when you're on a call", "Gamify: streaks for good posture days"]
+      "learningGoals": [
+        "noise filtering on short ranges",
+        "nudge UX (kind not nagging)",
+        "timed interventions"
+      ],
+      "extensions": [
+        "Track daily 'slouch score'",
+        "Auto-mute when you're on a call",
+        "Gamify: streaks for good posture days"
+      ]
     },
     {
       "id": "mailbox-alert",
@@ -787,13 +1954,33 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-ultrasonic"],
-      "optionalParts": [],
-      "tags": ["home", "security", "automation"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-ultrasonic"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-reed-switch"
+      ],
+      "tags": [
+        "home",
+        "security",
+        "automation"
+      ],
       "howItWorks": "Ultrasonic mounted inside the mailbox reads 'empty distance'. A measurable decrease + a timeout filter = a package landed. POSTs a ntfy notification to your phone.",
-      "learningGoals": ["change-from-baseline detection", "battery operation (sleep)", "environment-robust sensing"],
-      "extensions": ["Detect removal (someone picked it up)", "Solar-charge for outdoor deployment", "Camera trigger on arrival"]
+      "learningGoals": [
+        "change-from-baseline detection",
+        "battery operation (sleep)",
+        "environment-robust sensing"
+      ],
+      "extensions": [
+        "Detect removal (someone picked it up)",
+        "Solar-charge for outdoor deployment",
+        "Camera trigger on arrival"
+      ]
     },
     {
       "id": "ultrasonic-theremin",
@@ -802,13 +1989,33 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-ultrasonic"],
-      "optionalParts": [],
-      "tags": ["music", "school", "fun"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-ultrasonic"
+      ],
+      "optionalParts": [
+        "extra-speaker",
+        "extra-potentiometer"
+      ],
+      "tags": [
+        "music",
+        "school",
+        "fun"
+      ],
       "howItWorks": "Ultrasonic distance maps to audio frequency via the onboard speaker. Log-mapping keeps the pitch musical rather than linear. A button toggles between continuous and snapped-to-notes modes.",
-      "learningGoals": ["frequency generation", "log vs. linear mapping", "how pitch works"],
-      "extensions": ["Two devices = duet", "Record and replay a performance", "Visualise waveform on the LCD"]
+      "learningGoals": [
+        "frequency generation",
+        "log vs. linear mapping",
+        "how pitch works"
+      ],
+      "extensions": [
+        "Two devices = duet",
+        "Record and replay a performance",
+        "Visualise waveform on the LCD"
+      ]
     },
     {
       "id": "obstacle-robot",
@@ -817,13 +2024,36 @@
       "difficulty": "advanced",
       "ageGroup": "12+",
       "duration": "4 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-ultrasonic", "unit-servo-sg90"],
-      "optionalParts": ["unit-io-hub"],
-      "tags": ["robotics", "school", "learning"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-ultrasonic",
+        "unit-servo-sg90"
+      ],
+      "optionalParts": [
+        "unit-io-hub",
+        "extra-microswitch",
+        "extra-led-pack",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "robotics",
+        "school",
+        "learning"
+      ],
       "howItWorks": "Two continuous-rotation servos (or a standard SG90 pair on a small chassis) drive the rover. The ultrasonic scans ahead; detecting an obstacle closer than 25 cm triggers a turn-until-clear routine.",
-      "learningGoals": ["basic robotics control loops", "reactive behaviours", "PWM for drive servos"],
-      "extensions": ["Add a second ultrasonic for side sensing", "Log the path walked", "Follow a human using PIR"]
+      "learningGoals": [
+        "basic robotics control loops",
+        "reactive behaviours",
+        "PWM for drive servos"
+      ],
+      "extensions": [
+        "Add a second ultrasonic for side sensing",
+        "Log the path walked",
+        "Follow a human using PIR"
+      ]
     },
     {
       "id": "lora-channel-tuner",
@@ -832,13 +2062,33 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "1–2 h",
-      "compatibleDevices": ["cardputer-adv"],
-      "requiredParts": ["cap-lora", "unit-angle"],
-      "optionalParts": [],
-      "tags": ["off-grid", "communication", "learning"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "cap-lora",
+        "unit-angle"
+      ],
+      "optionalParts": [
+        "extra-pushbutton",
+        "extra-led-pack"
+      ],
+      "tags": [
+        "off-grid",
+        "communication",
+        "learning"
+      ],
       "howItWorks": "The Angle Unit's value maps to a LoRa channel index. As you turn, the SX1262 retunes; the LCD shows current MHz and RSSI of the last packet heard. Pair two devices to test link quality.",
-      "learningGoals": ["LoRa frequency planning", "RSSI + SNR interpretation", "real-time radio reconfig"],
-      "extensions": ["Auto-scan mode that finds quietest channel", "Log noise-floor over a hike", "Store favourite channels"]
+      "learningGoals": [
+        "LoRa frequency planning",
+        "RSSI + SNR interpretation",
+        "real-time radio reconfig"
+      ],
+      "extensions": [
+        "Auto-scan mode that finds quietest channel",
+        "Log noise-floor over a hike",
+        "Store favourite channels"
+      ]
     },
     {
       "id": "music-scrub-control",
@@ -847,13 +2097,32 @@
       "difficulty": "beginner",
       "ageGroup": "12+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-angle"],
-      "optionalParts": [],
-      "tags": ["productivity", "music", "fun"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-angle"
+      ],
+      "optionalParts": [
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "productivity",
+        "music",
+        "fun"
+      ],
       "howItWorks": "Angle maps to a relative playhead position. Changes emit BLE HID media commands (skip back / skip forward) or directly control the Spotify Web API over Wi-Fi. Large delta = bigger jump.",
-      "learningGoals": ["BLE HID basics", "API authentication flows", "relative vs. absolute input"],
-      "extensions": ["Long-press to switch playlist", "Mute on push-down", "On-screen waveform scrubber"]
+      "learningGoals": [
+        "BLE HID basics",
+        "API authentication flows",
+        "relative vs. absolute input"
+      ],
+      "extensions": [
+        "Long-press to switch playlist",
+        "Mute on push-down",
+        "On-screen waveform scrubber"
+      ]
     },
     {
       "id": "direct-servo-knob",
@@ -862,13 +2131,33 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "30 min",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-angle", "unit-servo-sg90"],
-      "optionalParts": [],
-      "tags": ["learning", "school", "robotics"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-angle",
+        "unit-servo-sg90"
+      ],
+      "optionalParts": [
+        "extra-microswitch"
+      ],
+      "tags": [
+        "learning",
+        "school",
+        "robotics"
+      ],
       "howItWorks": "Read the Angle analog value, map it to 0–180°, and drive the SG90 PWM. The LCD shows both numbers so you see the relationship live.",
-      "learningGoals": ["ADC → PWM pipelines", "range mapping", "realtime input loops"],
-      "extensions": ["Add a 'snap to 90°' button", "Invert direction toggle", "Record a knob-drawn motion and loop it"]
+      "learningGoals": [
+        "ADC → PWM pipelines",
+        "range mapping",
+        "realtime input loops"
+      ],
+      "extensions": [
+        "Add a 'snap to 90°' button",
+        "Invert direction toggle",
+        "Record a knob-drawn motion and loop it"
+      ]
     },
     {
       "id": "dimmer-relay-lamp",
@@ -877,13 +2166,35 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-angle", "unit-relay-2ch", "unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["home", "lighting", "automation"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-angle",
+        "unit-relay-2ch",
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-pushbutton",
+        "extra-ldr"
+      ],
+      "tags": [
+        "home",
+        "lighting",
+        "automation"
+      ],
       "howItWorks": "The Angle value drives the RGB strip brightness via PWM. A double-click on the device button toggles the AC lamp via the relay. Ambient mood + main light in one node.",
-      "learningGoals": ["co-existing inputs and outputs", "gamma-correct dimming", "mains safety"],
-      "extensions": ["Scene presets stored in flash", "Sunset-timer mode", "Sync across rooms via ESP-NOW"]
+      "learningGoals": [
+        "co-existing inputs and outputs",
+        "gamma-correct dimming",
+        "mains safety"
+      ],
+      "extensions": [
+        "Scene presets stored in flash",
+        "Sunset-timer mode",
+        "Sync across rooms via ESP-NOW"
+      ]
     },
     {
       "id": "tempo-metronome",
@@ -892,13 +2203,33 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "30 min",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-angle"],
-      "optionalParts": [],
-      "tags": ["music", "learning", "fun"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-angle"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-led-pack"
+      ],
+      "tags": [
+        "music",
+        "learning",
+        "fun"
+      ],
       "howItWorks": "Angle maps to BPM. The onboard speaker plays a click with every beat, and the LCD flashes a colour accent on the downbeat. Long-press: double-time mode.",
-      "learningGoals": ["precise timing / interrupts", "musical concepts (tempo, meter)", "latency minimisation"],
-      "extensions": ["Add a second 'beats per bar' knob via I/O Hub", "Polyrhythm mode", "Tap-tempo override"]
+      "learningGoals": [
+        "precise timing / interrupts",
+        "musical concepts (tempo, meter)",
+        "latency minimisation"
+      ],
+      "extensions": [
+        "Add a second 'beats per bar' knob via I/O Hub",
+        "Polyrhythm mode",
+        "Tap-tempo override"
+      ]
     },
     {
       "id": "classroom-mood-gauge",
@@ -907,13 +2238,33 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-angle"],
-      "optionalParts": [],
-      "tags": ["school", "learning", "social"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-angle"
+      ],
+      "optionalParts": [
+        "extra-led-pack",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "school",
+        "learning",
+        "social"
+      ],
       "howItWorks": "A single Angle-equipped device is passed around. Each student sets their value and taps confirm. Values go to the LCD as anonymous bars; a final tally shows class-average mood.",
-      "learningGoals": ["anonymous data collection", "simple analytics", "designing empathic tech"],
-      "extensions": ["Over-week trend graph", "Teacher dashboard on a second device", "Triggers a 'need a break?' suggestion below a threshold"]
+      "learningGoals": [
+        "anonymous data collection",
+        "simple analytics",
+        "designing empathic tech"
+      ],
+      "extensions": [
+        "Over-week trend graph",
+        "Teacher dashboard on a second device",
+        "Triggers a 'need a break?' suggestion below a threshold"
+      ]
     },
     {
       "id": "pixel-art-editor",
@@ -922,13 +2273,31 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "3 h",
-      "compatibleDevices": ["cardputer-adv"],
-      "requiredParts": ["unit-joystick-2"],
-      "optionalParts": [],
-      "tags": ["art", "fun", "learning"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-joystick-2"
+      ],
+      "optionalParts": [
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "art",
+        "fun",
+        "learning"
+      ],
       "howItWorks": "The joystick moves a cursor; the press-button toggles a pixel. Z-axis (joystick click) cycles palette colours. Keyboard shortcuts save / load sprites from flash; USB serial exports PNG bytes.",
-      "learningGoals": ["fine cursor control", "bitmap storage", "palette management"],
-      "extensions": ["Undo/redo stack", "Animate by paging sprites", "Share sprites between two Cardputers"]
+      "learningGoals": [
+        "fine cursor control",
+        "bitmap storage",
+        "palette management"
+      ],
+      "extensions": [
+        "Undo/redo stack",
+        "Animate by paging sprites",
+        "Share sprites between two Cardputers"
+      ]
     },
     {
       "id": "presentation-clicker",
@@ -937,13 +2306,33 @@
       "difficulty": "beginner",
       "ageGroup": "12+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-joystick-2"],
-      "optionalParts": [],
-      "tags": ["productivity", "school", "communication"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-joystick-2"
+      ],
+      "optionalParts": [
+        "extra-led-pack",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "productivity",
+        "school",
+        "communication"
+      ],
       "howItWorks": "The joystick's X direction sends BLE HID PageUp / PageDown. Push-down = start/stop the onscreen timer. The LCD shows the elapsed time of your talk so you don't run long.",
-      "learningGoals": ["BLE HID emulation", "hands-free UX", "time-awareness design"],
-      "extensions": ["Buzz at 80% of the talk length", "'Black screen' gesture", "Pair with a wearable laser pointer"]
+      "learningGoals": [
+        "BLE HID emulation",
+        "hands-free UX",
+        "time-awareness design"
+      ],
+      "extensions": [
+        "Buzz at 80% of the talk length",
+        "'Black screen' gesture",
+        "Pair with a wearable laser pointer"
+      ]
     },
     {
       "id": "joystick-maze",
@@ -952,13 +2341,34 @@
       "difficulty": "intermediate",
       "ageGroup": "8+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-joystick-2", "unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["game", "fun", "learning"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-joystick-2",
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "game",
+        "fun",
+        "learning"
+      ],
       "howItWorks": "A random maze is generated using recursive backtracking. The joystick steers a dot. RGB strip reflects remaining time or hint count. Reaching the goal advances to a bigger maze.",
-      "learningGoals": ["procedural generation", "grid navigation", "game state management"],
-      "extensions": ["Two-player split screen", "Fog-of-war mode", "Leaderboard across devices"]
+      "learningGoals": [
+        "procedural generation",
+        "grid navigation",
+        "game state management"
+      ],
+      "extensions": [
+        "Two-player split screen",
+        "Fog-of-war mode",
+        "Leaderboard across devices"
+      ]
     },
     {
       "id": "rgb-remote-control",
@@ -967,13 +2377,33 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-joystick-2", "unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["lighting", "fun", "art"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-joystick-2",
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "lighting",
+        "fun",
+        "art"
+      ],
       "howItWorks": "Joystick X = hue, Y = brightness, Z (press) cycles effects (solid / chase / pulse). The LCD shows a colour-wheel cursor. Save up to 4 favourite scenes to buttons.",
-      "learningGoals": ["HSV colour space", "animation timing", "save/restore patterns"],
-      "extensions": ["Beat-synchronised mode (via mic)", "Two strips, one for each zone", "Share scenes over ESP-NOW"]
+      "learningGoals": [
+        "HSV colour space",
+        "animation timing",
+        "save/restore patterns"
+      ],
+      "extensions": [
+        "Beat-synchronised mode (via mic)",
+        "Two strips, one for each zone",
+        "Share scenes over ESP-NOW"
+      ]
     },
     {
       "id": "etch-a-sketch",
@@ -982,13 +2412,31 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "1 h",
-      "compatibleDevices": ["cardputer-adv"],
-      "requiredParts": ["unit-joystick-2"],
-      "optionalParts": [],
-      "tags": ["art", "fun", "game"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-joystick-2"
+      ],
+      "optionalParts": [
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "art",
+        "fun",
+        "game"
+      ],
       "howItWorks": "Joystick direction extends a single line on the LCD. Unlike traditional etch-a-sketch, you can change colour with the Z-button. Accelerometer-like shake not available — instead, pressing Delete clears the screen.",
-      "learningGoals": ["continuous-line drawing", "2D bitmap manipulation", "retro game design"],
-      "extensions": ["Pen width via keyboard", "Saved drawings gallery", "Multiplayer collaborative canvas over Wi-Fi"]
+      "learningGoals": [
+        "continuous-line drawing",
+        "2D bitmap manipulation",
+        "retro game design"
+      ],
+      "extensions": [
+        "Pen width via keyboard",
+        "Saved drawings gallery",
+        "Multiplayer collaborative canvas over Wi-Fi"
+      ]
     },
     {
       "id": "auto-dim-bedroom",
@@ -997,13 +2445,34 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-light", "unit-relay-2ch"],
-      "optionalParts": [],
-      "tags": ["smart-home", "lighting", "automation"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-light",
+        "unit-relay-2ch"
+      ],
+      "optionalParts": [
+        "extra-ldr",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "smart-home",
+        "lighting",
+        "automation"
+      ],
       "howItWorks": "Light Unit samples brightness. Below a threshold (sustained), the relay kicks on a lamp on a dimmer module. Time-of-day check avoids false triggers during cloudy afternoons.",
-      "learningGoals": ["multi-signal trigger (light + time)", "hysteresis to avoid flapping", "relay safety"],
-      "extensions": ["Personalised 'get ready for bed' routine", "Pair with the Dimmer + Relay Lamp project", "Sync multiple rooms via ESP-NOW"]
+      "learningGoals": [
+        "multi-signal trigger (light + time)",
+        "hysteresis to avoid flapping",
+        "relay safety"
+      ],
+      "extensions": [
+        "Personalised 'get ready for bed' routine",
+        "Pair with the Dimmer + Relay Lamp project",
+        "Sync multiple rooms via ESP-NOW"
+      ]
     },
     {
       "id": "reading-light-coach",
@@ -1012,13 +2481,33 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-light", "unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["family", "health", "learning"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-light",
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-piezo"
+      ],
+      "tags": [
+        "family",
+        "health",
+        "learning"
+      ],
       "howItWorks": "Light Unit sits on the reader's desk. When lux stays below a safe-reading threshold for 90 s, the RGB strip pulses gently. Tap the device button to snooze for 30 min.",
-      "learningGoals": ["lux awareness", "nudge design", "timed reminders"],
-      "extensions": ["Log 'good light time' per day", "Parent report card", "Auto-turn a lamp on via relay"]
+      "learningGoals": [
+        "lux awareness",
+        "nudge design",
+        "timed reminders"
+      ],
+      "extensions": [
+        "Log 'good light time' per day",
+        "Parent report card",
+        "Auto-turn a lamp on via relay"
+      ]
     },
     {
       "id": "plant-photon-hours",
@@ -1027,13 +2516,33 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "45 min",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-light"],
-      "optionalParts": [],
-      "tags": ["green", "school", "sensors"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-light"
+      ],
+      "optionalParts": [
+        "extra-ldr",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "green",
+        "school",
+        "sensors"
+      ],
       "howItWorks": "Sample lux every 30 s. Add 0.5 minutes to the counter when the reading is above 'sun threshold'. Display today's total and a 7-day rolling chart on the LCD. Reset at midnight.",
-      "learningGoals": ["accumulative sensing", "rolling windows", "circadian-adjacent intuition"],
-      "extensions": ["Species-aware thresholds", "Compare two plants side by side", "Email a weekly summary"]
+      "learningGoals": [
+        "accumulative sensing",
+        "rolling windows",
+        "circadian-adjacent intuition"
+      ],
+      "extensions": [
+        "Species-aware thresholds",
+        "Compare two plants side by side",
+        "Email a weekly summary"
+      ]
     },
     {
       "id": "laser-trip-wire",
@@ -1042,13 +2551,35 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-light", "unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["security", "fun", "school"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-light",
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-led-pack",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "security",
+        "fun",
+        "school"
+      ],
       "howItWorks": "A cheap laser pointer hits the Light Unit across a doorway. A sudden drop below the calibrated floor triggers the RGB strip to flash red and play a buzz. Reset on a re-acquired beam.",
-      "learningGoals": ["baseline calibration", "edge detection on analog signals", "simple security systems"],
-      "extensions": ["Log trip times", "Mesh with PIR for secondary validation", "Two-beam directional detection"]
+      "learningGoals": [
+        "baseline calibration",
+        "edge detection on analog signals",
+        "simple security systems"
+      ],
+      "extensions": [
+        "Log trip times",
+        "Mesh with PIR for secondary validation",
+        "Two-beam directional detection"
+      ]
     },
     {
       "id": "heliostat",
@@ -1057,13 +2588,35 @@
       "difficulty": "advanced",
       "ageGroup": "16+",
       "duration": "4 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-light", "unit-servo-sg90"],
-      "optionalParts": [],
-      "tags": ["outdoors", "green", "learning"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-light",
+        "unit-servo-sg90"
+      ],
+      "optionalParts": [
+        "extra-ldr",
+        "extra-microswitch",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "outdoors",
+        "green",
+        "learning"
+      ],
       "howItWorks": "Two light sensors flank a mirror. The servo rotates toward the brighter side in tiny increments, keeping the mirror aimed at the sun via a simple 'phototropic' feedback loop.",
-      "learningGoals": ["closed-loop differential sensing", "slow control loops", "solar geometry"],
-      "extensions": ["Two-axis tracker (add a tilt servo)", "Log sun-path over the year", "Mount a tiny solar panel instead of a mirror"]
+      "learningGoals": [
+        "closed-loop differential sensing",
+        "slow control loops",
+        "solar geometry"
+      ],
+      "extensions": [
+        "Two-axis tracker (add a tilt servo)",
+        "Log sun-path over the year",
+        "Mount a tiny solar panel instead of a mirror"
+      ]
     },
     {
       "id": "irrigation-6zone",
@@ -1072,13 +2625,37 @@
       "difficulty": "advanced",
       "ageGroup": "12+",
       "duration": "5 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-io-hub", "unit-relay-2ch", "unit-env-iii"],
-      "optionalParts": ["unit-light"],
-      "tags": ["green", "automation", "outdoors"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-io-hub",
+        "unit-relay-2ch",
+        "unit-env-iii"
+      ],
+      "optionalParts": [
+        "unit-light",
+        "extra-led-pack",
+        "extra-resistor-pack",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "green",
+        "automation",
+        "outdoors"
+      ],
       "howItWorks": "The I/O Hub fans out to up to six relays (each driving one solenoid valve) and to ENV III + Light. A per-zone schedule runs, but is suppressed if humidity is too high or a drop in pressure suggests incoming rain.",
-      "learningGoals": ["multi-output orchestration", "weather-aware automation", "outdoor power planning"],
-      "extensions": ["Soil-moisture probes per zone (Mini Proto)", "Seasonal profiles", "Water-use accounting"]
+      "learningGoals": [
+        "multi-output orchestration",
+        "weather-aware automation",
+        "outdoor power planning"
+      ],
+      "extensions": [
+        "Soil-moisture probes per zone (Mini Proto)",
+        "Seasonal profiles",
+        "Water-use accounting"
+      ]
     },
     {
       "id": "animatronic-puppet",
@@ -1087,13 +2664,37 @@
       "difficulty": "advanced",
       "ageGroup": "12+",
       "duration": "4 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-io-hub", "unit-servo-sg90", "unit-pir", "unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["fun", "art", "automation"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-io-hub",
+        "unit-servo-sg90",
+        "unit-pir",
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-microswitch",
+        "extra-pushbutton",
+        "extra-led-pack"
+      ],
+      "tags": [
+        "fun",
+        "art",
+        "automation"
+      ],
       "howItWorks": "PIR triggers a scripted sequence: two SG90 servos animate eyes + arm; the RGB strip pulses like a breath. The I/O Hub hosts them all on one I²C lane. Cool-down of 20 s before the next trigger.",
-      "learningGoals": ["multi-channel choreography", "event-driven sequences", "mechanical + electronic integration"],
-      "extensions": ["Add a speaker for spooky SFX", "Several puppets, daisy-chained", "Sequence editor on the LCD"]
+      "learningGoals": [
+        "multi-channel choreography",
+        "event-driven sequences",
+        "mechanical + electronic integration"
+      ],
+      "extensions": [
+        "Add a speaker for spooky SFX",
+        "Several puppets, daisy-chained",
+        "Sequence editor on the LCD"
+      ]
     },
     {
       "id": "diy-midi-controller",
@@ -1102,13 +2703,36 @@
       "difficulty": "advanced",
       "ageGroup": "12+",
       "duration": "4 h",
-      "compatibleDevices": ["cardputer-adv"],
-      "requiredParts": ["unit-io-hub", "unit-angle"],
-      "optionalParts": [],
-      "tags": ["music", "productivity", "learning"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-io-hub",
+        "unit-angle"
+      ],
+      "optionalParts": [
+        "extra-pushbutton",
+        "extra-potentiometer",
+        "extra-breadboard",
+        "extra-jumpers",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "music",
+        "productivity",
+        "learning"
+      ],
       "howItWorks": "Four Angle Units plug into the I/O Hub. Each reading maps to a configurable MIDI CC number. USB MIDI HID sends the values to your DAW in real time. The LCD shows live values.",
-      "learningGoals": ["USB MIDI HID", "parameter smoothing", "real musical workflow design"],
-      "extensions": ["Bank-switch: 4 knobs × 4 banks = 16 controls", "LED feedback per bank", "Save a kit per DAW preset"]
+      "learningGoals": [
+        "USB MIDI HID",
+        "parameter smoothing",
+        "real musical workflow design"
+      ],
+      "extensions": [
+        "Bank-switch: 4 knobs × 4 banks = 16 controls",
+        "LED feedback per bank",
+        "Save a kit per DAW preset"
+      ]
     },
     {
       "id": "thermal-multi-fan",
@@ -1117,13 +2741,38 @@
       "difficulty": "intermediate",
       "ageGroup": "16+",
       "duration": "3 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-io-hub", "unit-env-iii", "unit-relay-2ch"],
-      "optionalParts": [],
-      "tags": ["home", "automation", "AV"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-io-hub",
+        "unit-env-iii",
+        "unit-relay-2ch"
+      ],
+      "optionalParts": [
+        "extra-dc-motor",
+        "extra-npn-transistor",
+        "extra-resistor-pack",
+        "extra-breadboard",
+        "extra-jumpers"
+      ],
+      "tags": [
+        "home",
+        "automation",
+        "AV"
+      ],
       "howItWorks": "ENV III reads ambient temp. As thresholds are crossed (28 °C / 32 °C / 36 °C), the I/O Hub triggers relay channels that power successive fans. Hysteresis prevents rapid cycling.",
-      "learningGoals": ["staged control", "mains-adjacent 12 V wiring", "thermal budgeting"],
-      "extensions": ["Silent-hour override", "Per-shelf sensors", "Graph temps over 24 h"]
+      "learningGoals": [
+        "staged control",
+        "mains-adjacent 12 V wiring",
+        "thermal budgeting"
+      ],
+      "extensions": [
+        "Silent-hour override",
+        "Per-shelf sensors",
+        "Graph temps over 24 h"
+      ]
     },
     {
       "id": "interactive-art-wall",
@@ -1132,13 +2781,37 @@
       "difficulty": "advanced",
       "ageGroup": "12+",
       "duration": "5 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-io-hub", "unit-ultrasonic", "unit-rgb-strip", "unit-pir"],
-      "optionalParts": [],
-      "tags": ["art", "school", "fun"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-io-hub",
+        "unit-ultrasonic",
+        "unit-rgb-strip",
+        "unit-pir"
+      ],
+      "optionalParts": [
+        "extra-led-pack",
+        "extra-pushbutton",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "art",
+        "school",
+        "fun"
+      ],
       "howItWorks": "PIR detects nearby motion; ultrasonic gives distance. A ripple animation centred on the closest moving shape plays on the RGB strip, tapering intensity with distance. All wired through the I/O Hub.",
-      "learningGoals": ["perception-driven animation", "smoothing noisy sensors", "audience-aware design"],
-      "extensions": ["Colour reacts to mic loudness", "Leave a trail behind the viewer", "Multi-strip mural"]
+      "learningGoals": [
+        "perception-driven animation",
+        "smoothing noisy sensors",
+        "audience-aware design"
+      ],
+      "extensions": [
+        "Colour reacts to mic loudness",
+        "Leave a trail behind the viewer",
+        "Multi-strip mural"
+      ]
     },
     {
       "id": "diy-soil-moisture",
@@ -1147,13 +2820,34 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-mini-proto"],
-      "optionalParts": [],
-      "tags": ["green", "school", "learning"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-proto"
+      ],
+      "optionalParts": [
+        "extra-resistor-pack",
+        "extra-jumpers",
+        "extra-breadboard"
+      ],
+      "tags": [
+        "green",
+        "school",
+        "learning"
+      ],
       "howItWorks": "Solder two stainless-steel nails with a series resistor on the Mini Proto. Read the voltage divider as an analog value. Calibrate 'dry' and 'soaked' to map to percentage.",
-      "learningGoals": ["voltage dividers", "field calibration", "DIY sensor design"],
-      "extensions": ["Log trends per plant", "Auto-water via a relay + pump", "Compare galvanic vs. capacitive probes"]
+      "learningGoals": [
+        "voltage dividers",
+        "field calibration",
+        "DIY sensor design"
+      ],
+      "extensions": [
+        "Log trends per plant",
+        "Auto-water via a relay + pump",
+        "Compare galvanic vs. capacitive probes"
+      ]
     },
     {
       "id": "diy-reed-door-switch",
@@ -1162,13 +2856,34 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "45 min",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-mini-proto"],
-      "optionalParts": [],
-      "tags": ["security", "learning", "home"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-proto"
+      ],
+      "optionalParts": [
+        "extra-reed-switch",
+        "extra-jumpers",
+        "extra-breadboard"
+      ],
+      "tags": [
+        "security",
+        "learning",
+        "home"
+      ],
       "howItWorks": "A reed switch soldered on the Mini Proto closes when a magnet (on the moving part of the door) is near. The device reads the GPIO and logs open/close events with timestamps.",
-      "learningGoals": ["passive magnetic sensing", "debouncing mechanical switches", "event logging"],
-      "extensions": ["Multi-door kit (one Mini Proto per door)", "Alert when door left open >5 min", "Fridge-door-open timer"]
+      "learningGoals": [
+        "passive magnetic sensing",
+        "debouncing mechanical switches",
+        "event logging"
+      ],
+      "extensions": [
+        "Multi-door kit (one Mini Proto per door)",
+        "Alert when door left open >5 min",
+        "Fridge-door-open timer"
+      ]
     },
     {
       "id": "diy-button-keypad",
@@ -1177,13 +2892,35 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "3 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-mini-proto"],
-      "optionalParts": [],
-      "tags": ["productivity", "learning", "fun"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-proto"
+      ],
+      "optionalParts": [
+        "extra-pushbutton",
+        "extra-resistor-pack",
+        "extra-breadboard",
+        "extra-jumpers"
+      ],
+      "tags": [
+        "productivity",
+        "learning",
+        "fun"
+      ],
       "howItWorks": "Nine tactile switches wired in a 3×3 matrix on the Mini Proto. The firmware scans rows/columns, debounces, and maps to keyboard macros (over BLE HID) or in-device actions.",
-      "learningGoals": ["keyboard matrix scanning", "debouncing", "HID keyboard output"],
-      "extensions": ["Label keys with printable caps", "Per-app profiles", "RGB halo via a short RGB strip around the edges"]
+      "learningGoals": [
+        "keyboard matrix scanning",
+        "debouncing",
+        "HID keyboard output"
+      ],
+      "extensions": [
+        "Label keys with printable caps",
+        "Per-app profiles",
+        "RGB halo via a short RGB strip around the edges"
+      ]
     },
     {
       "id": "diy-touch-sensor",
@@ -1192,13 +2929,33 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "45 min",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-mini-proto"],
-      "optionalParts": [],
-      "tags": ["art", "learning", "fun"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-proto"
+      ],
+      "optionalParts": [
+        "extra-resistor-pack",
+        "extra-jumpers"
+      ],
+      "tags": [
+        "art",
+        "learning",
+        "fun"
+      ],
       "howItWorks": "Wire a high-value resistor and a conductive pad on the Mini Proto. The firmware measures RC charge-discharge time through the ESP32-S3 touch peripheral (or polled GPIO) to detect finger presence.",
-      "learningGoals": ["capacitive sensing basics", "noise filtering", "material science (what's conductive)"],
-      "extensions": ["Multi-pad keyboard", "Plant-as-instrument (amp + touch)", "Conductivity test for tap water"]
+      "learningGoals": [
+        "capacitive sensing basics",
+        "noise filtering",
+        "material science (what's conductive)"
+      ],
+      "extensions": [
+        "Multi-pad keyboard",
+        "Plant-as-instrument (amp + touch)",
+        "Conductivity test for tap water"
+      ]
     },
     {
       "id": "diy-custom-button-box",
@@ -1207,13 +2964,36 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "4 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-mini-proto", "unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["productivity", "streaming", "fun"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-proto",
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-pushbutton",
+        "extra-breadboard",
+        "extra-jumpers",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "productivity",
+        "streaming",
+        "fun"
+      ],
       "howItWorks": "Four buttons on the Mini Proto trigger macros (scene switch, mute, donation sound, end show). An RGB strip behind the panel lights each zone to indicate active scene / recording state.",
-      "learningGoals": ["mechanical panel design", "multi-colour feedback", "real-workflow automation"],
-      "extensions": ["OBS WebSocket integration", "Per-scene colour coding", "Hot-swap labels via a printable sticker sheet"]
+      "learningGoals": [
+        "mechanical panel design",
+        "multi-colour feedback",
+        "real-workflow automation"
+      ],
+      "extensions": [
+        "OBS WebSocket integration",
+        "Per-scene colour coding",
+        "Hot-swap labels via a printable sticker sheet"
+      ]
     },
     {
       "id": "diy-tilt-ball",
@@ -1222,13 +3002,33 @@
       "difficulty": "beginner",
       "ageGroup": "12+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-mini-proto"],
-      "optionalParts": [],
-      "tags": ["learning", "fun", "school"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-proto"
+      ],
+      "optionalParts": [
+        "extra-tilt-switch",
+        "extra-jumpers"
+      ],
+      "tags": [
+        "learning",
+        "fun",
+        "school"
+      ],
       "howItWorks": "Solder two contacts on the Mini Proto so a small metal ball bridges them when the device tilts. Firmware reads the GPIO and registers tilt events.",
-      "learningGoals": ["mechanical switching", "sensor design without ICs", "physics of motion"],
-      "extensions": ["Four-way tilt grid for direction", "Shake-to-roll dice", "Earthquake alarm"]
+      "learningGoals": [
+        "mechanical switching",
+        "sensor design without ICs",
+        "physics of motion"
+      ],
+      "extensions": [
+        "Four-way tilt grid for direction",
+        "Shake-to-roll dice",
+        "Earthquake alarm"
+      ]
     },
     {
       "id": "diy-conductivity",
@@ -1237,13 +3037,34 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-mini-proto"],
-      "optionalParts": ["unit-env-iii"],
-      "tags": ["school", "learning", "green"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-proto"
+      ],
+      "optionalParts": [
+        "unit-env-iii",
+        "extra-resistor-pack",
+        "extra-jumpers"
+      ],
+      "tags": [
+        "school",
+        "learning",
+        "green"
+      ],
       "howItWorks": "Two graphite rods become the probe on the Mini Proto. Applying a known AC-style square wave and reading the return current gives a rough conductivity estimate. Correlate with ENV III temperature for compensation.",
-      "learningGoals": ["electrochemistry basics", "AC-vs-DC probing", "temperature-compensated sensing"],
-      "extensions": ["Compare tap / filtered / bottled water", "Track pool water quality over a season", "pH add-on module"]
+      "learningGoals": [
+        "electrochemistry basics",
+        "AC-vs-DC probing",
+        "temperature-compensated sensing"
+      ],
+      "extensions": [
+        "Compare tap / filtered / bottled water",
+        "Track pool water quality over a season",
+        "pH add-on module"
+      ]
     },
     {
       "id": "sunrise-alarm",
@@ -1252,13 +3073,33 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["home", "health", "automation"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "home",
+        "health",
+        "automation"
+      ],
       "howItWorks": "At 30 min before the target wake time, the strip starts at deep red at 1% brightness and slowly ramps to full warm-white. A gentle chime at the target time. Keyboard or button snooze.",
-      "learningGoals": ["gamma curves for perception-linear fade", "time-based scheduling", "user-friendly alarms"],
-      "extensions": ["Weekday vs. weekend profiles", "Weather-aware: bluer on overcast days", "Nap timer mode"]
+      "learningGoals": [
+        "gamma curves for perception-linear fade",
+        "time-based scheduling",
+        "user-friendly alarms"
+      ],
+      "extensions": [
+        "Weekday vs. weekend profiles",
+        "Weather-aware: bluer on overcast days",
+        "Nap timer mode"
+      ]
     },
     {
       "id": "gaming-desk-reactive",
@@ -1267,13 +3108,34 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-rgb-strip", "unit-env-iii"],
-      "optionalParts": [],
-      "tags": ["fun", "lighting", "gaming"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-rgb-strip",
+        "unit-env-iii"
+      ],
+      "optionalParts": [
+        "extra-pushbutton",
+        "extra-ldr"
+      ],
+      "tags": [
+        "fun",
+        "lighting",
+        "gaming"
+      ],
       "howItWorks": "The palette shifts: cool blues when it's hot, warm oranges when it's cool, rainbow party mode when temp is just right and it's evening. ENV III data drives the mood.",
-      "learningGoals": ["palette design", "mood-aware UX", "combining multiple inputs"],
-      "extensions": ["Mic-reactive beat flash", "Sync to Spotify now-playing colour", "Per-game scene presets"]
+      "learningGoals": [
+        "palette design",
+        "mood-aware UX",
+        "combining multiple inputs"
+      ],
+      "extensions": [
+        "Mic-reactive beat flash",
+        "Sync to Spotify now-playing colour",
+        "Per-game scene presets"
+      ]
     },
     {
       "id": "aquarium-smart-module",
@@ -1282,13 +3144,38 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "3 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-mini-hub", "unit-env-iii", "unit-relay-2ch", "unit-light"],
-      "optionalParts": [],
-      "tags": ["home", "pets", "automation"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-hub",
+        "unit-env-iii",
+        "unit-relay-2ch",
+        "unit-light"
+      ],
+      "optionalParts": [
+        "extra-thermistor",
+        "extra-dc-motor",
+        "extra-npn-transistor",
+        "extra-led-pack"
+      ],
+      "tags": [
+        "home",
+        "pets",
+        "automation"
+      ],
       "howItWorks": "The Mini Hub fans out to the trio of ENV III (air temp), Light (daylight), and Relay (pump). A dawn-dusk schedule drives the pump; temperature out-of-range pulses a warning.",
-      "learningGoals": ["three-sensor orchestration", "hub usage patterns", "graceful-fail safeguards"],
-      "extensions": ["Add a DIY water-temp probe via Mini Proto", "Remote monitoring over Wi-Fi", "Feeding-time schedule"]
+      "learningGoals": [
+        "three-sensor orchestration",
+        "hub usage patterns",
+        "graceful-fail safeguards"
+      ],
+      "extensions": [
+        "Add a DIY water-temp probe via Mini Proto",
+        "Remote monitoring over Wi-Fi",
+        "Feeding-time schedule"
+      ]
     },
     {
       "id": "field-science-kit",
@@ -1297,13 +3184,38 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "3 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-mini-hub", "unit-env-iii", "unit-light", "unit-ultrasonic"],
-      "optionalParts": [],
-      "tags": ["school", "outdoors", "learning"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-hub",
+        "unit-env-iii",
+        "unit-light",
+        "unit-ultrasonic"
+      ],
+      "optionalParts": [
+        "extra-thermistor",
+        "extra-ldr",
+        "extra-breadboard",
+        "extra-jumpers"
+      ],
+      "tags": [
+        "school",
+        "outdoors",
+        "learning"
+      ],
       "howItWorks": "Mini Hub lets one device carry ENV III, Light, and Ultrasonic simultaneously. A menu lets students mark a location, note observations, and save samples to flash for later review.",
-      "learningGoals": ["field-data collection discipline", "multi-sensor snapshots", "mobile ergonomic design"],
-      "extensions": ["GPS stamping via Cap LoRa", "Waterproof enclosure for stream studies", "Export to CSV with charts"]
+      "learningGoals": [
+        "field-data collection discipline",
+        "multi-sensor snapshots",
+        "mobile ergonomic design"
+      ],
+      "extensions": [
+        "GPS stamping via Cap LoRa",
+        "Waterproof enclosure for stream studies",
+        "Export to CSV with charts"
+      ]
     },
     {
       "id": "workbench-status-column",
@@ -1312,13 +3224,35 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "3 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-mini-hub", "unit-angle", "unit-joystick-2", "unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["productivity", "workshop", "fun"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-hub",
+        "unit-angle",
+        "unit-joystick-2",
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "productivity",
+        "workshop",
+        "fun"
+      ],
       "howItWorks": "The angle sets PWM brightness / fan speed / volume of whatever's currently selected. Joystick picks the target. RGB strip colour-codes what's active. Mini Hub carries everything.",
-      "learningGoals": ["context-aware controls", "multi-device orchestration", "ergonomic UX"],
-      "extensions": ["Pomodoro integration", "Logs session time per target", "Wireless extension to second workbench"]
+      "learningGoals": [
+        "context-aware controls",
+        "multi-device orchestration",
+        "ergonomic UX"
+      ],
+      "extensions": [
+        "Pomodoro integration",
+        "Logs session time per target",
+        "Wireless extension to second workbench"
+      ]
     },
     {
       "id": "garden-sensor-pod",
@@ -1327,13 +3261,37 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "4 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-mini-hub", "unit-env-iii", "unit-light", "unit-pir"],
-      "optionalParts": [],
-      "tags": ["outdoors", "green", "sensors"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-hub",
+        "unit-env-iii",
+        "unit-light",
+        "unit-pir"
+      ],
+      "optionalParts": [
+        "extra-thermistor",
+        "extra-ldr",
+        "extra-reed-switch"
+      ],
+      "tags": [
+        "outdoors",
+        "green",
+        "sensors"
+      ],
       "howItWorks": "The Mini Hub hosts ENV III, Light, and PIR. Inside a weatherproof case with a clear face, the pod tracks microclimate and animal visits throughout the day.",
-      "learningGoals": ["outdoor enclosure engineering", "multi-day deployments", "microclimate science"],
-      "extensions": ["Solar-charge the pod", "Transmit daily summary over LoRa", "Multi-pod comparison across the yard"]
+      "learningGoals": [
+        "outdoor enclosure engineering",
+        "multi-day deployments",
+        "microclimate science"
+      ],
+      "extensions": [
+        "Solar-charge the pod",
+        "Transmit daily summary over LoRa",
+        "Multi-pod comparison across the yard"
+      ]
     },
     {
       "id": "multi-input-jukebox",
@@ -1342,13 +3300,35 @@
       "difficulty": "advanced",
       "ageGroup": "12+",
       "duration": "4 h",
-      "compatibleDevices": ["cardputer-adv"],
-      "requiredParts": ["unit-mini-hub", "unit-nfc", "unit-angle", "unit-joystick-2"],
-      "optionalParts": [],
-      "tags": ["music", "fun", "home"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-hub",
+        "unit-nfc",
+        "unit-angle",
+        "unit-joystick-2"
+      ],
+      "optionalParts": [
+        "extra-pushbutton",
+        "extra-speaker"
+      ],
+      "tags": [
+        "music",
+        "fun",
+        "home"
+      ],
       "howItWorks": "NFC picks an album; Angle scrubs through the track; joystick navigates up/down the playlist and Z-press pauses. All three plug into the Mini Hub. Commands go to a media server over Wi-Fi.",
-      "learningGoals": ["rich physical interface design", "hub + multi-input orchestration", "API integration"],
-      "extensions": ["Voice-record DJ tags between cards", "Multi-room control", "Kid-safe mode"]
+      "learningGoals": [
+        "rich physical interface design",
+        "hub + multi-input orchestration",
+        "API integration"
+      ],
+      "extensions": [
+        "Voice-record DJ tags between cards",
+        "Multi-room control",
+        "Kid-safe mode"
+      ]
     },
     {
       "id": "hallway-controller",
@@ -1357,13 +3337,37 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "3 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-mini-hub", "unit-pir", "unit-relay-2ch", "unit-rgb-strip"],
-      "optionalParts": [],
-      "tags": ["smart-home", "lighting", "automation"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-hub",
+        "unit-pir",
+        "unit-relay-2ch",
+        "unit-rgb-strip"
+      ],
+      "optionalParts": [
+        "extra-ldr",
+        "extra-resistor-pack",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "smart-home",
+        "lighting",
+        "automation"
+      ],
       "howItWorks": "PIR triggers a warm-dim RGB glow during late-night hours, or the full ceiling lamp via relay during the day. Mini Hub keeps it tidy. 'Away' mode randomises the lights to simulate presence.",
-      "learningGoals": ["time-of-day logic", "selective trigger routing", "home-safety UX"],
-      "extensions": ["Sync hallway to front-door state", "Voice override via the mic", "Scene selection from a phone"]
+      "learningGoals": [
+        "time-of-day logic",
+        "selective trigger routing",
+        "home-safety UX"
+      ],
+      "extensions": [
+        "Sync hallway to front-door state",
+        "Voice override via the mic",
+        "Scene selection from a phone"
+      ]
     },
     {
       "id": "tiny-smart-home-hub",
@@ -1372,13 +3376,37 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "3 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-mini-hub", "unit-pir", "unit-light", "unit-env-iii"],
-      "optionalParts": [],
-      "tags": ["smart-home", "dashboard", "sensors"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-hub",
+        "unit-pir",
+        "unit-light",
+        "unit-env-iii"
+      ],
+      "optionalParts": [
+        "extra-reed-switch",
+        "extra-ldr",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "smart-home",
+        "dashboard",
+        "sensors"
+      ],
       "howItWorks": "All three sensors live on one Mini Hub. Readings are posted over MQTT to Home Assistant every 60 s, and motion/light/temperature events are pushed immediately.",
-      "learningGoals": ["MQTT basics", "event vs. polling telemetry", "device naming conventions"],
-      "extensions": ["OTA updates", "Battery + sleep-mode firmware", "Deep integration with HA automations"]
+      "learningGoals": [
+        "MQTT basics",
+        "event vs. polling telemetry",
+        "device naming conventions"
+      ],
+      "extensions": [
+        "OTA updates",
+        "Battery + sleep-mode firmware",
+        "Deep integration with HA automations"
+      ]
     },
     {
       "id": "puppet-show-control",
@@ -1387,13 +3415,37 @@
       "difficulty": "intermediate",
       "ageGroup": "8+",
       "duration": "3 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-mini-hub", "unit-servo-sg90", "unit-rgb-strip", "unit-angle"],
-      "optionalParts": [],
-      "tags": ["family", "art", "fun"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-hub",
+        "unit-servo-sg90",
+        "unit-rgb-strip",
+        "unit-angle"
+      ],
+      "optionalParts": [
+        "extra-microswitch",
+        "extra-pushbutton",
+        "extra-led-pack"
+      ],
+      "tags": [
+        "family",
+        "art",
+        "fun"
+      ],
       "howItWorks": "Angle knob sets spotlight brightness. Device button triggers a servo-driven curtain open/close. RGB strip provides the backstage glow. Mini Hub ties it all together.",
-      "learningGoals": ["choreographed action", "stage-lighting concepts", "multi-output coordination"],
-      "extensions": ["Add a speaker for sound cues", "Record and replay a show", "Second hub for a bigger stage"]
+      "learningGoals": [
+        "choreographed action",
+        "stage-lighting concepts",
+        "multi-output coordination"
+      ],
+      "extensions": [
+        "Add a speaker for sound cues",
+        "Record and replay a show",
+        "Second hub for a bigger stage"
+      ]
     },
     {
       "id": "lora-distress-beacon",
@@ -1402,13 +3454,33 @@
       "difficulty": "advanced",
       "ageGroup": "16+",
       "duration": "3 h",
-      "compatibleDevices": ["cardputer-adv"],
-      "requiredParts": ["cap-lora"],
-      "optionalParts": [],
-      "tags": ["outdoors", "safety", "off-grid"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "cap-lora"
+      ],
+      "optionalParts": [
+        "extra-pushbutton",
+        "extra-led-pack",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "outdoors",
+        "safety",
+        "off-grid"
+      ],
       "howItWorks": "Long-press a labelled key; GNSS fix is acquired, and an SOS packet (GPS, name, timestamp) is repeated every 60 s at max power until cancelled. A paired base station picks it up and alerts.",
-      "learningGoals": ["GNSS cold vs. warm fix", "repeat-transmit strategies", "safety-critical UX"],
-      "extensions": ["Vibrate on ACK from base station", "Battery-conscious sleep between pings", "Multi-base triangulation"]
+      "learningGoals": [
+        "GNSS cold vs. warm fix",
+        "repeat-transmit strategies",
+        "safety-critical UX"
+      ],
+      "extensions": [
+        "Vibrate on ACK from base station",
+        "Battery-conscious sleep between pings",
+        "Multi-base triangulation"
+      ]
     },
     {
       "id": "lora-group-chat",
@@ -1417,13 +3489,32 @@
       "difficulty": "advanced",
       "ageGroup": "12+",
       "duration": "4 h",
-      "compatibleDevices": ["cardputer-adv"],
-      "requiredParts": ["cap-lora"],
-      "optionalParts": [],
-      "tags": ["communication", "off-grid", "fun"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "cap-lora"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-led-pack"
+      ],
+      "tags": [
+        "communication",
+        "off-grid",
+        "fun"
+      ],
       "howItWorks": "Each device has a nickname and a shared channel. Outgoing messages are framed with sender + hash. All devices display the incoming stream chronologically; simple rate-limiting avoids flooding.",
-      "learningGoals": ["simple broadcast protocols", "message framing", "multi-device coordination"],
-      "extensions": ["Private messaging with shared secret", "Emoji-only 'quiet mode'", "Packet relaying for extended range"]
+      "learningGoals": [
+        "simple broadcast protocols",
+        "message framing",
+        "multi-device coordination"
+      ],
+      "extensions": [
+        "Private messaging with shared secret",
+        "Emoji-only 'quiet mode'",
+        "Packet relaying for extended range"
+      ]
     },
     {
       "id": "lora-race-timer",
@@ -1432,13 +3523,34 @@
       "difficulty": "advanced",
       "ageGroup": "12+",
       "duration": "4 h",
-      "compatibleDevices": ["cardputer-adv"],
-      "requiredParts": ["cap-lora", "unit-joystick-2"],
-      "optionalParts": [],
-      "tags": ["outdoors", "sports", "off-grid"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "cap-lora",
+        "unit-joystick-2"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-led-pack",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "outdoors",
+        "sports",
+        "off-grid"
+      ],
       "howItWorks": "Each station broadcasts its local clock on a schedule. When a rider triggers a station (via joystick press or an external beam), the event is sent with an ID. A 'referee' device collects all events and computes splits.",
-      "learningGoals": ["clock synchronisation over radio", "event tagging", "multi-station architectures"],
-      "extensions": ["GPS stamping for where they passed", "Mesh relay for long courses", "Live finish-line animation"]
+      "learningGoals": [
+        "clock synchronisation over radio",
+        "event tagging",
+        "multi-station architectures"
+      ],
+      "extensions": [
+        "GPS stamping for where they passed",
+        "Mesh relay for long courses",
+        "Live finish-line animation"
+      ]
     },
     {
       "id": "lora-farm-network",
@@ -1447,13 +3559,35 @@
       "difficulty": "advanced",
       "ageGroup": "16+",
       "duration": "6 h",
-      "compatibleDevices": ["cardputer-adv"],
-      "requiredParts": ["cap-lora", "unit-env-iii", "unit-mini-hub"],
-      "optionalParts": [],
-      "tags": ["outdoors", "green", "off-grid"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "cap-lora",
+        "unit-env-iii",
+        "unit-mini-hub"
+      ],
+      "optionalParts": [
+        "extra-reed-switch",
+        "extra-thermistor",
+        "extra-ldr"
+      ],
+      "tags": [
+        "outdoors",
+        "green",
+        "off-grid"
+      ],
       "howItWorks": "Each field-node sleeps most of the time; wakes every 10 min, reads ENV III and a soil probe, transmits, sleeps again. A 'base' Cardputer aggregates and charts them. Mini Hub makes each node modular.",
-      "learningGoals": ["energy-budget for long deployments", "field-data protocols", "fleet management"],
-      "extensions": ["OTA firmware updates over LoRa", "SMS bridge from base for remote alerts", "Solar MPPT"]
+      "learningGoals": [
+        "energy-budget for long deployments",
+        "field-data protocols",
+        "fleet management"
+      ],
+      "extensions": [
+        "OTA firmware updates over LoRa",
+        "SMS bridge from base for remote alerts",
+        "Solar MPPT"
+      ]
     },
     {
       "id": "geocache-hunt",
@@ -1462,13 +3596,32 @@
       "difficulty": "intermediate",
       "ageGroup": "8+",
       "duration": "3 h",
-      "compatibleDevices": ["cardputer-adv"],
-      "requiredParts": ["cap-lora"],
-      "optionalParts": [],
-      "tags": ["outdoors", "family", "fun"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "cap-lora"
+      ],
+      "optionalParts": [
+        "extra-pushbutton",
+        "extra-piezo"
+      ],
+      "tags": [
+        "outdoors",
+        "family",
+        "fun"
+      ],
       "howItWorks": "Hosts pre-programme GPS coordinates and clues. Players follow distance indicators on the LCD; LoRa broadcasts 'hint packets' from the host when a player is stuck. Optionally flash the LED on approach.",
-      "learningGoals": ["GPS waypoint math", "range-dependent UX", "game-master design"],
-      "extensions": ["Multi-stage quests", "Competing teams", "Web leaderboard via a Wi-Fi bridge"]
+      "learningGoals": [
+        "GPS waypoint math",
+        "range-dependent UX",
+        "game-master design"
+      ],
+      "extensions": [
+        "Multi-stage quests",
+        "Competing teams",
+        "Web leaderboard via a Wi-Fi bridge"
+      ]
     },
     {
       "id": "lora-airquality-mesh",
@@ -1477,13 +3630,33 @@
       "difficulty": "advanced",
       "ageGroup": "16+",
       "duration": "5 h",
-      "compatibleDevices": ["cardputer-adv"],
-      "requiredParts": ["cap-lora", "unit-env-iii"],
-      "optionalParts": [],
-      "tags": ["outdoors", "green", "off-grid"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "cap-lora",
+        "unit-env-iii"
+      ],
+      "optionalParts": [
+        "extra-ldr",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "outdoors",
+        "green",
+        "off-grid"
+      ],
       "howItWorks": "Each node samples ENV III regularly, broadcasts a compact packet (station ID, temp, humidity, pressure). Every node accumulates a rolling table of all known stations; the Cardputer LCD shows the mesh in real time.",
-      "learningGoals": ["mesh data structures", "packet deduplication", "citizen-science ethics"],
-      "extensions": ["Add a real AQI sensor via Mini Proto", "Publish to a public dashboard via a gateway", "Seasonal trend analysis"]
+      "learningGoals": [
+        "mesh data structures",
+        "packet deduplication",
+        "citizen-science ethics"
+      ],
+      "extensions": [
+        "Add a real AQI sensor via Mini Proto",
+        "Publish to a public dashboard via a gateway",
+        "Seasonal trend analysis"
+      ]
     },
     {
       "id": "lora-drone-telemetry",
@@ -1492,13 +3665,32 @@
       "difficulty": "advanced",
       "ageGroup": "16+",
       "duration": "4 h",
-      "compatibleDevices": ["cardputer-adv"],
-      "requiredParts": ["cap-lora"],
-      "optionalParts": [],
-      "tags": ["outdoors", "hobby", "off-grid"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "cap-lora"
+      ],
+      "optionalParts": [
+        "extra-led-pack",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "outdoors",
+        "hobby",
+        "off-grid"
+      ],
       "howItWorks": "The drone carries an airborne LoRa transmitter that emits altitude, speed, heading, and GPS. The Cardputer ground-station receives and visualises the track on a scrolling map / chart.",
-      "learningGoals": ["radio link budgeting", "data telemetry patterns", "airborne RF regulations"],
-      "extensions": ["Live waypoint nav", "Autonomous 'return home' command uplink", "Post-flight replay / export"]
+      "learningGoals": [
+        "radio link budgeting",
+        "data telemetry patterns",
+        "airborne RF regulations"
+      ],
+      "extensions": [
+        "Live waypoint nav",
+        "Autonomous 'return home' command uplink",
+        "Post-flight replay / export"
+      ]
     },
     {
       "id": "midi-drum-pad",
@@ -1507,13 +3699,33 @@
       "difficulty": "advanced",
       "ageGroup": "12+",
       "duration": "4 h",
-      "compatibleDevices": ["cardputer-adv"],
-      "requiredParts": ["unit-io-hub", "unit-mini-proto"],
-      "optionalParts": [],
-      "tags": ["music", "learning", "fun"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-io-hub",
+        "unit-mini-proto"
+      ],
+      "optionalParts": [
+        "extra-led-pack",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "music",
+        "learning",
+        "fun"
+      ],
       "howItWorks": "Piezo sensors on the Mini Proto detect hits; the I/O Hub hosts multiple pads. Firmware debounces peaks and sends USB MIDI note-on/off with velocity derived from peak height.",
-      "learningGoals": ["piezo signal conditioning", "velocity sensing", "USB MIDI"],
-      "extensions": ["RGB halo around each pad", "Configurable kit per bank", "Kick-drum trigger via a foot switch"]
+      "learningGoals": [
+        "piezo signal conditioning",
+        "velocity sensing",
+        "USB MIDI"
+      ],
+      "extensions": [
+        "RGB halo around each pad",
+        "Configurable kit per bank",
+        "Kick-drum trigger via a foot switch"
+      ]
     },
     {
       "id": "workout-rep-counter",
@@ -1522,13 +3734,35 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-io-hub", "unit-ultrasonic", "unit-angle"],
-      "optionalParts": [],
-      "tags": ["health", "fitness", "fun"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-io-hub",
+        "unit-ultrasonic",
+        "unit-angle"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "health",
+        "fitness",
+        "fun"
+      ],
       "howItWorks": "An ultrasonic aims at the moving part of a pull-up bar, bench, or squat rack. Each sustained cycle through a range-gate counts as one rep. The angle knob adjusts sensitivity live. I/O Hub makes the wiring tidy.",
-      "learningGoals": ["cycle detection in noisy signals", "user-tunable systems", "health tech UX"],
-      "extensions": ["Per-exercise profiles", "Set/rest timers", "Export session to phone"]
+      "learningGoals": [
+        "cycle detection in noisy signals",
+        "user-tunable systems",
+        "health tech UX"
+      ],
+      "extensions": [
+        "Per-exercise profiles",
+        "Set/rest timers",
+        "Export session to phone"
+      ]
     },
     {
       "id": "knight-rider-led-bar",
@@ -1537,13 +3771,47 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "45 min",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-mini-proto", "extra-breadboard", "extra-jumpers", "extra-led-pack", "extra-resistor-pack"],
-      "optionalParts": [],
-      "tags": ["learning", "prototyping", "lighting", "school"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-proto",
+        "extra-breadboard",
+        "extra-jumpers",
+        "extra-led-pack",
+        "extra-resistor-pack"
+      ],
+      "optionalParts": [
+        "extra-pushbutton",
+        "extra-potentiometer"
+      ],
+      "tags": [
+        "learning",
+        "prototyping",
+        "lighting",
+        "school"
+      ],
       "howItWorks": "Wire six LEDs in a row on the breadboard through 220 Ω current-limiting resistors to six GPIO pins broken out through the Mini Proto. A short loop walks a cursor back and forth with configurable speed controlled by the device's built-in button.",
-      "learningGoals": ["GPIO output", "current-limiting resistors", "Ohm's law in practice"],
-      "extensions": ["Add more LEDs for a longer bar", "Use PWM to fade the trailing LEDs", "Switch to a rainbow pattern with the RGB strip"]
+      "steps": [
+        "Push six LEDs into a row on the breadboard, long legs (anodes) all on the same rail.",
+        "Connect each LED's short leg (cathode) to a 220 Ω resistor, then to the breadboard's ground rail.",
+        "Plug the Mini Proto Unit into the HY2.0-4P port on the device; run a jumper from its GND pin to the breadboard's ground rail.",
+        "Run six more jumpers from Mini Proto GPIO pins (e.g. 26, 25, 0, 32, 33, 27 on StickS3) to each of the six LED anodes.",
+        "Flash the starter sketch: in a loop, set one pin HIGH for 80 ms, then step the index up and down between 0 and 5.",
+        "Power the device. You should see a scanner cursor walk back and forth along the row of LEDs.",
+        "Optional: wire an extra-pushbutton to change speed, or a pot to scale the delay live."
+      ],
+      "learningGoals": [
+        "GPIO output",
+        "current-limiting resistors",
+        "Ohm's law in practice"
+      ],
+      "extensions": [
+        "Add more LEDs for a longer bar",
+        "Use PWM to fade the trailing LEDs",
+        "Switch to a rainbow pattern with the RGB strip"
+      ]
     },
     {
       "id": "four-button-arcade",
@@ -1552,13 +3820,48 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-mini-proto", "extra-breadboard", "extra-jumpers", "extra-pushbutton", "extra-resistor-pack"],
-      "optionalParts": ["extra-piezo", "extra-led-pack"],
-      "tags": ["game", "learning", "prototyping", "family"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-proto",
+        "extra-breadboard",
+        "extra-jumpers",
+        "extra-pushbutton",
+        "extra-resistor-pack"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-led-pack"
+      ],
+      "tags": [
+        "game",
+        "learning",
+        "prototyping",
+        "family"
+      ],
       "howItWorks": "Four pushbuttons on a breadboard, each with a pull-up resistor, read from four GPIO pins. The device flashes a random sequence on its LCD; the player hits the matching button in time. Wrong or too slow → game over. Optional piezo buzzes each beat.",
-      "learningGoals": ["pull-up resistors + debounce", "event loops", "basic game state"],
-      "extensions": ["Track high scores in flash", "Add a fifth button for a panic-pass", "Co-op mode over ESP-NOW with another StickS3"]
+      "steps": [
+        "Push the four tactile pushbuttons into the breadboard, each straddling the central channel so the two leg pairs sit on opposite sides.",
+        "On one side of each button, jumper to the 3.3 V rail. On the other side, drop a 10 kΩ pull-up to GND and take the wire to a GPIO pin via the Mini Proto.",
+        "Plug the Mini Proto into the device. Run GND and 3.3 V jumpers from its pins to the breadboard rails.",
+        "Assign pins in code: button A → GPIO 26, B → 25, C → 0, D → 32 (adjust for Cardputer).",
+        "Add a 20 ms debounce on each read. Pressed = pin reads LOW.",
+        "Write the sequence generator: pick 4 random button indices, flash them on the LCD for 400 ms each.",
+        "Read the player's presses in order and compare. Correct sequence → level up. Wrong → game over screen.",
+        "Optional: add a piezo buzzer to GPIO 27 with a 220 Ω resistor, beep once per press for audio feedback."
+      ],
+      "learningGoals": [
+        "pull-up resistors + debounce",
+        "event loops",
+        "basic game state"
+      ],
+      "extensions": [
+        "Track high scores in flash",
+        "Add a fifth button for a panic-pass",
+        "Co-op mode over ESP-NOW with another StickS3"
+      ]
     },
     {
       "id": "thermistor-fever-alarm",
@@ -1567,13 +3870,49 @@
       "difficulty": "beginner",
       "ageGroup": "12+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-mini-proto", "extra-thermistor", "extra-resistor-pack", "extra-piezo", "extra-jumpers"],
-      "optionalParts": ["extra-breadboard"],
-      "tags": ["health", "sensors", "learning", "school"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-proto",
+        "extra-thermistor",
+        "extra-resistor-pack",
+        "extra-piezo",
+        "extra-jumpers"
+      ],
+      "optionalParts": [
+        "extra-breadboard",
+        "extra-led-pack",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "health",
+        "sensors",
+        "learning",
+        "school"
+      ],
       "howItWorks": "A 10 kΩ thermistor forms a voltage divider with a matched 10 kΩ resistor. Read the mid-point on an ADC-capable GPIO, apply the Steinhart–Hart equation for °C, and drive the piezo when you cross 37.5 °C.",
-      "learningGoals": ["voltage dividers", "ADC calibration", "non-linear sensor math"],
-      "extensions": ["Log readings to flash for a fever chart", "Wi-Fi alert when a caregiver isn't home", "Multi-zone probe with three thermistors"]
+      "steps": [
+        "Build the divider: connect the thermistor between 3.3 V and an ADC GPIO pin.",
+        "From that same GPIO pin, connect a fixed 10 kΩ resistor to GND. This is your voltage divider.",
+        "Wire the piezo buzzer to any digital GPIO pin through a 220 Ω resistor, other leg to GND.",
+        "In code, read the ADC every 500 ms. Convert the reading to resistance using R = 10000 × (4095 / adc − 1).",
+        "Apply the Steinhart–Hart formula (or a Beta equation with β=3950) to turn resistance into °C.",
+        "Show the temperature on the device LCD in large digits.",
+        "When the reading exceeds 37.5 °C for 3 consecutive reads, beep the piezo with 500 ms on/off cycles.",
+        "Calibrate against a known thermometer — adjust the Beta value if you see a consistent offset."
+      ],
+      "learningGoals": [
+        "voltage dividers",
+        "ADC calibration",
+        "non-linear sensor math"
+      ],
+      "extensions": [
+        "Log readings to flash for a fever chart",
+        "Wi-Fi alert when a caregiver isn't home",
+        "Multi-zone probe with three thermistors"
+      ]
     },
     {
       "id": "ldr-dawn-lamp",
@@ -1582,13 +3921,48 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-rgb-strip", "extra-ldr", "extra-resistor-pack", "extra-jumpers"],
-      "optionalParts": ["extra-breadboard"],
-      "tags": ["home", "lighting", "learning", "family"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-rgb-strip",
+        "extra-ldr",
+        "extra-resistor-pack",
+        "extra-jumpers"
+      ],
+      "optionalParts": [
+        "extra-breadboard",
+        "unit-mini-proto",
+        "extra-potentiometer"
+      ],
+      "tags": [
+        "home",
+        "lighting",
+        "learning",
+        "family"
+      ],
       "howItWorks": "LDR voltage divider → ADC reading. A smoothing filter maps the ambient reading onto LED brightness so the RGB strip slowly blooms as the room darkens. Cheap, magical, and completely offline.",
-      "learningGoals": ["analog reads", "exponential smoothing", "cross-fading color temperatures"],
-      "extensions": ["Sunrise-alarm mode in the morning", "Second LDR in a bedroom corner for gradient effect", "Bluetooth-tunable target brightness"]
+      "steps": [
+        "Plug the RGB strip into the HY2.0-4P port on the device (no GPIO wiring needed).",
+        "Plug the Mini Proto into the device's second port or daisy-chain it.",
+        "Wire the LDR between 3.3 V and an ADC-capable GPIO pin; add a 10 kΩ resistor from that same pin to GND.",
+        "In code, read the ADC every 100 ms. A bright room returns a high value; a dark room returns low.",
+        "Smooth the reading with exponential averaging: `avg = 0.9 * avg + 0.1 * reading`.",
+        "Invert + map the smoothed value to 0–255 brightness: dark → 255, bright → 0.",
+        "Pick a warm-white colour (e.g. R=255, G=160, B=70) and scale all three channels by the brightness factor.",
+        "Push the scaled colour to every LED on the strip. The room should now glow stronger as it darkens."
+      ],
+      "learningGoals": [
+        "analog reads",
+        "exponential smoothing",
+        "cross-fading color temperatures"
+      ],
+      "extensions": [
+        "Sunrise-alarm mode in the morning",
+        "Second LDR in a bedroom corner for gradient effect",
+        "Bluetooth-tunable target brightness"
+      ]
     },
     {
       "id": "reed-door-counter",
@@ -1597,13 +3971,48 @@
       "difficulty": "beginner",
       "ageGroup": "8+",
       "duration": "30 min",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-mini-proto", "extra-reed-switch", "extra-jumpers"],
-      "optionalParts": ["extra-breadboard"],
-      "tags": ["home", "sensors", "automation", "family"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-proto",
+        "extra-reed-switch",
+        "extra-jumpers"
+      ],
+      "optionalParts": [
+        "extra-breadboard",
+        "extra-piezo",
+        "extra-led-pack",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "home",
+        "sensors",
+        "automation",
+        "family"
+      ],
       "howItWorks": "Stick the magnet to the door, the reed to the frame. Wire the switch to GPIO with the internal pull-up enabled. Count each open/close edge, display a live total on the LCD, and persist to flash every change.",
-      "learningGoals": ["edge detection with debounce", "flash persistence", "enclosure-less mounting tricks"],
-      "extensions": ["Hourly histogram on the Cardputer", "Wi-Fi ping to a parent on every open", "Add a second reed for open/closed state detection"]
+      "steps": [
+        "Stick the magnet to the edge of the door with double-sided tape, lined up with where the frame is when closed.",
+        "Tape the reed switch body to the frame so the magnet sits next to it when the door is closed.",
+        "Wire one leg of the reed to a GPIO pin via the Mini Proto, the other leg to GND.",
+        "In firmware, enable the internal pull-up on that pin (`pinMode(pin, INPUT_PULLUP)`).",
+        "Read the pin in a loop. Debounce for 50 ms — closed (LOW) means door closed.",
+        "On each transition from closed to open, increment a counter and redraw the total on the LCD.",
+        "Save the counter to NVS/flash on every update so it survives a power cycle.",
+        "Optional: flash an LED or beep the piezo briefly on each open event."
+      ],
+      "learningGoals": [
+        "edge detection with debounce",
+        "flash persistence",
+        "enclosure-less mounting tricks"
+      ],
+      "extensions": [
+        "Hourly histogram on the Cardputer",
+        "Wi-Fi ping to a parent on every open",
+        "Add a second reed for open/closed state detection"
+      ]
     },
     {
       "id": "piezo-morse-key",
@@ -1612,13 +4021,48 @@
       "difficulty": "beginner",
       "ageGroup": "12+",
       "duration": "45 min",
-      "compatibleDevices": ["cardputer-adv"],
-      "requiredParts": ["unit-mini-proto", "extra-pushbutton", "extra-piezo", "extra-jumpers", "extra-resistor-pack"],
-      "optionalParts": [],
-      "tags": ["learning", "communication", "school", "fun"],
+      "compatibleDevices": [
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-proto",
+        "extra-pushbutton",
+        "extra-piezo",
+        "extra-jumpers",
+        "extra-resistor-pack"
+      ],
+      "optionalParts": [
+        "extra-breadboard",
+        "extra-potentiometer",
+        "extra-led-pack"
+      ],
+      "tags": [
+        "learning",
+        "communication",
+        "school",
+        "fun"
+      ],
       "howItWorks": "A pushbutton wired with a pull-up resistor keys the piezo while held. The firmware times the dot vs. dash gap, parses morse on the fly, and streams decoded characters to the Cardputer's terminal.",
-      "learningGoals": ["timing thresholds", "state-machine parsing", "live decoding"],
-      "extensions": ["Keyer speed knob with the potentiometer", "Auto-playback of typed text as morse", "Contact log for ham-radio practice"]
+      "steps": [
+        "Wire the pushbutton between a Mini Proto GPIO pin and GND. Add a 10 kΩ pull-up from that pin to 3.3 V.",
+        "Wire the piezo buzzer between another GPIO pin and GND through a 220 Ω resistor.",
+        "In the firmware, poll the button with 10 ms debounce. Beep the piezo (square wave 2 kHz) while the button is held.",
+        "Start a millisecond timer when the button is pressed, stop on release. Press < 250 ms = dot; press ≥ 250 ms = dash.",
+        "Buffer dots/dashes while button is being pressed repeatedly. When no press for 500 ms, treat the buffer as one letter and look it up in a morse table.",
+        "Append the decoded character to a string shown on the Cardputer screen.",
+        "After 1.5 s of silence, insert a space (word boundary).",
+        "Optional: add a 10 kΩ potentiometer on an ADC pin to live-tune the dot/dash threshold."
+      ],
+      "learningGoals": [
+        "timing thresholds",
+        "state-machine parsing",
+        "live decoding"
+      ],
+      "extensions": [
+        "Keyer speed knob with the potentiometer",
+        "Auto-playback of typed text as morse",
+        "Contact log for ham-radio practice"
+      ]
     },
     {
       "id": "tilt-beeper-alarm",
@@ -1627,13 +4071,48 @@
       "difficulty": "beginner",
       "ageGroup": "12+",
       "duration": "45 min",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-mini-proto", "extra-tilt-switch", "extra-piezo", "extra-jumpers"],
-      "optionalParts": ["extra-breadboard"],
-      "tags": ["security", "sensors", "fun"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-proto",
+        "extra-tilt-switch",
+        "extra-piezo",
+        "extra-jumpers"
+      ],
+      "optionalParts": [
+        "extra-breadboard",
+        "extra-led-pack",
+        "extra-resistor-pack",
+        "extra-reed-switch"
+      ],
+      "tags": [
+        "security",
+        "sensors",
+        "fun"
+      ],
       "howItWorks": "A ball-bearing tilt switch closes whenever the enclosure rotates. The device arms on a long-press, then triggers the piezo for 10 s on the next tilt event. A second long-press disarms.",
-      "learningGoals": ["mechanical sensors", "arming state machines", "human-in-the-loop UX"],
-      "extensions": ["Escalate to Wi-Fi notification", "Add a PIR unit for double-confirmation", "Silent mode that just logs tampers"]
+      "steps": [
+        "Wire the tilt switch between a GPIO pin and GND; enable the pin's internal pull-up.",
+        "Wire the piezo between another GPIO pin and GND through a 220 Ω resistor.",
+        "Design a 3-state state machine: DISARMED → ARMING → ARMED.",
+        "Long-press the device's side button (≥ 1 s) → enter ARMING. Show a 5 s countdown on the LCD so the user can put the device down without triggering.",
+        "After countdown → enter ARMED. Poll the tilt pin; LOW (closed) = tilted.",
+        "On first tilt in ARMED, beep the piezo at 2 Hz for 10 s or until disarmed.",
+        "Long-press again → DISARMED. Clear the screen and quiet the piezo.",
+        "Tune sensitivity by orienting the tilt switch. For a real bag, tape it vertically so any knock-over triggers."
+      ],
+      "learningGoals": [
+        "mechanical sensors",
+        "arming state machines",
+        "human-in-the-loop UX"
+      ],
+      "extensions": [
+        "Escalate to Wi-Fi notification",
+        "Add a PIR unit for double-confirmation",
+        "Silent mode that just logs tampers"
+      ]
     },
     {
       "id": "pot-color-mixer",
@@ -1642,13 +4121,47 @@
       "difficulty": "intermediate",
       "ageGroup": "8+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-rgb-strip", "unit-io-hub", "extra-potentiometer", "extra-jumpers"],
-      "optionalParts": ["extra-breadboard"],
-      "tags": ["art", "lighting", "fun", "family"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-rgb-strip",
+        "unit-io-hub",
+        "extra-potentiometer",
+        "extra-jumpers"
+      ],
+      "optionalParts": [
+        "extra-breadboard",
+        "extra-pushbutton",
+        "unit-mini-proto"
+      ],
+      "tags": [
+        "art",
+        "lighting",
+        "fun",
+        "family"
+      ],
       "howItWorks": "Three potentiometers on ADC pins feed red, green and blue channels of the RGB strip in real time. A tiny LCD preview shows the current hex code. Twist and watch the strip respond instantly.",
-      "learningGoals": ["multi-channel ADC reads", "live color spaces", "smooth-update rendering"],
-      "extensions": ["Swap to HSV (hue/sat/val) mapping", "Save three favourite colours to flash", "Broadcast the current colour over ESP-NOW"]
+      "steps": [
+        "Plug the I/O Hub into the device and the RGB strip into one of the hub's ports.",
+        "Wire three potentiometers on the breadboard — outer legs to 3.3 V and GND, the middle (wiper) leg to three separate ADC pins via the hub.",
+        "Label each pot R / G / B with a sticker so you remember which is which.",
+        "Read each ADC every 30 ms and map the 0–4095 range to 0–255.",
+        "Build the colour (R, G, B) and write it to every LED on the strip.",
+        "Render a small hex preview on the LCD (e.g. `#FF8040`).",
+        "Optional: add a pushbutton to save the current colour to a 3-slot preset bank in flash, recalled by double-press."
+      ],
+      "learningGoals": [
+        "multi-channel ADC reads",
+        "live color spaces",
+        "smooth-update rendering"
+      ],
+      "extensions": [
+        "Swap to HSV (hue/sat/val) mapping",
+        "Save three favourite colours to flash",
+        "Broadcast the current colour over ESP-NOW"
+      ]
     },
     {
       "id": "transistor-desk-fan",
@@ -1657,13 +4170,52 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "1.5 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-env-iii", "unit-mini-proto", "extra-dc-motor", "extra-npn-transistor", "extra-resistor-pack", "extra-breadboard", "extra-jumpers"],
-      "optionalParts": [],
-      "tags": ["home", "automation", "learning", "green"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-env-iii",
+        "unit-mini-proto",
+        "extra-dc-motor",
+        "extra-npn-transistor",
+        "extra-resistor-pack",
+        "extra-breadboard",
+        "extra-jumpers"
+      ],
+      "optionalParts": [
+        "extra-potentiometer",
+        "extra-led-pack"
+      ],
+      "tags": [
+        "home",
+        "automation",
+        "learning",
+        "green"
+      ],
       "howItWorks": "ENV III reads ambient temperature; the firmware maps it onto a PWM duty cycle driving an NPN transistor that switches a 5 V DC motor. A flyback diode across the motor stops the back-EMF from frying the transistor.",
-      "learningGoals": ["low-side switching", "back-EMF protection", "PWM ↔ motor speed"],
-      "extensions": ["Second fan on a second pin for two-zone cooling", "Web dashboard to tweak the curve", "Swap the transistor for a MOSFET for a bigger fan"]
+      "steps": [
+        "Plug ENV III into the device's HY2.0-4P port; daisy-chain the Mini Proto to a second port.",
+        "Place the 2N2222 / BC547 transistor on the breadboard. Identify the pins: Emitter (E), Base (B), Collector (C). With the flat side facing you: E=left, B=middle, C=right.",
+        "Connect Emitter to GND.",
+        "Connect the DC motor's negative wire to the transistor Collector, and the motor's positive wire to the 5 V rail.",
+        "Place a 1N4007 flyback diode across the motor — cathode (striped end) to + rail, anode to Collector. This catches the back-EMF spike when PWM turns off.",
+        "Connect a 1 kΩ resistor from a PWM-capable GPIO pin (via Mini Proto) to the transistor Base.",
+        "In code, read ENV III over I2C every second. Map temperature 22 °C → 0 %, 30 °C → 100 % duty cycle, linearly.",
+        "Use `ledcWrite()` / analogWrite() on the base-drive pin at 20 kHz for silent PWM.",
+        "Power the whole thing from USB — the motor draws current from the 5 V rail, not the GPIO pin.",
+        "⚠️ If the motor hums but won't spin at low duty, raise the minimum PWM to 30 % (motors have a start-up threshold)."
+      ],
+      "learningGoals": [
+        "low-side switching",
+        "back-EMF protection",
+        "PWM ↔ motor speed"
+      ],
+      "extensions": [
+        "Second fan on a second pin for two-zone cooling",
+        "Web dashboard to tweak the curve",
+        "Swap the transistor for a MOSFET for a bigger fan"
+      ]
     },
     {
       "id": "ldr-speaker-theremin",
@@ -1672,13 +4224,49 @@
       "difficulty": "intermediate",
       "ageGroup": "8+",
       "duration": "1 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-mini-proto", "extra-ldr", "extra-speaker", "extra-resistor-pack", "extra-jumpers"],
-      "optionalParts": ["extra-breadboard"],
-      "tags": ["music", "art", "fun", "learning"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-mini-proto",
+        "extra-ldr",
+        "extra-speaker",
+        "extra-resistor-pack",
+        "extra-jumpers"
+      ],
+      "optionalParts": [
+        "extra-breadboard",
+        "extra-potentiometer",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "music",
+        "art",
+        "fun",
+        "learning"
+      ],
       "howItWorks": "The LDR voltage-divider reading is mapped onto a PWM frequency driving the speaker through a 100 Ω resistor. Move your hand over the sensor and the pitch tracks the light you let through — a one-afternoon theremin.",
-      "learningGoals": ["PWM for audio", "mapping sensor ranges", "live waveform generation"],
-      "extensions": ["Quantise to a musical scale", "Add a second LDR for volume", "Record and loop short phrases in flash"]
+      "steps": [
+        "Wire the LDR between 3.3 V and an ADC GPIO pin; add a 10 kΩ resistor from that pin to GND.",
+        "Wire the speaker between a PWM-capable GPIO pin and GND through a 100 Ω series resistor (protects both speaker and MCU).",
+        "In code, read the LDR's ADC value every 20 ms.",
+        "Map the reading onto a frequency range: dark (~0) → 150 Hz, bright (4095) → 2000 Hz, linear.",
+        "Use `tone(pin, freq)` or `ledcWriteTone()` to drive the speaker.",
+        "Smooth the frequency jump with `freq = 0.8 * lastFreq + 0.2 * newFreq` so pitch glides instead of stepping.",
+        "Hover your hand over the LDR — as your shadow covers it, the pitch should drop.",
+        "Optional: add a pot to tune the frequency range live, or a button to 'quantise' to the nearest note in a pentatonic scale."
+      ],
+      "learningGoals": [
+        "PWM for audio",
+        "mapping sensor ranges",
+        "live waveform generation"
+      ],
+      "extensions": [
+        "Quantise to a musical scale",
+        "Add a second LDR for volume",
+        "Record and loop short phrases in flash"
+      ]
     },
     {
       "id": "microswitch-coin-sorter",
@@ -1687,13 +4275,49 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "2 h",
-      "compatibleDevices": ["m5sticks3", "cardputer-adv"],
-      "requiredParts": ["unit-servo-sg90", "extra-microswitch", "extra-jumpers", "extra-breadboard"],
-      "optionalParts": ["extra-piezo"],
-      "tags": ["school", "automation", "fun", "prototyping"],
+      "compatibleDevices": [
+        "m5sticks3",
+        "cardputer-adv"
+      ],
+      "requiredParts": [
+        "unit-servo-sg90",
+        "extra-microswitch",
+        "extra-jumpers",
+        "extra-breadboard"
+      ],
+      "optionalParts": [
+        "extra-piezo",
+        "extra-led-pack",
+        "extra-resistor-pack"
+      ],
+      "tags": [
+        "school",
+        "automation",
+        "fun",
+        "prototyping"
+      ],
       "howItWorks": "Coins roll down a cardboard chute. The first microswitch fires on any coin; the second fires only on wider coins. A servo diverts each size into a separate jar. A running count per denomination lives on the LCD.",
-      "learningGoals": ["servo timing", "debounced switch events", "low-fi mechanical design"],
-      "extensions": ["Three-way sort with a third microswitch", "Auto-export the total to a phone via QR", "LoRa uplink for piggy-bank-as-a-service"]
+      "steps": [
+        "Build a cardboard chute tilted ~15° — coins should roll down slowly but reliably.",
+        "Cut a rectangular 'sensing slot' near the top of the chute. Position microswitch 1 so any coin trips its lever as it passes.",
+        "Position microswitch 2 a few cm down the chute, offset so only wider coins (e.g. 2p / quarters) trip it; smaller coins pass under the lever.",
+        "Wire each microswitch's Common pin to GND and the NO pin to a GPIO (with internal pull-up enabled).",
+        "Attach a small cardboard flap to the SG90 servo horn. Position it at the bottom of the chute so it diverts coins left (0°) or right (90°).",
+        "Plug the SG90 servo Unit into the device — it handles PWM for you.",
+        "Logic: on switch 1 rising-edge, wait 200 ms, check switch 2. If tripped → wide coin, swing servo to 90°. Else → narrow coin, stay at 0°.",
+        "Increment a per-size counter. Render 'small: N  large: M' on the LCD.",
+        "Swing the servo back to neutral (45°) after 500 ms to reset the flap."
+      ],
+      "learningGoals": [
+        "servo timing",
+        "debounced switch events",
+        "low-fi mechanical design"
+      ],
+      "extensions": [
+        "Three-way sort with a third microswitch",
+        "Auto-export the total to a phone via QR",
+        "LoRa uplink for piggy-bank-as-a-service"
+      ]
     },
     {
       "id": "reed-bike-speedo",
@@ -1702,13 +4326,47 @@
       "difficulty": "intermediate",
       "ageGroup": "12+",
       "duration": "1.5 h",
-      "compatibleDevices": ["m5sticks3"],
-      "requiredParts": ["unit-mini-proto", "extra-reed-switch", "extra-jumpers"],
-      "optionalParts": ["extra-breadboard"],
-      "tags": ["outdoors", "sports", "sensors", "health"],
+      "compatibleDevices": [
+        "m5sticks3"
+      ],
+      "requiredParts": [
+        "unit-mini-proto",
+        "extra-reed-switch",
+        "extra-jumpers"
+      ],
+      "optionalParts": [
+        "extra-breadboard",
+        "extra-led-pack",
+        "extra-pushbutton"
+      ],
+      "tags": [
+        "outdoors",
+        "sports",
+        "sensors",
+        "health"
+      ],
       "howItWorks": "Each time the magnet passes the reed, a GPIO edge records the timestamp. Measure the period, multiply by wheel circumference, and render km/h on the StickS3's tilt-friendly big-digit display. Average-speed and distance calculated live.",
-      "learningGoals": ["rolling averages", "interrupt-driven input", "outdoor-readable UIs"],
-      "extensions": ["Altimeter via the IMU barometer", "Session logging to flash", "Bluetooth export to Strava"]
+      "steps": [
+        "Measure your wheel's circumference. For a standard 700×25c road tyre that's ~2.10 m; for a 26\" MTB ~2.05 m.",
+        "Zip-tie the magnet to one spoke, as close to the rim as you can manage.",
+        "Zip-tie or tape the reed switch to the front fork leg so the magnet passes within ~5 mm as the wheel rotates.",
+        "Wire the reed between a GPIO pin (Mini Proto) and GND. Enable the internal pull-up in firmware.",
+        "Attach an interrupt on the falling edge. Inside the ISR, record `millis()` and set a 'newPulse' flag.",
+        "In the main loop: compute period = current pulse − previous pulse. speed (km/h) = (circumference / period_ms) × 3600.",
+        "Smooth with a rolling average over the last 3 pulses to calm the display.",
+        "If no pulse arrives for 3 s, show 0 km/h and keep averaging distance.",
+        "Render speed in huge digits, distance below in smaller text. Portrait lock on the StickS3 makes it handlebar-mount-friendly."
+      ],
+      "learningGoals": [
+        "rolling averages",
+        "interrupt-driven input",
+        "outdoor-readable UIs"
+      ],
+      "extensions": [
+        "Altimeter via the IMU barometer",
+        "Session logging to flash",
+        "Bluetooth export to Strava"
+      ]
     }
   ]
 }

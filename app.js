@@ -909,6 +909,13 @@ function openProjectModal(projectId) {
             <p class="projmodal-prose">${escape(proj.howItWorks)}</p>
           </section>
 
+          ${proj.steps?.length ? `
+            <section class="projmodal-section projmodal-steps">
+              <h4>Build it step by step</h4>
+              <ol class="projmodal-steplist">${proj.steps.map((s) => `<li>${escape(s)}</li>`).join('')}</ol>
+            </section>
+          ` : ''}
+
           <section class="projmodal-section">
             <h4>What you'll learn</h4>
             <ul class="projmodal-list">${proj.learningGoals.map((g) => `<li>${escape(g)}</li>`).join('')}</ul>

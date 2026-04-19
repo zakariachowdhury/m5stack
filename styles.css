@@ -1814,6 +1814,63 @@ section {
   line-height: 1.6;
   margin: 0;
 }
+
+.projmodal-steps h4 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.projmodal-steps h4::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--diff-color, var(--accent));
+  border-radius: 3px;
+  position: relative;
+}
+
+.projmodal-steplist {
+  counter-reset: step;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.projmodal-steplist li {
+  counter-increment: step;
+  position: relative;
+  padding: 12px 14px 12px 48px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.projmodal-steplist li::before {
+  content: counter(step);
+  position: absolute;
+  left: 12px;
+  top: 11px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--diff-color, var(--accent));
+  color: #0b0f14;
+  font-weight: 700;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+}
+.projmodal-steplist li strong {
+  color: var(--text);
+  font-weight: 600;
+}
 .projmodal-list {
   margin: 0;
   padding: 0;
