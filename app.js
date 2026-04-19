@@ -1,7 +1,9 @@
 // M5Stack DIY Lab — client-side app (no deps)
 
+import { EXTRA_ICONS } from './assets/extra-icons.js';
+
 const state = {
-  products: null,   // { devices: [], caps: [], units: [], generatedAt }
+  products: null,   // { devices: [], caps: [], units: [], extras: [], generatedAt }
   projects: null,   // { projects: [] }
   productsById: {}, // id -> product
   projectCountByProduct: {}, // product id -> # of projects that use it
@@ -18,21 +20,27 @@ const state = {
   lastReadyCount: 0,
 };
 
-const TOP_TAGS = ['home', 'learning', 'fun', 'automation', 'school', 'outdoors', 'smart-home', 'productivity', 'green', 'off-grid', 'music', 'lighting', 'art', 'security', 'health', 'game'];
+const TOP_TAGS = ['home', 'learning', 'fun', 'automation', 'school', 'outdoors', 'smart-home', 'productivity', 'prototyping', 'green', 'off-grid', 'music', 'lighting', 'art', 'security', 'health', 'game'];
 
 // ---------------------------------------------------------------------
 // Boot
 // ---------------------------------------------------------------------
 
 (async function init() {
-  const [productsRes, projectsRes] = await Promise.all([
+  const [productsRes, projectsRes, extrasRes] = await Promise.all([
     fetch('data/products.json').then((r) => r.json()),
     fetch('data/projects.json').then((r) => r.json()),
+    fetch('data/extras.json').then((r) => r.json()),
   ]);
-  state.products = productsRes;
+  state.products = { ...productsRes, extras: extrasRes.extras || [] };
   state.projects = projectsRes;
 
-  for (const p of [...productsRes.devices, ...productsRes.caps, ...productsRes.units]) {
+  for (const p of [
+    ...state.products.devices,
+    ...state.products.caps,
+    ...state.products.units,
+    ...state.products.extras,
+  ]) {
     state.productsById[p.id] = p;
   }
 
@@ -42,6 +50,7 @@ const TOP_TAGS = ['home', 'learning', 'fun', 'automation', 'school', 'outdoors',
   renderCatalog('devices');
   renderCatalog('caps');
   renderCatalog('units');
+  renderCatalog('extras');
   renderPickers();
   renderTagBar();
   renderFooter();
@@ -140,6 +149,7 @@ function renderStats() {
   animateCount(document.getElementById('stat-devices'), state.products.devices.length);
   animateCount(document.getElementById('stat-caps'), state.products.caps.length);
   animateCount(document.getElementById('stat-units'), state.products.units.length);
+  animateCount(document.getElementById('stat-extras'), state.products.extras.length);
   animateCount(document.getElementById('stat-projects'), state.projects.projects.length);
 }
 
@@ -178,6 +188,7 @@ const CATEGORY_LABEL = {
   devices: 'Device',
   caps: 'CAP',
   units: 'Unit',
+  extras: 'Extra',
 };
 
 function renderCatalog(category) {
@@ -194,6 +205,8 @@ function productCard(product) {
   card.className = 'product-card';
   card.dataset.productId = product.id;
   if (isSelected(product)) card.classList.add('is-selected');
+  const isExtra = product.category === 'extras';
+  if (isExtra) card.classList.add('is-extra');
 
   const lock = partDeviceLock(product);
   const locked = product.category !== 'devices'
@@ -213,18 +226,29 @@ function productCard(product) {
        </span>`
     : '';
 
+  const mediaHtml = isExtra
+    ? `<div class="product-icon">${EXTRA_ICONS[product.icon] || ''}</div>`
+    : `<div class="product-media"><img src="${product.image ?? ''}" alt="${escape(product.title)}" loading="lazy" /></div>`;
+
+  const priceHtml = isExtra
+    ? `<span class="product-price">${escape(product.priceRange || '')}</span>`
+    : `<span class="product-price">${product.price ? '$' + product.price : ''}</span>`;
+
+  const descHtml = isExtra
+    ? `<p class="product-desc">${escape(product.description || '')}</p>
+       <p class="product-extra-meta">${escape(product.subtitle || '')} · ${escape(product.connection || '')}</p>`
+    : `<p class="product-desc">${escape(product.shortDescription || '')}</p>`;
+
   card.innerHTML = `
     ${projectBadge}
-    <div class="product-media">
-      <img src="${product.image ?? ''}" alt="${escape(product.title)}" loading="lazy" />
-    </div>
+    ${mediaHtml}
     <div class="product-body">
       <p class="product-tag">${CATEGORY_LABEL[product.category]}</p>
       <h3 class="product-title">${escape(product.title)}</h3>
-      <p class="product-desc">${escape(product.shortDescription || '')}</p>
+      ${descHtml}
       ${lockNote}
       <div class="product-foot">
-        <span class="product-price">${product.price ? '$' + product.price : ''}</span>
+        ${priceHtml}
         <button type="button" class="product-add" data-product-add ${locked ? 'disabled' : ''}>${addLabel}</button>
       </div>
     </div>
@@ -281,7 +305,7 @@ function deviceTitle(id) {
 // ---------------------------------------------------------------------
 
 function renderPickers() {
-  for (const category of ['devices', 'caps', 'units']) {
+  for (const category of ['devices', 'caps', 'units', 'extras']) {
     const host = document.querySelector(`[data-picker="${category}"]`);
     if (!host) continue;
     host.innerHTML = '';
@@ -297,6 +321,8 @@ function pickerChip(product) {
   btn.className = 'pick-chip';
   btn.dataset.pickId = product.id;
   btn.setAttribute('aria-pressed', isSelected(product) ? 'true' : 'false');
+  const isExtra = product.category === 'extras';
+  if (isExtra) btn.classList.add('is-extra');
   const locked = product.category !== 'devices'
     && !partAllowedForDevice(product, state.selection.device);
   if (locked) {
@@ -305,8 +331,11 @@ function pickerChip(product) {
     const lock = partDeviceLock(product);
     btn.title = lock ? `Only with ${lock.map(deviceTitle).join(' / ')}` : '';
   }
+  const thumb = isExtra
+    ? `<span class="pick-chip-icon">${EXTRA_ICONS[product.icon] || ''}</span>`
+    : `<img src="${product.image ?? ''}" alt="" />`;
   btn.innerHTML = `
-    <img src="${product.image ?? ''}" alt="" />
+    ${thumb}
     <span class="pick-chip-label">${escape(shortTitle(product))}</span>
   `;
   btn.addEventListener('click', () => togglePick(product));
@@ -574,13 +603,23 @@ function updateBuildProgress(readyCount) {
   let cost = 0;
   if (device) {
     const dev = state.productsById[device];
-    if (dev && dev.price) cost += parseFloat(dev.price);
+    cost += productCost(dev);
   }
   for (const id of parts) {
-    const p = state.productsById[id];
-    if (p && p.price) cost += parseFloat(p.price);
+    cost += productCost(state.productsById[id]);
   }
   costEl.textContent = cost > 0 ? `$${cost.toFixed(2)} build` : '';
+}
+
+// Parse a price from either Shopify "12.34" or an extras "$2 / 10-pack" range.
+function productCost(product) {
+  if (!product) return 0;
+  if (product.price) return parseFloat(product.price) || 0;
+  if (product.priceRange) {
+    const m = product.priceRange.match(/\$(\d+(?:\.\d+)?)/);
+    return m ? parseFloat(m[1]) : 0;
+  }
+  return 0;
 }
 
 function updatePickerStepStates() {
@@ -640,9 +679,14 @@ function openProductModal(productId) {
   const p = state.productsById[productId];
   if (!p) return;
   const body = document.getElementById('product-modal-body');
-  const galleryHtml = p.images?.length
-    ? `<div class="pmodal-media"><img src="${p.image}" alt="${escape(p.title)}" /></div>`
-    : '';
+  const isExtra = p.category === 'extras';
+
+  const galleryHtml = isExtra
+    ? `<div class="pmodal-media pmodal-media--extra">${EXTRA_ICONS[p.icon] || ''}</div>`
+    : p.images?.length
+      ? `<div class="pmodal-media"><img src="${p.image}" alt="${escape(p.title)}" /></div>`
+      : '';
+
   const featuresHtml = p.features?.length
     ? `<ul class="pmodal-features">${p.features.map((f) => `<li>${escape(f)}</li>`).join('')}</ul>`
     : '';
@@ -659,17 +703,34 @@ function openProductModal(productId) {
       ? `Needs ${lock.map(deviceTitle).join(' / ')}`
       : (selected ? 'Remove from build' : 'Add to build');
 
+  const priceLine = isExtra
+    ? `${CATEGORY_LABEL[p.category]} · ${escape(p.priceRange || '')} · ${escape(p.connection || '')}`
+    : `${CATEGORY_LABEL[p.category]} · ${p.price ? '$' + p.price : ''}`;
+
+  const descHtml = isExtra
+    ? `<p>${escape(p.description || '')}</p>${p.subtitle ? `<p class="product-extra-meta">${escape(p.subtitle)}</p>` : ''}`
+    : `<p>${escape(p.shortDescription || '')}</p>`;
+
+  const whereHtml = isExtra && p.where?.length
+    ? `<p class="pmodal-where"><strong>Find it at:</strong> ${p.where.map((w) => escape(w)).join(' · ')}</p>`
+    : '';
+
+  const externalLink = isExtra
+    ? ''
+    : `<a href="${p.url}" class="btn btn-ghost" target="_blank" rel="noopener">View on m5stack.com ↗</a>`;
+
   body.innerHTML = `
     ${galleryHtml}
     <div class="pmodal-content">
-      <p class="product-tag">${CATEGORY_LABEL[p.category]} · ${p.price ? '$' + p.price : ''}</p>
+      <p class="product-tag">${priceLine}</p>
       <h2 id="product-modal-title">${escape(p.title)}</h2>
-      <p>${escape(p.shortDescription || '')}</p>
+      ${descHtml}
+      ${whereHtml}
       ${lockNote}
       ${featuresHtml}
       <div class="pmodal-actions">
         <button type="button" class="btn btn-primary" data-toggle-pick="${p.id}" ${locked ? 'disabled' : ''}>${addLabel}</button>
-        <a href="${p.url}" class="btn btn-ghost" target="_blank" rel="noopener">View on m5stack.com ↗</a>
+        ${externalLink}
       </div>
       ${renderProductIdeasSection(p)}
     </div>
@@ -924,13 +985,21 @@ function loadBuildFromProject(proj, deviceId) {
 
 function partCardHtml(product, role) {
   const type = role === 'device' ? 'Device' : CATEGORY_LABEL[product.category] || '';
+  const isExtra = product.category === 'extras';
+  const extraClass = isExtra ? ' part-card--extra' : '';
+  const imgHtml = isExtra
+    ? `<div class="part-card-img">${EXTRA_ICONS[product.icon] || ''}</div>`
+    : `<div class="part-card-img"><img src="${product.image ?? ''}" alt="" /></div>`;
+  const priceText = isExtra
+    ? (product.priceRange || '')
+    : (product.price ? '$' + product.price : '');
   return `
-    <button type="button" class="part-card part-card--${role}" data-part-open="${product.id}">
-      <div class="part-card-img"><img src="${product.image ?? ''}" alt="" /></div>
+    <button type="button" class="part-card part-card--${role}${extraClass}" data-part-open="${product.id}">
+      ${imgHtml}
       <div class="part-card-body">
         <span class="part-card-type">${escape(type)}${role === 'optional' ? ' · optional' : ''}</span>
         <span class="part-card-name">${escape(product.title)}</span>
-        ${product.price ? `<span class="part-card-price">$${escape(product.price)}</span>` : ''}
+        ${priceText ? `<span class="part-card-price">${escape(priceText)}</span>` : ''}
       </div>
     </button>
   `;

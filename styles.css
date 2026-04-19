@@ -18,6 +18,7 @@
   --devices: #a78bfa;
   --caps: #f5b544;
   --units: #5ed58a;
+  --extras: #f06ac7;
 
   --radius: 14px;
   --radius-lg: 22px;
@@ -585,6 +586,102 @@ section {
 }
 .catalog-units {
   --cat-accent: var(--units);
+}
+.catalog-extras {
+  --cat-accent: var(--extras);
+}
+
+.section-badge {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle;
+  padding: 3px 10px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--extras);
+  background: color-mix(in srgb, var(--extras) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--extras) 40%, transparent);
+  border-radius: 999px;
+}
+
+/* Extras cards: SVG icon instead of a product photo.
+   The .product-icon slot drops in where .product-media normally lives
+   and skips the white photo background in favour of a tinted pane. */
+.product-card.is-extra .product-icon {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--extras) 28%, transparent), transparent 60%),
+    linear-gradient(140deg, rgba(240, 106, 199, 0.08), rgba(240, 106, 199, 0.02));
+  color: var(--extras);
+  transition: transform 0.3s ease;
+}
+.product-card.is-extra:hover .product-icon {
+  transform: scale(1.04);
+}
+.product-card.is-extra .product-icon svg {
+  width: 72%;
+  height: 72%;
+  filter: drop-shadow(0 2px 8px rgba(240, 106, 199, 0.3));
+}
+
+.product-extra-meta {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.product-extra-meta::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--extras);
+}
+
+/* Extras picker chips — small icon tile instead of a photo thumb. */
+.pick-chip.is-extra .pick-chip-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  padding: 4px;
+  flex-shrink: 0;
+  background: color-mix(in srgb, var(--extras) 14%, var(--bg-elev));
+  color: var(--extras);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pick-chip.is-extra .pick-chip-icon svg {
+  width: 100%;
+  height: 100%;
+}
+.pick-chip.is-extra[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--extras) 10%, transparent);
+  border-color: var(--extras);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--extras) 55%, transparent) inset;
+}
+.pick-chip.is-extra[aria-pressed="true"]::after {
+  background: var(--extras);
+}
+
+/* Extras part-card in the project modal uses the same icon tile. */
+.part-card--extra .part-card-img {
+  background: color-mix(in srgb, var(--extras) 10%, var(--bg-elev));
+  color: var(--extras);
+  border: 1px solid color-mix(in srgb, var(--extras) 30%, transparent);
+}
+.part-card--extra .part-card-img svg {
+  width: 80%;
+  height: 80%;
 }
 
 .product-card {
@@ -1395,6 +1492,32 @@ section {
   max-height: 100%;
   max-width: 100%;
   object-fit: contain;
+}
+.pmodal-media--extra {
+  background:
+    radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--extras) 24%, transparent), transparent 60%),
+    linear-gradient(140deg, rgba(240, 106, 199, 0.1), rgba(240, 106, 199, 0.02));
+  color: var(--extras);
+}
+.pmodal-media--extra svg {
+  width: 40%;
+  height: 80%;
+  filter: drop-shadow(0 4px 14px rgba(240, 106, 199, 0.35));
+}
+
+.pmodal-where {
+  margin: 14px 0 0;
+  padding: 10px 14px;
+  background: color-mix(in srgb, var(--extras) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--extras) 30%, transparent);
+  border-radius: 10px;
+  font-size: 0.88rem;
+  color: var(--text-dim);
+}
+.pmodal-where strong {
+  color: var(--extras);
+  font-weight: 600;
+  margin-right: 4px;
 }
 .pmodal-content {
   padding: 24px 28px 28px;
