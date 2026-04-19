@@ -1000,40 +1000,298 @@ section {
   border-radius: 999px;
 }
 
+/* ============================= Project modal (redesign) */
+
+#project-modal.modal {
+  max-width: 880px;
+}
+
 .projmodal {
-  padding: 28px;
+  padding: 0;
+  position: relative;
 }
-.projmodal h2 {
-  font-size: 1.6rem;
-  margin-bottom: 6px;
+
+.projmodal::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: var(--diff-color, var(--accent));
 }
-.projmodal .pill-row {
+
+.projmodal-hero {
+  padding: 32px 32px 24px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--diff-color, var(--accent)) 10%, transparent) 0%,
+    transparent 100%
+  );
+  border-bottom: 1px solid var(--border);
+}
+
+.projmodal-hero-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+.projmodal-diff {
+  color: var(--diff-color, var(--accent));
+  border-color: var(--diff-color, var(--accent));
+  background: transparent;
+  font-weight: 600;
+}
+.projmodal-meta-dot {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+.projmodal-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.projmodal-meta-item svg {
+  opacity: 0.75;
+  flex-shrink: 0;
+}
+
+.projmodal-hero h2 {
+  font-size: clamp(1.6rem, 1.1rem + 1.2vw, 2rem);
+  font-weight: 700;
+  margin: 0 0 10px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  padding-right: 40px; /* Leave room for close button */
+}
+
+.projmodal-tagline {
+  font-size: 1.02rem;
+  color: var(--text-dim);
+  margin: 0 0 16px;
+  line-height: 1.45;
+}
+
+.projmodal-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 18px;
 }
+.tag-chip {
+  font-size: 0.72rem;
+  padding: 3px 9px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-dim);
+}
+
+.projmodal-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 0;
+  align-items: start;
+}
+
+@media (max-width: 720px) {
+  .projmodal-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.projmodal-main {
+  padding: 24px 32px 32px;
+  min-width: 0;
+}
+.projmodal-side {
+  padding: 24px 28px 28px;
+  border-left: 1px solid var(--border);
+  background: rgba(255,255,255,0.015);
+  position: sticky;
+  top: 0;
+  min-width: 0;
+}
+@media (max-width: 720px) {
+  .projmodal-side {
+    border-left: none;
+    border-top: 1px solid var(--border);
+    position: static;
+  }
+  .projmodal-main {
+    padding: 20px 22px 24px;
+  }
+  .projmodal-hero {
+    padding: 24px 22px 20px;
+  }
+}
+
 .projmodal-section {
-  margin-top: 22px;
+  margin-bottom: 28px;
 }
-.projmodal-section h4 {
-  font-size: 0.75rem;
+.projmodal-section:last-child {
+  margin-bottom: 0;
+}
+.projmodal-section h4,
+.projmodal-bom h4 {
+  font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: var(--text-muted);
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   font-weight: 600;
-}
-.projmodal-section p,
-.projmodal-section li {
-  color: var(--text-dim);
-  font-size: 0.95rem;
-}
-.projmodal-parts {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   gap: 8px;
 }
+.projmodal-prose {
+  font-size: 0.96rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin: 0;
+}
+.projmodal-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.projmodal-list li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 8px;
+  color: var(--text-dim);
+  font-size: 0.93rem;
+  line-height: 1.5;
+}
+.projmodal-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--diff-color, var(--accent));
+  opacity: 0.7;
+}
+
+.projmodal-bom {
+  margin-bottom: 22px;
+}
+.bom-count {
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: var(--bg-elev);
+  color: var(--text-dim);
+  padding: 1px 7px;
+  border-radius: 999px;
+  letter-spacing: normal;
+}
+.part-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.part-empty {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 10px;
+  border: 1px dashed var(--border);
+}
+
+.part-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px 8px 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--text);
+  font-family: inherit;
+  text-align: left;
+  transition: border-color 0.12s ease, transform 0.12s ease;
+  width: 100%;
+}
+.part-card:hover {
+  border-color: var(--accent);
+  transform: translateX(2px);
+}
+.part-card-img {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.part-card-img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.part-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  flex: 1;
+}
+.part-card-type {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.part-card-name {
+  font-size: 0.82rem;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.part-card-price {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+.part-card--device {
+  border-color: color-mix(in srgb, var(--devices) 40%, var(--border));
+}
+.part-card--optional {
+  border-style: dashed;
+  opacity: 0.82;
+}
+
+.projmodal-cta {
+  margin-top: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.btn-block {
+  width: 100%;
+  justify-content: center;
+}
+.projmodal-cta-hint {
+  margin: 10px 0 0;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* Legacy .part-chip kept for anything still using it */
 .part-chip {
   display: inline-flex;
   align-items: center;

@@ -644,81 +644,127 @@ function openProjectModal(projectId) {
   if (!proj) return;
   const body = document.getElementById('project-modal-body');
 
-  const deviceChips = proj.compatibleDevices
-    .map((id) => state.productsById[id])
-    .filter(Boolean)
-    .map((p) => partChipHtml(p, false))
-    .join('');
-  const requiredChips = proj.requiredParts
-    .map((id) => state.productsById[id])
-    .filter(Boolean)
-    .map((p) => partChipHtml(p, false))
-    .join('');
-  const optionalChips = (proj.optionalParts || [])
-    .map((id) => state.productsById[id])
-    .filter(Boolean)
-    .map((p) => partChipHtml(p, true))
-    .join('');
+  const devices = proj.compatibleDevices.map((id) => state.productsById[id]).filter(Boolean);
+  const required = proj.requiredParts.map((id) => state.productsById[id]).filter(Boolean);
+  const optional = (proj.optionalParts || []).map((id) => state.productsById[id]).filter(Boolean);
 
   const diffDots = { beginner: 1, intermediate: 2, advanced: 3 }[proj.difficulty] ?? 1;
   const dotsHtml = `<span class="difficulty-dots">${[0,1,2].map(i => `<span class="${i < diffDots ? 'on' : ''}"></span>`).join('')}</span>`;
+  const totalParts = required.length + optional.length;
+
+  // "Load this build" is always offered; picks the first compatible device
+  // and the required parts. Resolves any lock conflicts automatically.
+  const firstDevice = devices[0]?.id;
 
   body.innerHTML = `
-    <div class="projmodal" data-diff="${proj.difficulty}" style="--diff-color: ${diffColor(proj.difficulty)}">
-      <h2 id="project-modal-title">${escape(proj.title)}</h2>
-      <p class="project-tagline">${escape(proj.tagline)}</p>
+    <article class="projmodal" data-diff="${proj.difficulty}" style="--diff-color: ${diffColor(proj.difficulty)}">
+      <header class="projmodal-hero">
+        <div class="projmodal-hero-meta">
+          <span class="pill pill-diff projmodal-diff">${dotsHtml} ${cap(proj.difficulty)}</span>
+          <span class="projmodal-meta-dot">·</span>
+          <span class="projmodal-meta-item"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5a4 4 0 0 0-4 4v1.3a3 3 0 0 1-.6 1.8L2 12h12l-1.4-2.4a3 3 0 0 1-.6-1.8V6.5a4 4 0 0 0-4-4Z"/><path d="M6 14a2 2 0 0 0 4 0"/></svg>${escape(proj.ageGroup)}</span>
+          <span class="projmodal-meta-dot">·</span>
+          <span class="projmodal-meta-item"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 1.5"/></svg>${escape(proj.duration)}</span>
+          <span class="projmodal-meta-dot">·</span>
+          <span class="projmodal-meta-item"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="12" height="9" rx="1.5"/><path d="M6 2v2M10 2v2"/></svg>${totalParts} part${totalParts === 1 ? '' : 's'}</span>
+        </div>
+        <h2 id="project-modal-title">${escape(proj.title)}</h2>
+        <p class="projmodal-tagline">${escape(proj.tagline)}</p>
+        ${proj.tags?.length ? `<div class="projmodal-tags">${proj.tags.map((t) => `<span class="tag-chip">#${escape(t)}</span>`).join('')}</div>` : ''}
+      </header>
 
-      <div class="pill-row">
-        <span class="pill pill-diff" style="color: ${diffColor(proj.difficulty)}; border-color: ${diffColor(proj.difficulty)}">${dotsHtml} ${cap(proj.difficulty)}</span>
-        <span class="pill">${escape(proj.ageGroup)} friendly</span>
-        <span class="pill">${escape(proj.duration)}</span>
-        ${proj.tags.map((t) => `<span class="pill">#${escape(t)}</span>`).join('')}
+      <div class="projmodal-grid">
+        <div class="projmodal-main">
+          <section class="projmodal-section">
+            <h4>How it works</h4>
+            <p class="projmodal-prose">${escape(proj.howItWorks)}</p>
+          </section>
+
+          <section class="projmodal-section">
+            <h4>What you'll learn</h4>
+            <ul class="projmodal-list">${proj.learningGoals.map((g) => `<li>${escape(g)}</li>`).join('')}</ul>
+          </section>
+
+          ${proj.extensions?.length ? `
+            <section class="projmodal-section">
+              <h4>Take it further</h4>
+              <ul class="projmodal-list">${proj.extensions.map((g) => `<li>${escape(g)}</li>`).join('')}</ul>
+            </section>
+          ` : ''}
+        </div>
+
+        <aside class="projmodal-side">
+          <section class="projmodal-bom">
+            <h4>Device</h4>
+            <div class="part-stack">${devices.map((p) => partCardHtml(p, 'device')).join('')}</div>
+          </section>
+          <section class="projmodal-bom">
+            <h4>Required parts ${required.length ? `<span class="bom-count">${required.length}</span>` : ''}</h4>
+            ${required.length
+              ? `<div class="part-stack">${required.map((p) => partCardHtml(p, 'required')).join('')}</div>`
+              : `<p class="part-empty">Works with the device on its own — no extra parts needed.</p>`}
+          </section>
+          ${optional.length ? `
+            <section class="projmodal-bom">
+              <h4>Nice to add <span class="bom-count">${optional.length}</span></h4>
+              <div class="part-stack">${optional.map((p) => partCardHtml(p, 'optional')).join('')}</div>
+            </section>
+          ` : ''}
+          <div class="projmodal-cta">
+            <button type="button" class="btn btn-primary btn-block" data-load-build>
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+              Load this build
+            </button>
+            <p class="projmodal-cta-hint">Sets this device and the required parts in the builder.</p>
+          </div>
+        </aside>
       </div>
-
-      <section class="projmodal-section">
-        <h4>How it works</h4>
-        <p>${escape(proj.howItWorks)}</p>
-      </section>
-
-      <section class="projmodal-section">
-        <h4>Works with device</h4>
-        <div class="projmodal-parts">${deviceChips}</div>
-      </section>
-
-      <section class="projmodal-section">
-        <h4>Required parts</h4>
-        <div class="projmodal-parts">${requiredChips || '<span class="muted">None — works with the device on its own.</span>'}</div>
-      </section>
-
-      ${optionalChips ? `
-        <section class="projmodal-section">
-          <h4>Nice to add</h4>
-          <div class="projmodal-parts">${optionalChips}</div>
-        </section>
-      ` : ''}
-
-      <section class="projmodal-section">
-        <h4>What you'll learn</h4>
-        <ul>${proj.learningGoals.map((g) => `<li>${escape(g)}</li>`).join('')}</ul>
-      </section>
-
-      ${proj.extensions?.length ? `
-        <section class="projmodal-section">
-          <h4>Take it further</h4>
-          <ul>${proj.extensions.map((g) => `<li>${escape(g)}</li>`).join('')}</ul>
-        </section>
-      ` : ''}
-    </div>
+    </article>
   `;
+
+  // Part cards open their product modal
+  for (const card of body.querySelectorAll('[data-part-open]')) {
+    card.addEventListener('click', () => {
+      const id = card.dataset.partOpen;
+      document.getElementById('project-modal').close();
+      openProductModal(id);
+    });
+  }
+  // Load-this-build: sets selection and scrolls to the builder
+  body.querySelector('[data-load-build]')?.addEventListener('click', () => {
+    loadBuildFromProject(proj, firstDevice);
+    document.getElementById('project-modal').close();
+    document.getElementById('builder').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
   document.getElementById('project-modal').showModal();
 }
 
-function partChipHtml(product, optional) {
+function loadBuildFromProject(proj, deviceId) {
+  state.selection.device = deviceId || null;
+  state.selection.parts = new Set();
+  for (const id of proj.requiredParts) {
+    const part = state.productsById[id];
+    if (!part) continue;
+    if (!partAllowedForDevice(part, state.selection.device)) continue;
+    state.selection.parts.add(id);
+  }
+  refreshSelectionUI();
+  updateBuilder();
+  saveToHash();
+}
+
+function partCardHtml(product, role) {
+  const type = role === 'device' ? 'Device' : CATEGORY_LABEL[product.category] || '';
   return `
-    <span class="part-chip ${optional ? 'is-optional' : ''}" title="${escape(product.title)}">
-      <img src="${product.image ?? ''}" alt="" />
-      ${escape(shortTitle(product))}
-    </span>
+    <button type="button" class="part-card part-card--${role}" data-part-open="${product.id}">
+      <div class="part-card-img"><img src="${product.image ?? ''}" alt="" /></div>
+      <div class="part-card-body">
+        <span class="part-card-type">${escape(type)}${role === 'optional' ? ' · optional' : ''}</span>
+        <span class="part-card-name">${escape(product.title)}</span>
+        ${product.price ? `<span class="part-card-price">$${escape(product.price)}</span>` : ''}
+      </div>
+    </button>
   `;
 }
 
