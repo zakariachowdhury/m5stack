@@ -1818,10 +1818,10 @@ section {
 }
 
 .projmodal-hero {
-  padding: 40px 44px 28px;
+  padding: 26px 40px 20px;
   background: linear-gradient(
     180deg,
-    color-mix(in srgb, var(--diff-color, var(--accent)) 12%, transparent) 0%,
+    color-mix(in srgb, var(--diff-color, var(--accent)) 14%, transparent) 0%,
     transparent 100%
   );
   border-bottom: 1px solid var(--border);
@@ -1831,9 +1831,9 @@ section {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 16px;
-  font-size: 0.82rem;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
   color: var(--text-dim);
 }
 .projmodal-diff {
@@ -1854,22 +1854,24 @@ section {
 .projmodal-meta-item svg {
   opacity: 0.75;
   flex-shrink: 0;
+  width: 15px;
+  height: 15px;
 }
 
 .projmodal-hero h2 {
-  font-size: clamp(1.75rem, 1.2rem + 1.4vw, 2.25rem);
+  font-size: clamp(1.85rem, 1.2rem + 1.6vw, 2.4rem);
   font-weight: 700;
-  margin: 0 0 12px;
-  line-height: 1.15;
-  letter-spacing: -0.015em;
+  margin: 0 0 8px;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
   padding-right: 56px; /* Leave room for close button */
 }
 
 .projmodal-tagline {
-  font-size: 1.05rem;
+  font-size: 1.18rem;
   color: var(--text-dim);
-  margin: 0 0 18px;
-  line-height: 1.5;
+  margin: 0 0 14px;
+  line-height: 1.45;
   max-width: 68ch;
 }
 
@@ -1879,8 +1881,8 @@ section {
   gap: 6px;
 }
 .tag-chip {
-  font-size: 0.74rem;
-  padding: 3px 10px;
+  font-size: 0.8rem;
+  padding: 3px 11px;
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--border);
   border-radius: 999px;
@@ -1901,11 +1903,11 @@ section {
 }
 
 .projmodal-main {
-  padding: 32px 44px 40px;
+  padding: 24px 40px 32px;
   min-width: 0;
 }
 .projmodal-side {
-  padding: 28px 32px 32px;
+  padding: 22px 28px 24px;
   border-left: 1px solid var(--border);
   background: var(--bg-card);
   position: sticky;
@@ -1931,23 +1933,23 @@ section {
     position: static;
     max-height: none;
     overflow-y: visible;
-    padding: 24px 24px 28px;
+    padding: 20px 22px 24px;
   }
   .projmodal-main {
-    padding: 24px 24px 28px;
+    padding: 20px 22px 24px;
   }
   .projmodal-hero {
-    padding: 28px 24px 22px;
+    padding: 22px 22px 18px;
   }
 }
 
 .projmodal-section {
-  margin-bottom: 36px;
-  padding-top: 28px;
+  margin-bottom: 20px;
+  padding-top: 14px;
   border-top: 1px solid var(--border);
 }
 .projmodal-section:first-child {
-  padding-top: 0;
+  padding-top: 2px;
   border-top: none;
 }
 .projmodal-section:last-child {
@@ -1955,20 +1957,20 @@ section {
 }
 .projmodal-section h4,
 .projmodal-bom h4 {
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   color: var(--text-muted);
-  margin: 0 0 14px;
-  font-weight: 600;
+  margin: 0 0 10px;
+  font-weight: 700;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 .projmodal-prose {
-  font-size: 0.98rem;
+  font-size: 1.05rem;
   color: var(--text-dim);
-  line-height: 1.65;
+  line-height: 1.58;
   margin: 0;
   max-width: 68ch;
 }
@@ -1995,31 +1997,31 @@ section {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
 }
 .projmodal-steplist li {
   counter-increment: step;
   position: relative;
-  padding: 12px 14px 12px 48px;
-  background: rgba(255, 255, 255, 0.02);
+  padding: 10px 14px 10px 46px;
+  background: rgba(255, 255, 255, 0.025);
   border: 1px solid var(--border);
   border-radius: 10px;
   color: var(--text-dim);
-  font-size: 0.92rem;
+  font-size: 1rem;
   line-height: 1.5;
 }
 .projmodal-steplist li::before {
   content: counter(step);
   position: absolute;
-  left: 12px;
-  top: 11px;
+  left: 10px;
+  top: 10px;
   width: 26px;
   height: 26px;
   border-radius: 50%;
   background: var(--diff-color, var(--accent));
   color: #0b0f14;
   font-weight: 700;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2036,32 +2038,32 @@ section {
 }
 .projmodal-list li {
   position: relative;
-  padding-left: 18px;
-  margin-bottom: 8px;
+  padding-left: 20px;
+  margin-bottom: 6px;
   color: var(--text-dim);
-  font-size: 0.93rem;
+  font-size: 1.02rem;
   line-height: 1.5;
 }
 .projmodal-list li::before {
   content: "";
   position: absolute;
-  left: 0;
-  top: 0.55em;
-  width: 6px;
-  height: 6px;
+  left: 4px;
+  top: 0.6em;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: var(--diff-color, var(--accent));
-  opacity: 0.7;
+  opacity: 0.75;
 }
 
 .projmodal-bom {
-  margin-bottom: 24px;
+  margin-bottom: 18px;
 }
 .projmodal-bom:last-of-type {
   margin-bottom: 0;
 }
 .bom-count {
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 700;
   background: var(--bg-elev);
   color: var(--text-dim);
@@ -2072,25 +2074,25 @@ section {
 .part-stack {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 .part-empty {
   margin: 0;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
   font-style: italic;
-  padding: 12px 14px;
+  padding: 10px 12px;
   background: rgba(255,255,255,0.02);
   border-radius: 10px;
   border: 1px dashed var(--border);
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
 .part-card {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 12px 10px 10px;
+  gap: 11px;
+  padding: 8px 12px 8px 8px;
   background: var(--bg-raised);
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -2108,8 +2110,8 @@ section {
 }
 .part-card-img {
   flex-shrink: 0;
-  width: 46px;
-  height: 46px;
+  width: 42px;
+  height: 42px;
   background: #fff;
   border-radius: 8px;
   padding: 4px;
@@ -2125,19 +2127,19 @@ section {
 .part-card-body {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
   min-width: 0;
   flex: 1;
 }
 .part-card-type {
-  font-size: 0.64rem;
+  font-size: 0.66rem;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   color: var(--text-muted);
   font-weight: 600;
 }
 .part-card-name {
-  font-size: 0.86rem;
+  font-size: 0.94rem;
   color: var(--text);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2145,7 +2147,7 @@ section {
   font-weight: 500;
 }
 .part-card-price {
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
 }
 .part-card--device {
@@ -2159,8 +2161,8 @@ section {
 .projmodal-cta {
   position: sticky;
   bottom: 0;
-  margin: 20px -32px -32px;
-  padding: 18px 32px 24px;
+  margin: 16px -28px -24px;
+  padding: 14px 28px 18px;
   background: linear-gradient(
     180deg,
     color-mix(in srgb, var(--bg-card) 0%, transparent) 0%,
@@ -2171,8 +2173,8 @@ section {
 @media (max-width: 860px) {
   .projmodal-cta {
     position: static;
-    margin: 20px -24px -28px;
-    padding: 18px 24px 20px;
+    margin: 16px -22px -24px;
+    padding: 14px 22px 18px;
   }
 }
 .btn-block {
@@ -2180,11 +2182,11 @@ section {
   justify-content: center;
 }
 .projmodal-cta-hint {
-  margin: 10px 0 0;
-  font-size: 0.75rem;
+  margin: 8px 0 0;
+  font-size: 0.8rem;
   color: var(--text-muted);
   text-align: center;
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
 /* Legacy .part-chip kept for anything still using it */
